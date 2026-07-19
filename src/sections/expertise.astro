@@ -1,0 +1,211 @@
+---
+import Container from '../components/layout/Container.astro';
+import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+import Section from '../components/layout/Section.astro';
+---
+
+<Section background="var(--color-bg)" gridBg>
+  <Container>
+    <!-- Header -->
+    <div
+      class="expertise-header"
+      style={{
+        display: 'grid',
+        gap: 'var(--space-8)',
+        marginBottom: 'var(--space-16)',
+      }}
+    >
+      <div>
+        <ScrollReveal>
+          <div class="section-label" style={{ marginBottom: 'var(--space-6)' }}>
+            Section II · Practice Areas
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={1}>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', lineHeight: '1.04' }}>
+            <span class="drop-cap">A</span>reas of Legal <br />Practice &amp; Study
+          </h2>
+        </ScrollReveal>
+      </div>
+      <ScrollReveal delay={2}>
+        <p
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'var(--text-base)',
+            color: 'rgba(24, 24, 24, 0.7)',
+            lineHeight: 'var(--leading-normal)',
+            maxWidth: '520px',
+            display: 'flex',
+            alignItems: 'flex-end',
+          }}
+        >
+          Eight foundational domains structure every LaSALe curriculum. Each is designed to compound across the three years of legal study and extend into the first five years of practice.
+        </p>
+      </ScrollReveal>
+    </div>
+
+    <!-- Practice areas grid — no cards, just typography-driven list -->
+    <div
+      class="expertise-grid"
+      style={{
+        display: 'grid',
+        borderTop: '2px solid var(--color-primary)',
+        borderLeft: '2px solid var(--color-primary)',
+      }}
+    >
+      <!-- Item 1 -->
+      <ScrollReveal as="article" delay={0}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>01</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Appellate Advocacy</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>Brief drafting, oral argument, and circuit-level practice across federal and state appellate courts.</p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Item 2 -->
+      <ScrollReveal as="article" delay={1}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>02</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Transactional Drafting</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>M&A, securities, commercial leasing, and private equity documentation under senior partner review.</p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Item 3 -->
+      <ScrollReveal as="article" delay={2}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>03</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Regulatory Practice</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>Administrative law, agency rulemaking, and compliance frameworks across federal regulatory bodies.</p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Item 4 -->
+      <ScrollReveal as="article" delay={3}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>04</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Criminal Practice</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>Trial advocacy, sentencing advocacy, and post-conviction practice led by former federal defenders.</p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Item 5 -->
+      <ScrollReveal as="article" delay={0}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>05</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Judicial Clerkships</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>Structured pathway to federal and state clerkships including application strategy and judicial mentorship.</p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Item 6 -->
+      <ScrollReveal as="article" delay={1}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>06</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Public Interest</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>Civil rights litigation, immigration, environmental justice, and impact litigation fellowships.</p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Item 7 -->
+      <ScrollReveal as="article" delay={2}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>07</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Intellectual Property</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>Patent prosecution, trademark litigation, copyright, and emerging AI regulatory frameworks.</p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Item 8 -->
+      <ScrollReveal as="article" delay={3}>
+        <div style={{
+          padding: 'var(--space-8) var(--space-10)',
+          borderRight: '2px solid var(--color-primary)',
+          borderBottom: '2px solid var(--color-primary)',
+          transition: 'background var(--duration-fast) var(--ease-out-expo)',
+        }}
+        class="expertise-item"
+      >
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>08</div>
+          <h3 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>Alternative Dispute</h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)' }}>Arbitration, mediation, and negotiation practice certified by the Center for Dispute Resolution.</p>
+        </div>
+      </ScrollReveal>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .expertise-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .expertise-header {
+      grid-template-columns: 5fr 3fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .expertise-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .expertise-item:hover {
+    background: var(--color-cream) !important;
+  }
+</style>

@@ -1,0 +1,27 @@
+---
+export interface Props {
+  class?: string;
+  as?: 'section' | 'div' | 'article' | 'footer' | 'header';
+  background?: string;
+  gridBg?: boolean;
+  overflow?: string;
+  id?: string;
+  tight?: boolean;
+}
+
+const { class: className = '', as: Tag = 'section', background, gridBg, overflow, id, tight = false } = Astro.props;
+---
+
+<Tag
+  id={id}
+  class:list={[className, gridBg && 'grid-bg']}
+  style={{
+    position: 'relative',
+    background,
+    overflow: overflow ?? 'hidden',
+    paddingTop: tight ? 'var(--space-16)' : 'var(--section-py)',
+    paddingBottom: tight ? 'var(--space-16)' : 'var(--section-py)',
+  }}
+>
+  <slot />
+</Tag>

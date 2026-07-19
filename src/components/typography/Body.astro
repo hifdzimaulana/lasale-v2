@@ -1,0 +1,34 @@
+---
+export interface Props {
+  class?: string;
+  as?: 'p' | 'span' | 'div';
+  size?: 'xs' | 'sm' | 'base' | 'lg';
+  color?: string;
+  weight?: '400' | '500' | '600';
+  leading?: string;
+  maxW?: string;
+}
+
+const { class: className = '', as: Tag = 'p', size = 'base', color, weight = '400', leading, maxW } = Astro.props;
+
+const sizeMap: Record<string, string> = {
+  xs: 'var(--text-xs)',
+  sm: 'var(--text-sm)',
+  base: 'var(--text-base)',
+  lg: 'var(--text-lg)',
+};
+---
+
+<Tag
+  class:list={[className]}
+  style={{
+    fontFamily: 'var(--font-sans)',
+    fontWeight: weight,
+    fontSize: sizeMap[size],
+    lineHeight: leading ?? 'var(--leading-normal)',
+    color: color ?? 'inherit',
+    maxWidth: maxW,
+  }}
+>
+  <slot />
+</Tag>

@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/base.astro';
+import Navigation from '../components/interactive/Navigation.astro';
+import Hero from '../sections/hero.astro';
+import Mission from '../sections/mission.astro';
+import Expertise from '../sections/expertise.astro';
+import Metrics from '../sections/metrics.astro';
+import ProgramsSpotlight from '../sections/programs-spotlight.astro';
+import Partners from '../sections/partners.astro';
+import Insights from '../sections/insights.astro';
+import NewsletterFooter from '../sections/newsletter-footer.astro';
+---
+
+<Layout title="LaSALe — Law Student Association for Legal Practice">
+  <Navigation />
+  <main>
+    <Hero />
+    <Mission />
+    <Expertise />
+    <Metrics />
+    <ProgramsSpotlight />
+    <Partners />
+    <Insights />
+  </main>
+  <NewsletterFooter />
+
+  <script>
+    import { initScrollReveals } from '../lib/observe';
+    import { initPortalParallax } from '../lib/parallax';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollReveals();
+      initPortalParallax();
+    });
+  </script>
+</Layout>

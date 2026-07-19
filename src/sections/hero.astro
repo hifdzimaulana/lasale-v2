@@ -1,0 +1,246 @@
+---
+import SoftStar from '../components/decorative/SoftStar.astro';
+import PortalSparkle from '../components/decorative/PortalSparkle.astro';
+import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+---
+
+<style>
+  .hero-overlay {
+    background:
+      linear-gradient(115deg, rgba(40, 62, 156, 0.96) 0%, rgba(40, 62, 156, 0.82) 45%, rgba(40, 62, 156, 0.45) 100%),
+      linear-gradient(180deg, rgba(40, 62, 156, 0.3) 0%, rgba(40, 62, 156, 0.1) 100%);
+  }
+</style>
+
+<section
+  class="hero"
+  style={{
+    position: 'relative',
+    minHeight: '100vh',
+    overflow: 'hidden',
+  }}
+>
+  <!-- Background image -->
+  <div style={{ position: 'absolute', inset: 0 }}>
+    <img
+      src="https://picsum.photos/seed/lasale-hero-library/1920/1200"
+      alt=""
+      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      class="duotone-img"
+    />
+    <div class="hero-overlay" style={{ position: 'absolute', inset: 0 }}></div>
+  </div>
+
+  <!-- Soft star accents -->
+  <SoftStar color="gold" size="400px" top="12%" right="6%" opacity="0.15" />
+  <SoftStar color="rose" size="320px" bottom="10%" left="4%" opacity="0.2" />
+
+  <!-- Portal sparkles -->
+  <PortalSparkle top="18%" left="52%" size={24} opacity="0.9" />
+  <PortalSparkle bottom="28%" right="20%" size={16} color="#F8F4A6" opacity="0.7" />
+  <PortalSparkle top="38%" right="35%" size={12} color="#F8F4A6" opacity="0.5" />
+
+  <!-- Content -->
+  <div
+    style={{
+      position: 'relative',
+      zIndex: 'var(--z-content)',
+      maxWidth: 'var(--max-w-content)',
+      margin: '0 auto',
+      padding: '0 var(--section-px)',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'flex-end',
+      paddingBottom: 'var(--space-20)',
+      paddingTop: 'var(--space-32)',
+    }}
+  >
+    <div style={{ width: '100%', display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-8)', alignItems: 'end' }}>
+      <!-- Hero content card -->
+      <ScrollReveal as="div">
+        <div
+          class="gradient-border"
+          style={{
+            background: 'var(--color-bg)',
+            padding: 'var(--space-10)',
+            maxWidth: '820px',
+            position: 'relative',
+          }}
+        >
+          <!-- Section label -->
+          <div class="section-label" style={{ marginBottom: 'var(--space-8)' }}>
+            Established 1987 · Volume XXXVII
+          </div>
+
+          <!-- Headline -->
+          <h1
+            style={{
+              fontSize: 'clamp(2.2rem, 6vw, 4.6rem)',
+              lineHeight: '0.98',
+              marginBottom: 'var(--space-8)',
+              color: 'var(--color-primary)',
+            }}
+          >
+            <span class="drop-cap" style={{ color: 'var(--color-primary)' }}>C</span>ultivating the Future <br />
+            <span style={{ color: 'var(--color-rose)' }}>of Legal Practice</span>
+          </h1>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(0.95rem, 1.5vw, 1.12rem)',
+              color: 'rgba(24, 24, 24, 0.75)',
+              lineHeight: 'var(--leading-normal)',
+              maxWidth: '640px',
+              marginBottom: 'var(--space-10)',
+            }}
+          >
+            The Law Student Association for Legal Practice unites the next generation of attorneys, scholars, and advocates through rigorous programming, mentorship, and direct engagement with the institutions that shape our profession.
+          </p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-4)' }}>
+            <a
+              href="/contact"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.7rem',
+                padding: '1rem 1.9rem',
+                background: 'var(--color-primary)',
+                color: '#fff',
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 600,
+                fontSize: 'var(--text-xs)',
+                letterSpacing: 'var(--tracking-wide)',
+                textTransform: 'uppercase',
+                position: 'relative',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                transition: 'transform .35s var(--ease-out-expo), box-shadow .35s',
+              }}
+              class="btn-primary"
+            >
+              Apply for Membership <span>→</span>
+            </a>
+            <a
+              href="/programs"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.7rem',
+                padding: '1rem 1.9rem',
+                background: 'transparent',
+                color: 'var(--color-primary)',
+                border: '1.5px solid var(--color-primary)',
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 600,
+                fontSize: 'var(--text-xs)',
+                letterSpacing: 'var(--tracking-wide)',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                transition: 'all .3s',
+              }}
+              class="btn-outline"
+            >
+              View 2025 Calendar
+            </a>
+          </div>
+
+          <!-- Decorative corner mark -->
+          <div
+            style={{
+              position: 'absolute',
+              top: 'var(--space-6)',
+              right: 'var(--space-6)',
+              display: 'none',
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+              gap: '0.25rem',
+            }}
+            class="corner-mark"
+          >
+            <span style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold)', fontSize: '1.5rem', lineHeight: 1 }}>No.</span>
+            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.8rem', lineHeight: 1 }}>01</span>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(24,24,24,0.5)' }}>Hero / Edition</span>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <!-- Side stat strip (desktop) -->
+      <ScrollReveal as="div" delay={2}>
+        <div
+          class="side-stats"
+          style={{
+            display: 'none',
+            gap: 'var(--space-8)',
+            alignItems: 'flex-start',
+            justifySelf: 'start',
+          }}
+        >
+          <div style={{ borderLeft: '2px solid var(--color-gold)', paddingLeft: 'var(--space-6)', paddingTop: 'var(--space-2)', paddingBottom: 'var(--space-2)' }}>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-warm-white)', fontSize: 'clamp(2.4rem, 5vw, 3.2rem)', lineHeight: 1 }}>
+              14,800<span style={{ color: 'var(--color-gold)' }}>+</span>
+            </div>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(248, 245, 239, 0.8)', marginTop: 'var(--space-3)', lineHeight: 'var(--leading-snug)', maxWidth: '260px' }}>
+              Active student members across 142 accredited member institutions nationwide.
+            </p>
+          </div>
+          <div style={{ borderLeft: '2px solid var(--color-gold)', paddingLeft: 'var(--space-6)' }}>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--color-gold)', fontSize: 'var(--text-sm)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', marginBottom: 'var(--space-3)' }}>Next Convocation</div>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(248, 245, 239, 0.7)' }}>
+              March 14, 2025 · 6:00 PM EST<br />Hartwell Hall, Washington D.C.
+            </p>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    style={{
+      position: 'absolute',
+      bottom: 'var(--space-6)',
+      left: 'var(--section-px)',
+      zIndex: 'var(--z-content)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'var(--space-3)',
+    }}
+    class="scroll-indicator"
+  >
+    <div style={{ width: '2.5rem', height: '1px', background: 'rgba(248, 245, 239, 0.5)' }}></div>
+    <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(248, 245, 239, 0.6)' }}>Scroll to Explore</span>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    .hero > div:last-child > div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+    }
+
+    .corner-mark {
+      display: flex !important;
+    }
+
+    .side-stats {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -18px rgba(40, 62, 156, 0.55);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+</style>

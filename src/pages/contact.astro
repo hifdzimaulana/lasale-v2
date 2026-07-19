@@ -1,0 +1,225 @@
+---
+import Layout from '../layouts/base.astro';
+import Navigation from '../components/interactive/Navigation.astro';
+import Container from '../components/layout/Container.astro';
+import Section from '../components/layout/Section.astro';
+import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+import SoftStar from '../components/decorative/SoftStar.astro';
+import PortalSparkle from '../components/decorative/PortalSparkle.astro';
+import WaveDivider from '../components/decorative/WaveDivider.astro';
+import NewsletterFooter from '../sections/newsletter-footer.astro';
+---
+
+<Layout title="Contact — LaSALe">
+  <Navigation />
+  <main>
+    <!-- Page hero -->
+    <Section background="var(--color-primary)" tight>
+      <SoftStar color="gold" size="350px" top="10%" right="4%" opacity="0.1" />
+      <PortalSparkle top="20%" left="60%" size={18} opacity="0.7" />
+      <Container>
+        <div style={{ position: 'relative', zIndex: 'var(--z-content)', paddingTop: 'var(--space-32)', paddingBottom: 'var(--space-12)' }}>
+          <ScrollReveal>
+            <div class="section-label section-label--light" style={{ marginBottom: 'var(--space-6)' }}>
+              Contact &amp; Inquiries
+            </div>
+          </ScrollReveal>
+          <div style={{ maxWidth: '700px' }}>
+            <ScrollReveal delay={1}>
+              <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', lineHeight: '0.98', color: 'var(--color-warm-white)', marginBottom: 'var(--space-8)' }}>
+                <span class="drop-cap drop-cap-light">G</span>et in Touch <br />with the Association
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={2}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.95rem, 1.3vw, 1.12rem)', color: 'rgba(248,245,239,0.8)', lineHeight: 'var(--leading-normal)' }}>
+                Membership inquiries, partnership opportunities, press requests, and general correspondence.
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- Contact content -->
+    <Section background="var(--color-bg)" gridBg>
+      <Container>
+        <div class="contact-grid" style="display: grid; gap: var(--space-12);">
+          <!-- Contact info -->
+          <div>
+            <ScrollReveal>
+              <h2 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', lineHeight: '1.04', marginBottom: 'var(--space-8)' }}>
+                <span class="drop-cap">O</span>ur Offices
+              </h2>
+            </ScrollReveal>
+
+            <ScrollReveal delay={1}>
+              <div style={{ borderLeft: '2px solid var(--color-primary)', paddingLeft: 'var(--space-6)', marginBottom: 'var(--space-8)' }}>
+                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>Headquarters</div>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-lg)', color: 'rgba(24,24,24,0.75)', lineHeight: '1.7' }}>
+                  1120 Connecticut Avenue NW<br />
+                  Suite 440<br />
+                  Washington, D.C. 20036
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={2}>
+              <div style={{ borderLeft: '2px solid var(--color-gold)', paddingLeft: 'var(--space-6)', marginBottom: 'var(--space-8)' }}>
+                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>Direct Inquiries</div>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-lg)', color: 'rgba(24,24,24,0.75)', lineHeight: '1.7' }}>
+                  Membership: <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>membership@lasale.org</span><br />
+                  Partnerships: <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>partners@lasale.org</span><br />
+                  Press: <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>press@lasale.org</span><br />
+                  Phone: <span style={{ color: 'var(--color-primary)', fontWeight: 500 }}>+1 (202) 555-0140</span>
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={3}>
+              <div style={{ borderLeft: '2px solid var(--color-rose)', paddingLeft: 'var(--space-6)' }}>
+                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-rose)', marginBottom: 'var(--space-3)' }}>Office Hours</div>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-lg)', color: 'rgba(24,24,24,0.75)', lineHeight: '1.7' }}>
+                  Monday – Friday · 9:00 AM – 5:30 PM EST<br />
+                  Saturday · By appointment only
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <!-- Contact form -->
+          <ScrollReveal delay={1}>
+            <div style={{ border: '2px solid var(--color-primary)', padding: 'var(--space-10)' }}>
+              <h3 style={{ fontSize: '1.6rem', marginBottom: 'var(--space-6)' }}>Send a Message</h3>
+              <form style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }} onsubmit="return false">
+                <div>
+                  <label for="name" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wide)', textTransform: 'uppercase', color: 'var(--color-primary)', display: 'block', marginBottom: 'var(--space-2)' }}>Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="Your full name"
+                    style={{
+                      width: '100%',
+                      padding: '1rem 1.2rem',
+                      background: 'var(--color-bg)',
+                      border: '1.5px solid var(--color-primary)',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-base)',
+                      outline: 'none',
+                      transition: 'border-color var(--duration-fast)',
+                    }}
+                  />
+                </div>
+                <div>
+                  <label for="email" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wide)', textTransform: 'uppercase', color: 'var(--color-primary)', display: 'block', marginBottom: 'var(--space-2)' }}>Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="you@law.edu"
+                    style={{
+                      width: '100%',
+                      padding: '1rem 1.2rem',
+                      background: 'var(--color-bg)',
+                      border: '1.5px solid var(--color-primary)',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-base)',
+                      outline: 'none',
+                      transition: 'border-color var(--duration-fast)',
+                    }}
+                  />
+                </div>
+                <div>
+                  <label for="subject" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wide)', textTransform: 'uppercase', color: 'var(--color-primary)', display: 'block', marginBottom: 'var(--space-2)' }}>Subject</label>
+                  <select
+                    id="subject"
+                    style={{
+                      width: '100%',
+                      padding: '1rem 1.2rem',
+                      background: 'var(--color-bg)',
+                      border: '1.5px solid var(--color-primary)',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-base)',
+                      outline: 'none',
+                      transition: 'border-color var(--duration-fast)',
+                      borderRadius: 0,
+                    }}
+                  >
+                    <option>Membership Inquiry</option>
+                    <option>Partnership Opportunity</option>
+                    <option>Press Request</option>
+                    <option>General Correspondence</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="message" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wide)', textTransform: 'uppercase', color: 'var(--color-primary)', display: 'block', marginBottom: 'var(--space-2)' }}>Message</label>
+                  <textarea
+                    id="message"
+                    rows={6}
+                    placeholder="Your message..."
+                    style={{
+                      width: '100%',
+                      padding: '1rem 1.2rem',
+                      background: 'var(--color-bg)',
+                      border: '1.5px solid var(--color-primary)',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-base)',
+                      outline: 'none',
+                      resize: 'vertical',
+                      transition: 'border-color var(--duration-fast)',
+                    }}
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.7rem',
+                    padding: '1rem 1.9rem',
+                    background: 'var(--color-primary)',
+                    color: '#fff',
+                    fontFamily: 'var(--font-heading)',
+                    fontWeight: 600,
+                    fontSize: 'var(--text-xs)',
+                    letterSpacing: 'var(--tracking-wide)',
+                    textTransform: 'uppercase',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'transform .35s var(--ease-out-expo), box-shadow .35s',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  Send Message <span>→</span>
+                </button>
+              </form>
+            </div>
+          </ScrollReveal>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <NewsletterFooter />
+
+  <script>
+    import { initScrollReveals } from '../lib/observe';
+    import { initPortalParallax } from '../lib/parallax';
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollReveals();
+      initPortalParallax();
+    });
+  </script>
+</Layout>
+
+<style>
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--color-rose) !important;
+  }
+</style>

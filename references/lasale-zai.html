@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaSALe — Law Student Association for Legal Practice</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary-blue:#1C3B87;
+    --primary-blue-2:#15295F;
+    --burgundy:#994B53;
+    --burgundy-deep:#7A373F;
+    --accent-yellow:#F6EB3D;
+    --pale-cream:#F7F2B7;
+    --bg-offwhite:#FAF6EB;
+    --ink:#10204A;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Instrument Sans',system-ui,sans-serif;
+    background:var(--bg-offwhite);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4,h5{
+    font-family:'Jost',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.015em;
+    line-height:1.05;
+    color:var(--primary-blue);
+  }
+  .font-display{font-family:'Jost',sans-serif}
+  .font-script{font-family:'Pinyon Script',cursive}
+  .font-body{font-family:'Instrument Sans',sans-serif}
+
+  /* STRICT NO ROUNDING — global override */
+  *,*::before,*::after{
+    border-radius:0 !important;
+    -webkit-border-radius:0 !important;
+    -moz-border-radius:0 !important;
+  }
+
+  /* Dual-tone gradient borders */
+  .border-gradient{
+    position:relative;
+    background:var(--bg-offwhite);
+  }
+  .border-gradient::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    background:linear-gradient(135deg,var(--primary-blue) 0%,var(--burgundy) 100%);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    pointer-events:none;
+  }
+  .border-gradient-gold{
+    position:relative;
+  }
+  .border-gradient-gold::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:2px;
+    background:linear-gradient(135deg,var(--accent-yellow) 0%,var(--pale-cream) 100%);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    pointer-events:none;
+  }
+
+  /* Drop Cap — only first character */
+  .drop-cap::first-letter{
+    font-family:'Pinyon Script',cursive;
+    font-weight:400;
+    font-size:1.4em;
+    line-height:0.6;
+    color:var(--burgundy);
+    margin-right:0.04em;
+    margin-top:0.04em;
+    display:inline-block;
+    vertical-align:-0.12em;
+  }
+  .drop-cap-light::first-letter{
+    color:var(--accent-yellow);
+  }
+
+  /* Buttons */
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:0.7rem;
+    padding:1rem 1.9rem;
+    background:var(--primary-blue);
+    color:#fff;
+    font-family:'Jost',sans-serif;font-weight:600;font-size:0.8rem;
+    letter-spacing:0.14em;text-transform:uppercase;
+    position:relative;border:none;cursor:pointer;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;
+  }
+  .btn-primary::after{
+    content:"";position:absolute;inset:0;padding:2px;
+    background:linear-gradient(135deg,var(--accent-yellow),var(--pale-cream));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    opacity:0;transition:opacity .35s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -18px rgba(28,59,135,.55)}
+  .btn-primary:hover::after{opacity:1}
+
+  .btn-burgundy{
+    display:inline-flex;align-items:center;gap:0.7rem;
+    padding:1rem 1.9rem;
+    background:var(--burgundy);
+    color:#fff;
+    font-family:'Jost',sans-serif;font-weight:600;font-size:0.8rem;
+    letter-spacing:0.14em;text-transform:uppercase;
+    border:none;cursor:pointer;
+    transition:transform .35s,box-shadow .35s;
+  }
+  .btn-burgundy:hover{transform:translateY(-2px);box-shadow:0 18px 40px -18px rgba(153,75,83,.6)}
+
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:0.7rem;
+    padding:1rem 1.9rem;
+    background:transparent;color:var(--primary-blue);
+    border:1.5px solid var(--primary-blue);
+    font-family:'Jost',sans-serif;font-weight:600;font-size:0.8rem;
+    letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;
+    transition:all .3s;
+  }
+  .btn-outline:hover{background:var(--primary-blue);color:#fff}
+
+  /* Decorative — Soft Star (blurry radial glow) */
+  .soft-star{
+    position:absolute;
+    border-radius:50% !important;
+    filter:blur(60px);
+    opacity:.4;
+    pointer-events:none;
+    z-index:0;
+  }
+  .soft-star--yellow{background:var(--accent-yellow)}
+  .soft-star--blue{background:var(--primary-blue)}
+  .soft-star--cream{background:var(--pale-cream)}
+  .soft-star--burgundy{background:var(--burgundy)}
+
+  /* Decorative — Portal 4-point sparkle SVG */
+  .portal{
+    position:absolute;pointer-events:none;z-index:1;
+    opacity:.85;
+  }
+  .portal svg{display:block}
+
+  /* Hero overlay */
+  .hero-overlay{
+    background:
+      linear-gradient(115deg, rgba(28,41,95,.96) 0%, rgba(28,59,135,.82) 45%, rgba(28,59,135,.45) 100%),
+      linear-gradient(180deg, rgba(28,41,95,.3) 0%, rgba(28,41,95,.1) 100%);
+  }
+  .duotone-img{
+    filter:grayscale(.2) contrast(1.05) brightness(.95);
+  }
+
+  /* Nav link */
+  .nav-link{
+    font-family:'Jost',sans-serif;font-weight:500;font-size:.78rem;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink);
+    position:relative;padding-bottom:4px;
+    transition:color .25s;
+  }
+  .nav-link::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;
+    height:1.5px;background:var(--burgundy);
+    transform:scaleX(0);transform-origin:left;transition:transform .35s;
+  }
+  .nav-link:hover{color:var(--burgundy)}
+  .nav-link:hover::after{transform:scaleX(1)}
+
+  /* Card accent — thin top edge */
+  .card-top-edge{position:relative;overflow:hidden}
+  .card-top-edge::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--primary-blue),var(--burgundy));
+  }
+
+  /* Image overlay badges */
+  .img-badge{
+    position:absolute;top:0;left:0;
+    background:var(--burgundy);color:var(--bg-offwhite);
+    font-family:'Jost',sans-serif;font-weight:600;
+    font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
+    padding:.45rem .9rem;z-index:2;
+  }
+  .img-badge--yellow{background:var(--accent-yellow);color:var(--primary-blue)}
+  .img-badge--blue{background:var(--primary-blue);color:var(--bg-offwhite)}
+
+  /* Image blue tint overlay */
+  .img-tint{position:relative;overflow:hidden}
+  .img-tint::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(28,59,135,0) 35%,rgba(28,59,135,.55) 100%);
+    pointer-events:none;
+  }
+  .img-tint--heavy::after{
+    background:linear-gradient(180deg,rgba(28,41,95,.35) 0%,rgba(28,41,95,.65) 100%);
+  }
+
+  /* Stat row */
+  .stat-row{
+    display:grid;grid-template-columns:minmax(220px,1fr) 1px 2fr;
+    gap:0;align-items:stretch;
+    border-top:1px solid rgba(28,59,135,.15);
+  }
+  .stat-row:last-child{border-bottom:1px solid rgba(28,59,135,.15)}
+  .stat-row__num{
+    display:flex;align-items:center;
+    padding:2.4rem 2.4rem 2.4rem 0;
+  }
+  .stat-row__divider{
+    background:linear-gradient(180deg,var(--primary-blue),var(--burgundy));
+    width:1px;
+  }
+  .stat-row__text{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:2.4rem 0 2.4rem 2.4rem;
+  }
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Marquee for partners */
+  .marquee{
+    display:flex;gap:5rem;
+    animation:marq 38s linear infinite;
+    width:max-content;
+  }
+  @keyframes marq{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+
+  /* Section divider waves */
+  .wave-svg{display:block;width:100%;height:auto;line-height:0}
+
+  /* Form */
+  .sharp-input{
+    background:transparent;border:none;outline:none;
+    color:#fff;font-family:'Instrument Sans',sans-serif;font-size:.95rem;
+    padding:1.1rem 1.2rem;width:100%;
+  }
+  .sharp-input::placeholder{color:rgba(247,242,183,.55)}
+
+  /* Subtle grid lines bg */
+  .grid-bg{
+    background-image:
+      linear-gradient(rgba(28,59,135,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(28,59,135,.04) 1px,transparent 1px);
+    background-size:80px 80px;
+  }
+
+  /* Staggered overlap */
+  .stagger-block{
+    transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .stagger-block:hover{transform:translateY(-6px)}
+
+  /* Hide scrollbar on horizontal scroll areas */
+  .no-scrollbar::-webkit-scrollbar{display:none}
+  .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== NAV ====== -->
+<header class="absolute top-0 left-0 right-0 z-40">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-6 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-[var(--primary-blue)] flex items-center justify-center">
+        <span class="font-display font-700 text-[var(--accent-yellow)] text-lg leading-none">L</span>
+      </div>
+      <div class="leading-tight">
+        <div class="font-display font-600 text-[var(--primary-blue)] text-[1.05rem] tracking-tight">LaSALe</div>
+        <div class="font-body text-[0.62rem] tracking-[0.22em] uppercase text-[var(--burgundy)]">Legal Practice Association</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-9">
+      <a href="#" class="nav-link">Programs</a>
+      <a href="#" class="nav-link">Resources</a>
+      <a href="#" class="nav-link">Faculty</a>
+      <a href="#" class="nav-link">Insights</a>
+      <a href="#" class="nav-link">Partners</a>
+      <a href="#" class="nav-link">Contact</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#" class="btn-outline hidden md:inline-flex">Member Login</a>
+      <a href="#" class="btn-primary">Join LaSALe</a>
+    </div>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="relative min-h-[100vh] overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img src="https://picsum.photos/seed/lasale-hero-library/1920/1200.jpg" alt="" class="w-full h-full object-cover duotone-img">
+    <div class="absolute inset-0 hero-overlay"></div>
+  </div>
+
+  <!-- Soft star glow accents -->
+  <div class="soft-star soft-star--yellow" style="width:380px;height:380px;top:18%;right:8%;opacity:.18"></div>
+  <div class="soft-star soft-star--burgundy" style="width:300px;height:300px;bottom:12%;left:5%;opacity:.25"></div>
+
+  <!-- Portal sparkles -->
+  <div class="portal" style="top:22%;left:48%">
+    <svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D"/></svg>
+  </div>
+  <div class="portal" style="bottom:30%;right:18%">
+    <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.8"/></svg>
+  </div>
+  <div class="portal" style="top:35%;right:32%">
+    <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.6"/></svg>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 min-h-[100vh] flex items-end pb-20 pt-32">
+    <div class="grid lg:grid-cols-12 gap-8 w-full items-end">
+      <!-- Hero card -->
+      <div class="lg:col-span-8 bg-[var(--bg-offwhite)] border-gradient p-8 lg:p-14 relative">
+        <div class="flex items-center gap-3 mb-7">
+          <div class="w-8 h-[2px] bg-[var(--burgundy)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--burgundy)]">Established 1987 · Volume XXXVII</span>
+        </div>
+        <h1 class="text-[2.6rem] sm:text-[3.4rem] lg:text-[4.6rem] leading-[0.98] mb-7">
+          <span class="drop-cap">C</span>ultivating the Future <br>
+          <span class="text-[var(--burgundy)]">of Legal Practice</span>
+        </h1>
+        <p class="font-body text-[1.05rem] lg:text-[1.12rem] text-[var(--ink)]/75 max-w-[640px] mb-10 leading-relaxed">
+          The Law Student Association for Legal Practice unites the next generation of attorneys, scholars, and advocates through rigorous programming, mentorship, and direct engagement with the institutions that shape our profession.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="btn-primary">Apply for Membership <span>→</span></a>
+          <a href="#" class="btn-outline">View 2025 Calendar</a>
+        </div>
+
+        <!-- Decorative corner mark -->
+        <div class="absolute top-6 right-6 hidden lg:flex flex-col items-end gap-1">
+          <div class="font-script text-[var(--accent-yellow)] text-2xl leading-none" style="filter:drop-shadow(0 0 8px rgba(0,0,0,.0)">No.</div>
+          <div class="font-display font-700 text-[var(--primary-blue)] text-3xl leading-none">01</div>
+          <div class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-[var(--ink)]/50">Hero / Edition</div>
+        </div>
+      </div>
+
+      <!-- Side stat strip -->
+      <div class="lg:col-span-4 lg:pl-6">
+        <div class="border-l-2 border-[var(--accent-yellow)] pl-6 py-2">
+          <div class="font-display font-700 text-[var(--bg-offwhite)] text-[3.2rem] leading-none">14,800<span class="text-[var(--accent-yellow)]">+</span></div>
+          <div class="font-body text-[var(--bg-offwhite)]/80 text-sm mt-3 leading-snug">Active student members across 142 accredited member institutions nationwide.</div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-[var(--bg-offwhite)]/20">
+          <div class="font-display font-600 text-[var(--bg-offwhite)] text-sm tracking-[0.18em] uppercase mb-3">Next Convocation</div>
+          <div class="font-body text-[var(--bg-offwhite)]/70 text-sm">March 14, 2025 · 6:00 PM EST<br>Hartwell Hall, Washington D.C.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom edge tag -->
+  <div class="absolute bottom-6 left-6 lg:left-10 z-10 flex items-center gap-3">
+    <div class="w-10 h-[1px] bg-[var(--bg-offwhite)]/50"></div>
+    <span class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-[var(--bg-offwhite)]/60">Scroll to Explore</span>
+  </div>
+</section>
+
+<!-- ====== 3-CARD FEATURE ROW ====== -->
+<section class="relative bg-[var(--bg-offwhite)] grid-bg">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 -mt-2">
+    <div class="grid md:grid-cols-3 border-2 border-[var(--primary-blue)]">
+      <!-- Card 1 - cream -->
+      <article class="bg-[var(--pale-cream)] p-8 lg:p-10 border-r-2 border-[var(--primary-blue)] card-top-edge">
+        <div class="flex items-start justify-between mb-7">
+          <div class="font-display font-700 text-[var(--primary-blue)] text-3xl">01</div>
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+            <rect x="4" y="10" width="32" height="22" stroke="#1C3B87" stroke-width="2"/>
+            <path d="M4 10 L20 22 L36 10" stroke="#994B53" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3 class="text-[1.45rem] mb-3">Mentorship Circles</h3>
+        <p class="font-body text-[0.95rem] text-[var(--ink)]/70 leading-relaxed mb-6">
+          Pairing students with federal clerks, senior partners, and public-interest practitioners across 24 specialized practice areas.
+        </p>
+        <a href="#" class="font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase text-[var(--burgundy)] inline-flex items-center gap-2 border-b-2 border-[var(--burgundy)] pb-1">
+          Explore Circles <span>→</span>
+        </a>
+      </article>
+
+      <!-- Card 2 - deep blue -->
+      <article class="bg-[var(--primary-blue)] text-[var(--bg-offwhite)] p-8 lg:p-10 border-r-2 border-[var(--primary-blue)] relative overflow-hidden">
+        <div class="absolute top-0 left:0 right-0 h-[4px] bg-gradient-to-r from-[var(--accent-yellow)] to-[var(--pale-cream)]"></div>
+        <!-- soft star -->
+        <div class="soft-star soft-star--yellow" style="width:160px;height:160px;top:-40px;right:-40px;opacity:.18"></div>
+        <div class="relative">
+          <div class="flex items-start justify-between mb-7">
+            <div class="font-display font-700 text-[var(--accent-yellow)] text-3xl">02</div>
+            <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+              <path d="M20 4 L34 12 L34 28 L20 36 L6 28 L6 12 Z" stroke="#F6EB3D" stroke-width="2"/>
+              <path d="M20 14 L26 18 L26 26 L20 30 L14 26 L14 18 Z" stroke="#F7F2B7" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3 class="text-[1.45rem] mb-3 text-[var(--bg-offwhite)]">Practice Institutes</h3>
+          <p class="font-body text-[0.95rem] text-[var(--bg-offwhite)]/75 leading-relaxed mb-6">
+            Eighteen intensive institutes spanning appellate advocacy, transactional drafting, and emerging regulatory fields.
+          </p>
+          <a href="#" class="font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase text-[var(--accent-yellow)] inline-flex items-center gap-2 border-b-2 border-[var(--accent-yellow)] pb-1">
+            View Institutes <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 3 - cream -->
+      <article class="bg-[var(--pale-cream)] p-8 lg:p-10 card-top-edge">
+        <div class="flex items-start justify-between mb-7">
+          <div class="font-display font-700 text-[var(--primary-blue)] text-3xl">03</div>
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="14" stroke="#1C3B87" stroke-width="2"/>
+            <path d="M20 8 L20 20 L28 24" stroke="#994B53" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3 class="text-[1.45rem] mb-3">Judicial Externships</h3>
+        <p class="font-body text-[0.95rem] text-[var(--ink)]/70 leading-relaxed mb-6">
+          Direct placement across 312 partner courts, including federal circuit benches and administrative tribunals.
+        </p>
+        <a href="#" class="font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase text-[var(--burgundy)] inline-flex items-center gap-2 border-b-2 border-[var(--burgundy)] pb-1">
+          Apply Now <span>→</span>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ASYMMETRICAL SPLIT FEATURE ====== -->
+<section class="relative bg-[var(--primary-blue)] text-[var(--bg-offwhite)] overflow-hidden">
+  <!-- soft star -->
+  <div class="soft-star soft-star--yellow" style="width:420px;height:420px;top:10%;right:-5%;opacity:.13"></div>
+  <div class="soft-star soft-star--burgundy" style="width:280px;height:280px;bottom:5%;left:30%;opacity:.18"></div>
+  <!-- portal sparkles -->
+  <div class="portal" style="top:18%;left:8%">
+    <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D" opacity="0.9"/></svg>
+  </div>
+  <div class="portal" style="bottom:24%;right:42%">
+    <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.7"/></svg>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-24 lg:py-32 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+      <!-- Text on top -->
+      <div class="lg:col-span-5 lg:sticky lg:top-10">
+        <div class="flex items-center gap-3 mb-7">
+          <div class="w-8 h-[2px] bg-[var(--accent-yellow)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--accent-yellow)]">Section II · The Institute</span>
+        </div>
+        <h2 class="text-[2.4rem] lg:text-[3.2rem] leading-[1.02] mb-7 text-[var(--bg-offwhite)]">
+          <span class="drop-cap drop-cap-light">A</span> Scholarly Foundation for the Practicing Bar
+        </h2>
+        <p class="font-body text-[1.02rem] text-[var(--bg-offwhite)]/80 leading-relaxed mb-6">
+          For thirty-seven years, LaSALe has served as the connective tissue between legal education and the practicing bar. Our curriculum is co-authored by sitting judges, tenured faculty, and senior partners — ensuring every program translates doctrine into craft.
+        </p>
+        <p class="font-body text-[0.95rem] text-[var(--bg-offwhite)]/65 leading-relaxed mb-10">
+          Members access a continuous cycle of workshops, amicus participation, and supervised casework — culminating in our annual Certificate of Advanced Practice, recognized by 312 partner firms and 47 jurisdictions.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="btn-burgundy">Read the Prospectus</a>
+          <a href="#" class="inline-flex items-center gap-2 font-display font-600 text-[0.8rem] tracking-[0.14em] uppercase text-[var(--bg-offwhite)] border-b-2 border-[var(--accent-yellow)] pb-1">Faculty Roster <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Wide image block with layered accent -->
+      <div class="lg:col-span-7 relative">
+        <div class="relative">
+          <!-- Layered decorative accent — vertical block behind -->
+          <div class="absolute -left-4 -top-4 w-24 h-24 bg-[var(--accent-yellow)] z-0 hidden lg:block"></div>
+          <div class="absolute -right-3 -bottom-3 w-32 h-32 border-2 border-[var(--accent-yellow)] z-0 hidden lg:block"></div>
+
+          <!-- Main image -->
+          <div class="relative img-tint img-tint--heavy border-2 border-[var(--accent-yellow)]/40 z-10">
+            <img src="https://picsum.photos/seed/lasale-courtroom/1100/720.jpg" alt="" class="w-full h-[460px] lg:h-[580px] object-cover duotone-img">
+            <!-- badge -->
+            <div class="img-badge img-badge--yellow">Hartwell Institute · Est. 1987</div>
+          </div>
+
+          <!-- Floating caption block -->
+          <div class="absolute -bottom-8 left-6 lg:left-12 bg-[var(--bg-offwhite)] p-5 lg:p-6 max-w-[320px] z-20 border-2 border-[var(--primary-blue)]">
+            <div class="font-script text-[var(--burgundy)] text-2xl leading-none mb-1">No.</div>
+            <div class="font-display font-700 text-[var(--primary-blue)] text-3xl leading-none mb-3">XII</div>
+            <div class="font-body text-[0.85rem] text-[var(--ink)]/70 leading-snug">The Hartwell Institute convenes twelve times annually for advanced advocacy workshops.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fluid wave transition to light -->
+  <div class="wave-svg absolute bottom-0 left-0 right-0 z-0">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-[60px]">
+      <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z" fill="#FAF6EB"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ====== ICON / BENEFIT GRID ====== -->
+<section class="relative bg-[var(--bg-offwhite)] grid-bg pt-24 lg:pt-32 pb-24 lg:pb-32">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-8 mb-16">
+      <div class="lg:col-span-6">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-[2px] bg-[var(--burgundy)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--burgundy)]">Section III · Membership</span>
+        </div>
+        <h2 class="text-[2.2rem] lg:text-[2.8rem] leading-[1.04]">
+          <span class="drop-cap">P</span>rovisions of Membership
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end">
+        <p class="font-body text-[1rem] text-[var(--ink)]/70 leading-relaxed">
+          Eight foundational benefits structure every LaSALe membership. Each is designed to compound across the three years of legal study and extend into the first five years of practice.
+        </p>
+      </div>
+    </div>
+
+    <!-- Icon grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 border-t-2 border-l-2 border-[var(--primary-blue)]">
+      <!-- Item -->
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300 group">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <rect x="5" y="8" width="30" height="24" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M5 8 L20 20 L35 8" stroke="#994B53" stroke-width="2"/>
+          <circle cx="20" cy="20" r="2" fill="#F6EB3D"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">01</div>
+        <h4 class="text-[1.1rem] mb-2">Direct Mentor Pairing</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">One-to-one matching with practicing attorneys across 24 specialties.</p>
+      </div>
+
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <path d="M20 4 L34 12 L34 28 L20 36 L6 28 L6 12 Z" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M14 20 L18 24 L26 16" stroke="#994B53" stroke-width="2"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">02</div>
+        <h4 class="text-[1.1rem] mb-2">Certified Practice Institutes</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">Eighteen certified programs carrying CLE credit in 47 states.</p>
+      </div>
+
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <rect x="6" y="10" width="28" height="22" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M6 16 L34 16" stroke="#994B53" stroke-width="2"/>
+          <circle cx="11" cy="13" r="1" fill="#994B53"/>
+          <circle cx="15" cy="13" r="1" fill="#994B53"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">03</div>
+        <h4 class="text-[1.1rem] mb-2">Courtroom Access</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">Bench-shadowing across 312 partner courts and federal divisions.</p>
+      </div>
+
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <circle cx="20" cy="20" r="14" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M14 20 L18 24 L26 16" stroke="#994B53" stroke-width="2"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">04</div>
+        <h4 class="text-[1.1rem] mb-2">Digital Library</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">Full archives of briefs, treatises, and recorded advocacy labs.</p>
+      </div>
+
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <path d="M8 8 L32 8 L32 32 L8 32 Z" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M14 14 L26 14 M14 20 L26 20 M14 26 L22 26" stroke="#994B53" stroke-width="2"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">05</div>
+        <h4 class="text-[1.1rem] mb-2">Amicus Participation</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">Co-authorship opportunities on LaSALe amicus briefs.</p>
+      </div>
+
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <circle cx="14" cy="16" r="5" stroke="#1C3B87" stroke-width="2"/>
+          <circle cx="26" cy="16" r="5" stroke="#994B53" stroke-width="2"/>
+          <path d="M6 32 C6 26 10 24 14 24 C18 24 22 26 22 32" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M18 32 C18 26 22 24 26 24 C30 24 34 26 34 32" stroke="#994B53" stroke-width="2"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">06</div>
+        <h4 class="text-[1.1rem] mb-2">Alumni Network</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">Lifetime access to 8,200+ alumni across firms, courts, and agencies.</p>
+      </div>
+
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <path d="M20 4 L36 12 L36 28 L20 36 L4 28 L4 12 Z" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M20 4 L20 36 M4 12 L36 12 M4 28 L36 28" stroke="#994B53" stroke-width="1.5"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">07</div>
+        <h4 class="text-[1.1rem] mb-2">Annual Symposium</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">Complimentary registration to our three-day national convening.</p>
+      </div>
+
+      <div class="p-8 lg:p-10 border-r-2 border-b-2 border-[var(--primary-blue)] hover:bg-[var(--pale-cream)] transition-colors duration-300">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <rect x="6" y="12" width="28" height="20" stroke="#1C3B87" stroke-width="2"/>
+          <path d="M12 12 L12 8 L28 8 L28 12" stroke="#994B53" stroke-width="2"/>
+          <path d="M6 22 L34 22" stroke="#994B53" stroke-width="2"/>
+        </svg>
+        <div class="font-display font-600 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">08</div>
+        <h4 class="text-[1.1rem] mb-2">Career Placement</h4>
+        <p class="font-body text-[0.88rem] text-[var(--ink)]/65 leading-relaxed">Priority interview tracks with 312 partner firms and agencies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ASYMMETRICAL RESOURCE GALLERY ====== -->
+<section class="relative bg-[var(--pale-cream)] py-24 lg:py-32 overflow-hidden">
+  <div class="soft-star soft-star--blue" style="width:340px;height:340px;top:10%;right:-5%;opacity:.08"></div>
+  <div class="portal" style="top:14%;left:6%">
+    <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#994B53" opacity="0.7"/></svg>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+    <div class="flex flex-wrap items-end justify-between mb-12 gap-6">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-[2px] bg-[var(--burgundy)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--burgundy)]">Section IV · Resources</span>
+        </div>
+        <h2 class="text-[2.2rem] lg:text-[2.8rem] leading-[1.04]">
+          <span class="drop-cap">T</span>he Member Archive
+        </h2>
+      </div>
+      <a href="#" class="btn-outline">Browse All Resources</a>
+    </div>
+
+    <!-- Dominant top image -->
+    <div class="relative img-tint mb-3 border-2 border-[var(--primary-blue)]">
+      <img src="https://picsum.photos/seed/lasale-archive-main/1400/520.jpg" alt="" class="w-full h-[300px] lg:h-[440px] object-cover duotone-img">
+      <div class="img-badge img-badge--blue">Featured · Volume XXXVII</div>
+      <!-- bottom info -->
+      <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-10 z-10">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <div class="font-display font-500 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--accent-yellow)] mb-2">Annual Report</div>
+            <h3 class="text-[1.6rem] lg:text-[2rem] text-[var(--bg-offwhite)] max-w-[600px]">The State of Legal Pedagogy — 2024 Findings</h3>
+          </div>
+          <a href="#" class="font-display font-600 text-[0.78rem] tracking-[0.16em] uppercase text-[var(--bg-offwhite)] inline-flex items-center gap-2 border-b-2 border-[var(--accent-yellow)] pb-1">
+            Read Report <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-column thumbnail grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="relative img-tint border-2 border-[var(--primary-blue)]/30">
+        <img src="https://picsum.photos/seed/lasale-res-brief/500/600.jpg" alt="" class="w-full h-[260px] lg:h-[340px] object-cover duotone-img">
+        <div class="img-badge">Brief Bank</div>
+        <div class="absolute bottom-0 left-0 right-0 p-5 z-10">
+          <div class="font-body text-[0.65rem] tracking-[0.2em] uppercase text-[var(--accent-yellow)] mb-1">142 Documents</div>
+          <div class="font-display font-600 text-[var(--bg-offwhite)] text-[0.95rem] leading-snug">Appellate Brief Templates</div>
+        </div>
+      </div>
+      <div class="relative img-tint border-2 border-[var(--primary-blue)]/30">
+        <img src="https://picsum.photos/seed/lasale-res-cases/500/600.jpg" alt="" class="w-full h-[260px] lg:h-[340px] object-cover duotone-img">
+        <div class="img-badge img-badge--yellow">Case Library</div>
+        <div class="absolute bottom-0 left-0 right-0 p-5 z-10">
+          <div class="font-body text-[0.65rem] tracking-[0.2em] uppercase text-[var(--accent-yellow)] mb-1">2,840 Cases</div>
+          <div class="font-display font-600 text-[var(--bg-offwhite)] text-[0.95rem] leading-snug">Annotated Opinion Index</div>
+        </div>
+      </div>
+      <div class="relative img-tint border-2 border-[var(--primary-blue)]/30">
+        <img src="https://picsum.photos/seed/lasale-res-stat/500/600.jpg" alt="" class="w-full h-[260px] lg:h-[340px] object-cover duotone-img">
+        <div class="img-badge">Statutes</div>
+        <div class="absolute bottom-0 left-0 right-0 p-5 z-10">
+          <div class="font-body text-[0.65rem] tracking-[0.2em] uppercase text-[var(--accent-yellow)] mb-1">54 Jurisdictions</div>
+          <div class="font-display font-600 text-[var(--bg-offwhite)] text-[0.95rem] leading-snug">Regulatory Cross-Reference</div>
+        </div>
+      </div>
+      <div class="relative img-tint border-2 border-[var(--primary-blue)]/30">
+        <img src="https://picsum.photos/seed/lasale-res-video/500/600.jpg" alt="" class="w-full h-[260px] lg:h-[340px] object-cover duotone-img">
+        <div class="img-badge img-badge--yellow">Recordings</div>
+        <div class="absolute bottom-0 left-0 right-0 p-5 z-10">
+          <div class="font-body text-[0.65rem] tracking-[0.2em] uppercase text-[var(--accent-yellow)] mb-1">312 Hours</div>
+          <div class="font-display font-600 text-[var(--bg-offwhite)] text-[0.95rem] leading-snug">Advocacy Lab Recordings</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== INSTITUTIONAL PARTNER BAR ====== -->
+<section class="bg-[var(--primary-blue)] py-16 lg:py-20 relative overflow-hidden border-t-2 border-b-2 border-[var(--accent-yellow)]/30">
+  <div class="soft-star soft-star--yellow" style="width:280px;height:280px;top:50%;left:30%;opacity:.08"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 mb-10 relative z-10">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <div class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--accent-yellow)] mb-2">Section V · Institutional Partners</div>
+        <h3 class="text-[1.6rem] lg:text-[2rem] text-[var(--bg-offwhite)]">Affiliated Firms & Courts</h3>
+      </div>
+      <p class="font-body text-[0.92rem] text-[var(--bg-offwhite)]/60 max-w-md leading-relaxed">
+        LaSALe is sustained by 312 partner organizations who fund programming, host externships, and recruit directly from our membership.
+      </p>
+    </div>
+  </div>
+
+  <!-- Marquee of partner names (text-based logos) -->
+  <div class="overflow-hidden relative">
+    <!-- Edge fades -->
+    <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--primary-blue)] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--primary-blue)] to-transparent z-10 pointer-events-none"></div>
+
+    <div class="marquee py-6">
+      <!-- Set 1 -->
+      <div class="flex items-center gap-20 px-10">
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-tight whitespace-nowrap">Hartwell & Vance</div>
+        <div class="font-display font-600 text-[var(--bg-offwhite)]/70 text-xl italic whitespace-nowrap">Carrington LLP</div>
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-widest whitespace-nowrap">PRESCOTT</div>
+        <div class="font-display font-600 text-[var(--accent-yellow)]/80 text-xl whitespace-nowrap">Whitfield Cooperative</div>
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-tight whitespace-nowrap">Morrow Abbey</div>
+        <div class="font-display font-600 text-[var(--bg-offwhite)]/70 text-xl italic whitespace-nowrap">Sutherland & Kohl</div>
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-widest whitespace-nowrap">RENNICK</div>
+        <div class="font-display font-600 text-[var(--accent-yellow)]/80 text-xl whitespace-nowrap">Federal Circuit Bar</div>
+      </div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="flex items-center gap-20 px-10">
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-tight whitespace-nowrap">Hartwell & Vance</div>
+        <div class="font-display font-600 text-[var(--bg-offwhite)]/70 text-xl italic whitespace-nowrap">Carrington LLP</div>
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-widest whitespace-nowrap">PRESCOTT</div>
+        <div class="font-display font-600 text-[var(--accent-yellow)]/80 text-xl whitespace-nowrap">Whitfield Cooperative</div>
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-tight whitespace-nowrap">Morrow Abbey</div>
+        <div class="font-display font-600 text-[var(--bg-offwhite)]/70 text-xl italic whitespace-nowrap">Sutherland & Kohl</div>
+        <div class="font-display font-700 text-[var(--bg-offwhite)]/70 text-2xl tracking-widest whitespace-nowrap">RENNICK</div>
+        <div class="font-display font-600 text-[var(--accent-yellow)]/80 text-xl whitespace-nowrap">Federal Circuit Bar</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 mt-10 flex flex-wrap items-center justify-between gap-4">
+    <a href="#" class="font-display font-600 text-[0.78rem] tracking-[0.16em] uppercase text-[var(--accent-yellow)] inline-flex items-center gap-2 border-b border-[var(--accent-yellow)]/60 pb-1">View All 312 Partners <span>→</span></a>
+    <div class="font-body text-[0.7rem] tracking-[0.22em] uppercase text-[var(--bg-offwhite)]/45">Partner Bar · Affiliated 1987 – Present</div>
+  </div>
+</section>
+
+<!-- ====== HORIZONTAL DATA/STAT ROWS ====== -->
+<section class="bg-[var(--bg-offwhite)] py-24 lg:py-32 grid-bg">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-8 mb-12">
+      <div class="lg:col-span-6">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-[2px] bg-[var(--burgundy)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--burgundy)]">Section VI · By the Numbers</span>
+        </div>
+        <h2 class="text-[2.2rem] lg:text-[2.8rem] leading-[1.04]">
+          <span class="drop-cap">A</span> Record of Measurable Impact
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end">
+        <p class="font-body text-[1rem] text-[var(--ink)]/70 leading-relaxed">
+          Every figure below is audited annually by the LaSALe Board of Regents and published in our Spring Convocation Bulletin.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stat rows -->
+    <div class="border-2 border-[var(--primary-blue)]">
+      <div class="stat-row">
+        <div class="stat-row__num">
+          <span class="font-display font-700 text-[var(--primary-blue)] text-[4.5rem] lg:text-[5.5rem] leading-none">14,800<span class="text-[var(--burgundy)]">+</span></span>
+        </div>
+        <div class="stat-row__divider"></div>
+        <div class="stat-row__text">
+          <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">Active Membership</div>
+          <p class="font-body text-[1.05rem] text-[var(--ink)]/75 leading-relaxed max-w-2xl">Students enrolled across 142 accredited law schools, with chapter presence in 47 states and the District of Columbia.</p>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-row__num">
+          <span class="font-display font-700 text-[var(--primary-blue)] text-[4.5rem] lg:text-[5.5rem] leading-none">312</span>
+        </div>
+        <div class="stat-row__divider"></div>
+        <div class="stat-row__text">
+          <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">Partner Institutions</div>
+          <p class="font-body text-[1.05rem] text-[var(--ink)]/75 leading-relaxed max-w-2xl">Law firms, federal and state courts, public-interest organizations, and regulatory agencies hosting LaSALe externs annually.</p>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-row__num">
+          <span class="font-display font-700 text-[var(--primary-blue)] text-[4.5rem] lg:text-[5.5rem] leading-none">94<span class="text-[var(--burgundy)]">%</span></span>
+        </div>
+        <div class="stat-row__divider"></div>
+        <div class="stat-row__text">
+          <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">Placement Velocity</div>
+          <p class="font-body text-[1.05rem] text-[var(--ink)]/75 leading-relaxed max-w-2xl">Of certified members secure federal clerkships or full-time associate positions within ninety days of bar admission.</p>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-row__num">
+          <span class="font-display font-700 text-[var(--primary-blue)] text-[4.5rem] lg:text-[5.5rem] leading-none">$2.4<span class="text-[var(--burgundy)]">M</span></span>
+        </div>
+        <div class="stat-row__divider"></div>
+        <div class="stat-row__text">
+          <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--burgundy)] mb-2">Fellowship Funding</div>
+          <p class="font-body text-[1.05rem] text-[var(--ink)]/75 leading-relaxed max-w-2xl">Awarded annually in named fellowships supporting public-interest placements, judicial externships, and policy research.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== STAGGERED GRID SHOWCASE ====== -->
+<section class="relative bg-[var(--primary-blue)] text-[var(--bg-offwhite)] py-24 lg:py-32 overflow-hidden">
+  <div class="soft-star soft-star--yellow" style="width:380px;height:380px;top:5%;right:0;opacity:.13"></div>
+  <div class="soft-star soft-star--burgundy" style="width:280px;height:280px;bottom:10%;left:5%;opacity:.18"></div>
+  <div class="portal" style="top:18%;right:30%">
+    <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D"/></svg>
+  </div>
+  <div class="portal" style="bottom:30%;left:20%">
+    <svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.7"/></svg>
+  </div>
+
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-8 mb-16">
+      <div class="lg:col-span-7">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-[2px] bg-[var(--accent-yellow)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--accent-yellow)]">Section VII · Program Spotlight</span>
+        </div>
+        <h2 class="text-[2.4rem] lg:text-[3.2rem] leading-[1.02] text-[var(--bg-offwhite)]">
+          <span class="drop-cap drop-cap-light">F</span>lagship Initiatives, Layered
+        </h2>
+      </div>
+      <div class="lg:col-span-4 lg:col-start-9 flex items-end">
+        <p class="font-body text-[0.98rem] text-[var(--bg-offwhite)]/70 leading-relaxed">
+          Three flagship initiatives run in parallel throughout the academic year — each designed to layer doctrine, drafting, and deposition into a single arc of professional formation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Staggered overlapping blocks -->
+    <div class="grid lg:grid-cols-12 gap-0 relative">
+      <!-- Block 1 -->
+      <article class="stagger-block lg:col-span-5 lg:mt-0 bg-[var(--bg-offwhite)] text-[var(--ink)] p-8 lg:p-10 relative">
+        <div class="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[var(--primary-blue)] to-[var(--burgundy)]"></div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="font-display font-700 text-[var(--burgundy)] text-2xl">I.</div>
+          <div class="font-display font-500 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)]">The Hartwell Institute</div>
+        </div>
+        <h3 class="text-[1.5rem] mb-3">Advanced Appellate Advocacy</h3>
+        <p class="font-body text-[0.92rem] text-[var(--ink)]/70 leading-relaxed mb-6">
+          A twelve-week intensive in federal appellate practice, co-taught by sitting circuit judges and former Supreme Court clerks. Members draft live briefs on cert-stage questions.
+        </p>
+        <div class="img-tint border-2 border-[var(--primary-blue)] mb-6">
+          <img src="https://picsum.photos/seed/lasale-stagger1/600/360.jpg" alt="" class="w-full h-[200px] object-cover duotone-img">
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-[var(--primary-blue)]/15">
+          <div class="font-body text-[0.8rem] text-[var(--ink)]/60">12 weeks · 24 seats · Federal CLE</div>
+          <a href="#" class="font-display font-600 text-[0.72rem] tracking-[0.16em] uppercase text-[var(--burgundy)]">Apply →</a>
+        </div>
+      </article>
+
+      <!-- Block 2 - offset -->
+      <article class="stagger-block lg:col-span-4 lg:col-start-7 lg:mt-20 bg-[var(--accent-yellow)] text-[var(--primary-blue)] p-8 lg:p-10 relative">
+        <div class="absolute top-0 left-0 right-0 h-[4px] bg-[var(--primary-blue)]"></div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="font-display font-700 text-[var(--burgundy)] text-2xl">II.</div>
+          <div class="font-display font-500 text-[0.65rem] tracking-[0.22em] uppercase text-[var(--burgundy)]">Drafting Lab</div>
+        </div>
+        <h3 class="text-[1.5rem] mb-3 text-[var(--primary-blue)]">Transactional Drafting Studio</h3>
+        <p class="font-body text-[0.92rem] text-[var(--primary-blue)]/75 leading-relaxed mb-6">
+          Weekly studios in M&A, securities, and commercial leasing. Members redline live deal documents under senior partner review.
+        </p>
+        <div class="border-2 border-[var(--primary-blue)] mb-6 p-4 bg-[var(--bg-offwhite)]">
+          <div class="font-script text-[var(--burgundy)] text-2xl leading-none mb-1">No.</div>
+          <div class="font-display font-700 text-[var(--primary-blue)] text-3xl leading-none">48</div>
+          <div class="font-body text-[0.78rem] text-[var(--ink)]/60 mt-1">Studio sessions / year</div>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-[var(--primary-blue)]/25">
+          <div class="font-body text-[0.8rem] text-[var(--primary-blue)]/70">Ongoing · Open enrollment</div>
+          <a href="#" class="font-display font-600 text-[0.72rem] tracking-[0.16em] uppercase text-[var(--burgundy)]">Enroll →</a>
+        </div>
+      </article>
+
+      <!-- Block 3 - further offset -->
+      <article class="stagger-block lg:col-span-3 lg:col-start-10 lg:mt-44 bg-[var(--burgundy)] text-[var(--bg-offwhite)] p-8 relative">
+        <div class="absolute top-0 left-0 right-0 h-[4px] bg-[var(--accent-yellow)]"></div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="font-display font-700 text-[var(--accent-yellow)] text-2xl">III.</div>
+        </div>
+        <h3 class="text-[1.3rem] mb-3 text-[var(--bg-offwhite)]">Judicial Shadowing</h3>
+        <p class="font-body text-[0.88rem] text-[var(--bg-offwhite)]/75 leading-relaxed mb-6">
+          Two-week bench externships across federal district and circuit courts.
+        </p>
+        <div class="font-display font-700 text-[var(--accent-yellow)] text-4xl leading-none mb-2">312</div>
+        <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--bg-offwhite)]/70 mb-6">Partner Courts</div>
+        <a href="#" class="font-display font-600 text-[0.72rem] tracking-[0.16em] uppercase text-[var(--accent-yellow)] border-b border-[var(--accent-yellow)] pb-1 inline-block">Apply →</a>
+      </article>
+    </div>
+  </div>
+
+  <!-- Wave transition -->
+  <div class="wave-svg absolute bottom-0 left-0 right-0 z-0">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-[60px]">
+      <path d="M0,40 C360,80 720,0 1080,30 C1260,45 1380,30 1440,40 L1440,80 L0,80 Z" fill="#FAF6EB"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ====== NEWS / INSIGHTS GRID ====== -->
+<section class="bg-[var(--bg-offwhite)] py-24 lg:py-32 grid-bg">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex flex-wrap items-end justify-between mb-12 gap-6">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-[2px] bg-[var(--burgundy)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--burgundy)]">Section VIII · Insights</span>
+        </div>
+        <h2 class="text-[2.2rem] lg:text-[2.8rem] leading-[1.04]">
+          <span class="drop-cap">D</span>ispatch from the Association
+        </h2>
+      </div>
+      <a href="#" class="btn-outline">View All Articles</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+      <!-- Article 1 -->
+      <article class="group">
+        <div class="relative img-tint border-2 border-[var(--primary-blue)] mb-5 overflow-hidden">
+          <img src="https://picsum.photos/seed/lasale-news-1/600/420.jpg" alt="" class="w-full h-[240px] lg:h-[280px] object-cover duotone-img transition-transform duration-700 group-hover:scale-105">
+          <div class="img-badge img-badge--blue">Federal Courts</div>
+        </div>
+        <div class="flex items-center gap-3 mb-3">
+          <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--burgundy)]">March 04, 2025</div>
+          <div class="w-1 h-1 bg-[var(--ink)]/30"></div>
+          <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--ink)]/50">8 min read</div>
+        </div>
+        <h3 class="text-[1.4rem] mb-3 leading-tight group-hover:text-[var(--burgundy)] transition-colors">Circuit Splits Reshaping Administrative Deference Doctrine</h3>
+        <p class="font-body text-[0.92rem] text-[var(--ink)]/65 leading-relaxed mb-4">An analysis of three pending cert petitions and their implications for federal regulatory practice.</p>
+        <a href="#" class="font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase text-[var(--burgundy)] inline-flex items-center gap-2 border-b border-[var(--burgundy)] pb-1">Read Article <span>→</span></a>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="group">
+        <div class="relative img-tint border-2 border-[var(--primary-blue)] mb-5 overflow-hidden">
+          <img src="https://picsum.photos/seed/lasale-news-2/600/420.jpg" alt="" class="w-full h-[240px] lg:h-[280px] object-cover duotone-img transition-transform duration-700 group-hover:scale-105">
+          <div class="img-badge">Practice Notes</div>
+        </div>
+        <div class="flex items-center gap-3 mb-3">
+          <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--burgundy)]">February 27, 2025</div>
+          <div class="w-1 h-1 bg-[var(--ink)]/30"></div>
+          <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--ink)]/50">12 min read</div>
+        </div>
+        <h3 class="text-[1.4rem] mb-3 leading-tight group-hover:text-[var(--burgundy)] transition-colors">Drafting enforceable non-competes post-FTC rule</h3>
+        <p class="font-body text-[0.92rem] text-[var(--ink)]/65 leading-relaxed mb-4">A state-by-state framework for transactional counsel navigating the post-2024 enforcement landscape.</p>
+        <a href="#" class="font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase text-[var(--burgundy)] inline-flex items-center gap-2 border-b border-[var(--burgundy)] pb-1">Read Article <span>→</span></a>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="group">
+        <div class="relative img-tint border-2 border-[var(--primary-blue)] mb-5 overflow-hidden">
+          <img src="https://picsum.photos/seed/lasale-news-3/600/420.jpg" alt="" class="w-full h-[240px] lg:h-[280px] object-cover duotone-img transition-transform duration-700 group-hover:scale-105">
+          <div class="img-badge img-badge--yellow">Convocation</div>
+        </div>
+        <div class="flex items-center gap-3 mb-3">
+          <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--burgundy)]">February 19, 2025</div>
+          <div class="w-1 h-1 bg-[var(--ink)]/30"></div>
+          <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--ink)]/50">5 min read</div>
+        </div>
+        <h3 class="text-[1.4rem] mb-3 leading-tight group-hover:text-[var(--burgundy)] transition-colors">Notes from the 37th Annual LaSALe Symposium</h3>
+        <p class="font-body text-[0.92rem] text-[var(--ink)]/65 leading-relaxed mb-4">Keynote remarks from Justice Marion Eldridge and the 2025 class of Hartwell Fellows.</p>
+        <a href="#" class="font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase text-[var(--burgundy)] inline-flex items-center gap-2 border-b border-[var(--burgundy)] pb-1">Read Article <span>→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GRAND FOOTER ====== -->
+<footer class="relative bg-[var(--ink)] text-[var(--bg-offwhite)] overflow-hidden">
+  <!-- Top accent line -->
+  <div class="h-[3px] bg-gradient-to-r from-[var(--primary-blue)] via-[var(--burgundy)] to-[var(--accent-yellow)]"></div>
+
+  <div class="soft-star soft-star--yellow" style="width:340px;height:340px;top:10%;right:-5%;opacity:.08"></div>
+  <div class="soft-star soft-star--burgundy" style="width:280px;height:280px;bottom:5%;left:0;opacity:.12"></div>
+  <div class="portal" style="top:18%;left:8%">
+    <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D" opacity="0.8"/></svg>
+  </div>
+
+  <!-- Newsletter band -->
+  <div class="border-b border-[var(--bg-offwhite)]/12">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+      <div class="grid lg:grid-cols-12 gap-8 items-end">
+        <div class="lg:col-span-6">
+          <div class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--accent-yellow)] mb-4">The LaSALe Quarterly</div>
+          <h3 class="text-[2rem] lg:text-[2.6rem] text-[var(--bg-offwhite)] leading-[1.05] mb-3">Dispatches from the Practice.</h3>
+          <p class="font-body text-[0.98rem] text-[var(--bg-offwhite)]/65 max-w-xl leading-relaxed">Four times a year, we publish a curated briefing for our members — recent opinions, drafting notes, fellowship deadlines, and convocation remarks.</p>
+        </div>
+        <div class="lg:col-span-6">
+          <form class="flex flex-col sm:flex-row gap-0 border-2 border-[var(--bg-offwhite)]/30 focus-within:border-[var(--accent-yellow)] transition-colors">
+            <input type="email" placeholder="member@law.edu" class="sharp-input flex-1" required>
+            <button type="submit" class="bg-[var(--accent-yellow)] text-[var(--primary-blue)] font-display font-700 text-[0.78rem] tracking-[0.16em] uppercase px-8 py-4 hover:bg-[var(--pale-cream)] transition-colors">Subscribe →</button>
+          </form>
+          <div class="font-body text-[0.72rem] text-[var(--bg-offwhite)]/45 mt-3 tracking-wide">We publish four issues annually. No commercial communications, ever.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main footer grid -->
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-16 lg:py-20 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-8">
+      <!-- Brand block -->
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-[var(--primary-blue)] flex items-center justify-center">
+            <span class="font-display font-700 text-[var(--accent-yellow)] text-xl leading-none">L</span>
+          </div>
+          <div class="leading-tight">
+            <div class="font-display font-600 text-[var(--bg-offwhite)] text-[1.1rem]">LaSALe</div>
+            <div class="font-body text-[0.62rem] tracking-[0.22em] uppercase text-[var(--accent-yellow)]">Legal Practice Association</div>
+          </div>
+        </div>
+        <p class="font-body text-[0.92rem] text-[var(--bg-offwhite)]/60 leading-relaxed mb-6 max-w-sm">
+          The Law Student Association for Legal Practice. Established 1987. Incorporated as a 501(c)(3) educational consortium.
+        </p>
+        <div class="font-body text-[0.85rem] text-[var(--bg-offwhite)]/70 leading-relaxed">
+          <div>1120 Connecticut Avenue NW</div>
+          <div>Suite 440 · Washington, D.C. 20036</div>
+          <div class="mt-2 text-[var(--accent-yellow)]">+1 (202) 555-0140</div>
+        </div>
+      </div>
+
+      <!-- Navigation matrices -->
+      <div class="lg:col-span-2">
+        <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--accent-yellow)] mb-5">Programs</div>
+        <ul class="space-y-3 font-body text-[0.92rem]">
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Hartwell Institute</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Drafting Studio</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Judicial Externships</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Mentorship Circles</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Annual Symposium</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--accent-yellow)] mb-5">Resources</div>
+        <ul class="space-y-3 font-body text-[0.92rem]">
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Brief Bank</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Case Index</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Statute Library</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Advocacy Labs</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Annual Report</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--accent-yellow)] mb-5">Association</div>
+        <ul class="space-y-3 font-body text-[0.92rem]">
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Board of Regents</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Faculty Roster</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Chapter Directory</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Bylaws & Charter</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Press Inquiries</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="font-display font-600 text-[0.7rem] tracking-[0.22em] uppercase text-[var(--accent-yellow)] mb-5">Connect</div>
+        <ul class="space-y-3 font-body text-[0.92rem]">
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Member Portal</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">LinkedIn</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">X / Twitter</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">RSS Dispatch</a></li>
+          <li><a href="#" class="text-[var(--bg-offwhite)]/70 hover:text-[var(--bg-offwhite)] transition">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-[var(--bg-offwhite)]/12">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-6 flex flex-wrap items-center justify-between gap-3">
+      <div class="font-body text-[0.72rem] tracking-[0.18em] uppercase text-[var(--bg-offwhite)]/45">
+        © 2025 LaSALe · 501(c)(3) · EIN 52-1478290
+      </div>
+      <div class="flex items-center gap-6 font-body text-[0.72rem] tracking-[0.18em] uppercase text-[var(--bg-offwhite)]/45">
+        <a href="#" class="hover:text-[var(--accent-yellow)] transition">Privacy</a>
+        <a href="#" class="hover:text-[var(--accent-yellow)] transition">Terms</a>
+        <a href="#" class="hover:text-[var(--accent-yellow)] transition">Accessibility</a>
+        <a href="#" class="hover:text-[var(--accent-yellow)] transition">Disclosures</a>
+      </div>
+      <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--bg-offwhite)]/35 flex items-center gap-2">
+        <span class="font-script text-[var(--accent-yellow)] text-base leading-none">No.</span>
+        <span>XXXVII</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Subtle parallax for portal sparkles
+  const portals = document.querySelectorAll('.portal');
+  let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
+  window.addEventListener('mousemove', (e)=>{
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+  function raf(){
+    curX += (mouseX - curX) * 0.05;
+    curY += (mouseY - curY) * 0.05;
+    portals.forEach((p, i)=>{
+      const depth = (i % 3 + 1) * 6;
+      p.style.transform = `translate(${curX * depth}px, ${curY * depth}px)`;
+    });
+    requestAnimationFrame(raf);
+  }
+  raf();
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+---
+export interface Props {
+  class?: string;
+  number: string;
+  suffix?: string;
+  label: string;
+  description: string;
+}
+
+const { class: className = '', number, suffix, label, description } = Astro.props;
+---
+
+<div class:list={['stat-row', className]}>
+  <div class="stat-row__num">
+    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-primary)', fontSize: 'clamp(3rem, 8vw, 5.5rem)', lineHeight: 1, letterSpacing: '-0.03em' }}>
+      {number}<span style={{ color: 'var(--color-rose)' }}>{suffix}</span>
+    </span>
+  </div>
+  <div class="stat-row__divider"></div>
+  <div class="stat-row__text">
+    <div style={{
+      fontFamily: 'var(--font-heading)',
+      fontWeight: 600,
+      fontSize: 'var(--text-xs)',
+      letterSpacing: 'var(--tracking-wider)',
+      textTransform: 'uppercase',
+      color: 'var(--color-rose)',
+      marginBottom: 'var(--space-2)',
+    }}>{label}</div>
+    <p style={{
+      fontFamily: 'var(--font-sans)',
+      fontSize: 'var(--text-lg)',
+      color: 'rgba(24, 24, 24, 0.75)',
+      lineHeight: 'var(--leading-normal)',
+      maxWidth: '640px',
+    }}>{description}</p>
+  </div>
+</div>

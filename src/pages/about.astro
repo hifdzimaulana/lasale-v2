@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/base.astro';
+import Navigation from '../components/interactive/Navigation.astro';
+import Container from '../components/layout/Container.astro';
+import Section from '../components/layout/Section.astro';
+import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+import SoftStar from '../components/decorative/SoftStar.astro';
+import PortalSparkle from '../components/decorative/PortalSparkle.astro';
+import NewsletterFooter from '../sections/newsletter-footer.astro';
+---
+
+<Layout title="About — LaSALe">
+  <Navigation />
+  <main>
+    <!-- Page hero -->
+    <Section background="var(--color-primary)" tight>
+      <SoftStar color="gold" size="350px" top="10%" right="4%" opacity="0.1" />
+      <PortalSparkle top="22%" left="60%" size={18} opacity="0.7" />
+
+      <Container>
+        <div style={{ position: 'relative', zIndex: 'var(--z-content)', paddingTop: 'var(--space-32)', paddingBottom: 'var(--space-12)' }}>
+          <ScrollReveal>
+            <div class="section-label section-label--light" style={{ marginBottom: 'var(--space-6)' }}>
+              About the Association
+            </div>
+          </ScrollReveal>
+          <div style={{ maxWidth: '800px' }}>
+            <ScrollReveal delay={1}>
+              <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', lineHeight: '0.98', color: 'var(--color-warm-white)', marginBottom: 'var(--space-8)' }}>
+                <span class="drop-cap drop-cap-light">T</span>hirty-Seven Years <br />of Legal Formation
+              </h1>
+            </ScrollReveal>
+            <ScrollReveal delay={2}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.95rem, 1.3vw, 1.12rem)', color: 'rgba(248,245,239,0.8)', lineHeight: 'var(--leading-normal)', maxWidth: '640px' }}>
+                Founded in 1987 by a consortium of federal judges, law school deans, and managing partners, LaSALe has grown into the nation's preeminent student-led legal practice association.
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- History section -->
+    <Section background="var(--color-bg)" gridBg>
+      <Container>
+        <div class="about-split" style="display: grid; gap: var(--space-12);">
+          <ScrollReveal>
+            <div style={{ position: 'relative' }}>
+              <div class="img-tint img-tint--heavy" style={{ border: '2px solid var(--color-primary)' }}>
+                <img src="https://picsum.photos/seed/lasale-history/1000/640" alt="" style="width: 100%; height: clamp(280px, 40vw, 480px); object-fit: cover;" class="duotone-img" />
+                <div class="img-badge">Charter · 1987</div>
+              </div>
+            </div>
+          </ScrollReveal>
+          <div>
+            <ScrollReveal delay={1}>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', lineHeight: '1.04', marginBottom: 'var(--space-6)' }}>
+                <span class="drop-cap">O</span>ur Charter &amp; Mission
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={2}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-lg)', color: 'rgba(24,24,24,0.75)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
+                LaSALe was established to address a critical gap in legal education: the transition from classroom doctrine to courtroom and boardroom practice. Our charter commits us to providing structured, supervised, and substantive practice experience for every member.
+              </p>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-6)' }}>
+                Governed by a Board of Regents comprising sitting judges, tenured faculty, and senior partners from 47 jurisdictions, LaSALe operates as a 501(c)(3) educational consortium. Our programs are audited annually and published in the Spring Convocation Bulletin.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={3}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wide)', textTransform: 'uppercase', color: 'var(--color-rose)', borderLeft: '3px solid var(--color-rose)', paddingLeft: 'var(--space-4)' }}>
+                Board of Regents convenes quarterly · Next session: April 2025
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <NewsletterFooter />
+
+  <script>
+    import { initScrollReveals } from '../lib/observe';
+    import { initPortalParallax } from '../lib/parallax';
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollReveals();
+      initPortalParallax();
+    });
+  </script>
+</Layout>
+
+<style>
+  @media (min-width: 768px) {
+    .about-split {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

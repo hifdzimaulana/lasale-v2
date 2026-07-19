@@ -1,0 +1,159 @@
+---
+import Container from '../components/layout/Container.astro';
+import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+import Section from '../components/layout/Section.astro';
+---
+
+<Section background="var(--color-bg)" gridBg>
+  <Container>
+    <!-- Header -->
+    <div
+      class="insights-header"
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        gap: 'var(--space-6)',
+        marginBottom: 'var(--space-12)',
+      }}
+    >
+      <div>
+        <ScrollReveal>
+          <div class="section-label" style={{ marginBottom: 'var(--space-6)' }}>
+            Section VI · Insights
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={1}>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', lineHeight: '1.04' }}>
+            <span class="drop-cap">D</span>ispatch from <br />the Association
+          </h2>
+        </ScrollReveal>
+      </div>
+      <ScrollReveal delay={2}>
+        <a
+          href="/insights"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.7rem',
+            padding: '0.85rem 1.7rem',
+            background: 'transparent',
+            color: 'var(--color-primary)',
+            border: '1.5px solid var(--color-primary)',
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 600,
+            fontSize: 'var(--text-xs)',
+            letterSpacing: 'var(--tracking-wide)',
+            textTransform: 'uppercase',
+            cursor: 'pointer',
+            textDecoration: 'none',
+            transition: 'all .3s',
+          }}
+          class="btn-outline"
+        >
+          View All Articles
+        </a>
+      </ScrollReveal>
+    </div>
+
+    <!-- Article grid -->
+    <div class="insights-grid">
+      <!-- Article 1 -->
+      <ScrollReveal as="article" delay={0}>
+        <article class="insight-card">
+          <div class="img-tint" style={{ border: '2px solid var(--color-primary)', marginBottom: 'var(--space-5)', overflow: 'hidden' }}>
+            <img src="https://picsum.photos/seed/lasale-news-1/600/420" alt="" style={{ width: '100%', height: 'clamp(200px, 25vw, 280px)', objectFit: 'cover', transition: 'transform 0.7s var(--ease-out-expo)' }} class="duotone-img" />
+            <div class="img-badge img-badge--blue">Federal Courts</div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-3)' }}>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-rose)' }}>March 04, 2025</span>
+            <span style={{ width: '0.25rem', height: '0.25rem', background: 'rgba(24,24,24,0.3)', borderRadius: '50%', display: 'block' }}></span>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(24,24,24,0.5)' }}>8 min read</span>
+          </div>
+          <h3 class="insight-title" style={{ fontSize: '1.4rem', marginBottom: 'var(--space-3)', lineHeight: 'var(--leading-snug)', transition: 'color var(--duration-fast) var(--ease-out-expo)' }}>
+            Circuit Splits Reshaping Administrative Deference Doctrine
+          </h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
+            An analysis of three pending cert petitions and their implications for federal regulatory practice.
+          </p>
+          <a href="/insights" class="link-arrow">Read Article →</a>
+        </article>
+      </ScrollReveal>
+
+      <!-- Article 2 -->
+      <ScrollReveal as="article" delay={1}>
+        <article class="insight-card">
+          <div class="img-tint" style={{ border: '2px solid var(--color-primary)', marginBottom: 'var(--space-5)', overflow: 'hidden' }}>
+            <img src="https://picsum.photos/seed/lasale-news-2/600/420" alt="" style={{ width: '100%', height: 'clamp(200px, 25vw, 280px)', objectFit: 'cover', transition: 'transform 0.7s var(--ease-out-expo)' }} class="duotone-img" />
+            <div class="img-badge">Practice Notes</div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-3)' }}>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-rose)' }}>February 27, 2025</span>
+            <span style={{ width: '0.25rem', height: '0.25rem', background: 'rgba(24,24,24,0.3)', borderRadius: '50%', display: 'block' }}></span>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(24,24,24,0.5)' }}>12 min read</span>
+          </div>
+          <h3 class="insight-title" style={{ fontSize: '1.4rem', marginBottom: 'var(--space-3)', lineHeight: 'var(--leading-snug)' }}>
+            Drafting Enforceable Non-Competes Post-FTC Rule
+          </h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
+            A state-by-state framework for transactional counsel navigating the post-2024 enforcement landscape.
+          </p>
+          <a href="/insights" class="link-arrow">Read Article →</a>
+        </article>
+      </ScrollReveal>
+
+      <!-- Article 3 -->
+      <ScrollReveal as="article" delay={2}>
+        <article class="insight-card">
+          <div class="img-tint" style={{ border: '2px solid var(--color-primary)', marginBottom: 'var(--space-5)', overflow: 'hidden' }}>
+            <img src="https://picsum.photos/seed/lasale-news-3/600/420" alt="" style={{ width: '100%', height: 'clamp(200px, 25vw, 280px)', objectFit: 'cover', transition: 'transform 0.7s var(--ease-out-expo)' }} class="duotone-img" />
+            <div class="img-badge img-badge--gold">Convocation</div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-3)' }}>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-rose)' }}>February 19, 2025</span>
+            <span style={{ width: '0.25rem', height: '0.25rem', background: 'rgba(24,24,24,0.3)', borderRadius: '50%', display: 'block' }}></span>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(24,24,24,0.5)' }}>5 min read</span>
+          </div>
+          <h3 class="insight-title" style={{ fontSize: '1.4rem', marginBottom: 'var(--space-3)', lineHeight: 'var(--leading-snug)' }}>
+            Notes from the 37th Annual LaSALe Symposium
+          </h3>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
+            Keynote remarks from Justice Marion Eldridge and the 2025 class of Hartwell Fellows.
+          </p>
+          <a href="/insights" class="link-arrow">Read Article →</a>
+        </article>
+      </ScrollReveal>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .insights-grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .insights-header {
+      flex-wrap: nowrap;
+    }
+
+    .insights-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .btn-outline:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .insight-card:hover .img-tint img {
+    transform: scale(1.05);
+  }
+
+  .insight-card:hover .insight-title {
+    color: var(--color-rose);
+  }
+</style>

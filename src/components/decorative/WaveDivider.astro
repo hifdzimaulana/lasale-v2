@@ -1,0 +1,16 @@
+---
+export interface Props {
+  fill?: string;
+  height?: string;
+  bottom?: string;
+  flip?: boolean;
+}
+
+const { fill = 'var(--color-bg)', height = '60px', bottom = '0', flip = false } = Astro.props;
+---
+
+<div class="wave-svg" style={{ position: 'absolute', bottom, left: 0, right: 0, zIndex: 0, lineHeight: 0 }}>
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ width: '100%', height, transform: flip ? 'rotate(180deg)' : 'none' }}>
+    <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z" fill={fill} />
+  </svg>
+</div>

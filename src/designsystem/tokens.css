@@ -1,0 +1,102 @@
+:root {
+  /* Brand colors */
+  --color-primary: #283E9C;
+  --color-rose: #B15E67;
+  --color-gold: #FFF34A;
+  --color-cream: #F8F4A6;
+  --color-warm-white: #F8F5EF;
+  --color-near-black: #181818;
+  --color-gray: #6B7280;
+
+  /* Semantic aliases */
+  --color-text: var(--color-near-black);
+  --color-text-inverse: var(--color-warm-white);
+  --color-bg: var(--color-warm-white);
+  --color-bg-alt: var(--color-cream);
+  --color-accent: var(--color-rose);
+  --color-border: var(--color-primary);
+
+  /* Typography */
+  --font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Jost', sans-serif;
+  --font-display: 'Pinyon Script', cursive;
+
+  /* Type scale */
+  --text-xs: 0.65rem;
+  --text-sm: 0.78rem;
+  --text-base: 0.95rem;
+  --text-lg: 1.05rem;
+  --text-xl: 1.2rem;
+  --text-2xl: 1.6rem;
+  --text-3xl: 2.2rem;
+  --text-4xl: 3.2rem;
+  --text-5xl: 4.6rem;
+  --text-6xl: 6rem;
+  --text-7xl: 8rem;
+
+  --leading-tight: 1.02;
+  --leading-snug: 1.15;
+  --leading-normal: 1.6;
+
+  --tracking-wide: 0.12em;
+  --tracking-wider: 0.18em;
+  --tracking-widest: 0.28em;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
+
+  /* Section padding */
+  --section-py: 6rem;
+  --section-px: 1.5rem;
+
+  /* Layout */
+  --max-w-content: 1400px;
+  --max-w-text: 640px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 0.25s;
+  --duration-normal: 0.5s;
+  --duration-slow: 0.9s;
+
+  /* Z-index layers */
+  --z-base: 1;
+  --z-content: 10;
+  --z-nav: 40;
+  --z-overlay: 50;
+  --z-decorative: 0;
+
+  /* Image treatment */
+  --img-grayscale: 20%;
+  --img-contrast: 1.05;
+  --img-brightness: 0.95;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-py: 8rem;
+    --section-px: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-py: 10rem;
+    --section-px: 2.5rem;
+  }
+}

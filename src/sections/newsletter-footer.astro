@@ -1,0 +1,242 @@
+---
+import Container from '../components/layout/Container.astro';
+import ScrollReveal from '../components/interactive/ScrollReveal.astro';
+import SoftStar from '../components/decorative/SoftStar.astro';
+import PortalSparkle from '../components/decorative/PortalSparkle.astro';
+---
+
+<footer
+  style={{
+    position: 'relative',
+    background: 'var(--color-near-black)',
+    color: 'var(--color-warm-white)',
+    overflow: 'hidden',
+  }}
+>
+  <!-- Top accent line -->
+  <div style={{ height: '3px', background: 'linear-gradient(90deg, var(--color-primary), var(--color-rose), var(--color-gold))' }}></div>
+
+  <SoftStar color="gold" size="360px" top="8%" right="-4%" opacity="0.06" />
+  <SoftStar color="rose" size="300px" bottom="4%" left="2%" opacity="0.1" />
+  <PortalSparkle top="16%" left="6%" size={16} color="#F8F4A6" opacity="0.7" />
+
+  <!-- Newsletter band -->
+  <div style={{ borderBottom: '1px solid rgba(248, 245, 239, 0.12)' }}>
+    <Container>
+      <ScrollReveal>
+        <div
+          class="newsletter-grid"
+          style={{
+            paddingTop: 'var(--space-16)',
+            paddingBottom: 'var(--space-16)',
+          }}
+        >
+          <div>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 500, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-widest)', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: 'var(--space-4)' }}>
+              The LaSALe Quarterly
+            </div>
+            <h3 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.6rem)', color: 'var(--color-warm-white)', lineHeight: '1.05', marginBottom: 'var(--space-3)' }}>
+              Dispatches from the Practice.
+            </h3>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: 'rgba(248,245,239,0.65)', lineHeight: 'var(--leading-normal)', maxWidth: '520px' }}>
+              Four times a year, we publish a curated briefing for our members — recent opinions, drafting notes, fellowship deadlines, and convocation remarks.
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+            <form
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                border: '2px solid rgba(248, 245, 239, 0.3)',
+                transition: 'border-color var(--duration-fast)',
+              }}
+              class="newsletter-form"
+              onsubmit="return false"
+            >
+              <input type="email" placeholder="member@law.edu" class="sharp-input" required />
+              <button
+                type="submit"
+                style={{
+                  background: 'var(--color-gold)',
+                  color: 'var(--color-primary)',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 700,
+                  fontSize: 'var(--text-xs)',
+                  letterSpacing: 'var(--tracking-wide)',
+                  textTransform: 'uppercase',
+                  padding: '0 2rem',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'background var(--duration-fast)',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Subscribe →
+              </button>
+            </form>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xs)', color: 'rgba(248,245,239,0.45)', marginTop: 'var(--space-3)' }}>
+              We publish four issues annually. No commercial communications, ever.
+            </p>
+          </div>
+        </div>
+      </ScrollReveal>
+    </Container>
+  </div>
+
+  <!-- Main footer grid -->
+  <Container>
+    <div style={{ position: 'relative', zIndex: 'var(--z-content)', paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)' }}>
+      <div class="footer-grid">
+        <!-- Brand block -->
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-6)' }}>
+            <div style={{ width: 40, height: 40, background: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-gold)', fontSize: '1.25rem', lineHeight: 1 }}>L</span>
+            </div>
+            <div style={{ lineHeight: 1.2 }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--color-warm-white)', fontSize: '1.1rem' }}>LaSALe</div>
+              <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Legal Practice Association</div>
+            </div>
+          </div>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(248,245,239,0.6)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-6)', maxWidth: '320px' }}>
+            The Law Student Association for Legal Practice. Established 1987. Incorporated as a 501(c)(3) educational consortium.
+          </p>
+          <div style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'rgba(248,245,239,0.7)', lineHeight: '1.7' }}>
+            <div>1120 Connecticut Avenue NW</div>
+            <div>Suite 440 · Washington, D.C. 20036</div>
+            <div style={{ marginTop: 'var(--space-2)', color: 'var(--color-gold)' }}>+1 (202) 555-0140</div>
+          </div>
+        </div>
+
+        <!-- Nav columns -->
+        <div>
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: 'var(--space-5)' }}>Programs</div>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            <li><a href="/programs" class="footer-link">Hartwell Institute</a></li>
+            <li><a href="/programs" class="footer-link">Drafting Studio</a></li>
+            <li><a href="/programs" class="footer-link">Judicial Externships</a></li>
+            <li><a href="/programs" class="footer-link">Mentorship Circles</a></li>
+            <li><a href="/programs" class="footer-link">Annual Symposium</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: 'var(--space-5)' }}>Resources</div>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            <li><a href="/insights" class="footer-link">Brief Bank</a></li>
+            <li><a href="/insights" class="footer-link">Case Index</a></li>
+            <li><a href="/insights" class="footer-link">Statute Library</a></li>
+            <li><a href="/insights" class="footer-link">Advocacy Labs</a></li>
+            <li><a href="/insights" class="footer-link">Annual Report</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: 'var(--space-5)' }}>Association</div>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            <li><a href="/about" class="footer-link">Board of Regents</a></li>
+            <li><a href="/about" class="footer-link">Faculty Roster</a></li>
+            <li><a href="/about" class="footer-link">Chapter Directory</a></li>
+            <li><a href="/about" class="footer-link">Bylaws &amp; Charter</a></li>
+            <li><a href="/contact" class="footer-link">Press Inquiries</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: 'var(--text-xs)', letterSpacing: 'var(--tracking-wider)', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: 'var(--space-5)' }}>Connect</div>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            <li><a href="/contact" class="footer-link">Member Portal</a></li>
+            <li><a href="#" class="footer-link">LinkedIn</a></li>
+            <li><a href="#" class="footer-link">X / Twitter</a></li>
+            <li><a href="#" class="footer-link">RSS Dispatch</a></li>
+            <li><a href="/contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <!-- Bottom bar -->
+  <div style={{ borderTop: '1px solid rgba(248, 245, 239, 0.12)' }}>
+    <Container>
+      <div class="bottom-bar" style={{ paddingTop: 'var(--space-6)', paddingBottom: 'var(--space-6)' }}>
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(248,245,239,0.45)' }}>
+          © 2025 LaSALe · 501(c)(3) · EIN 52-1478290
+        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-6)' }}>
+          <a href="#" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(248,245,239,0.45)', textDecoration: 'none', transition: 'color var(--duration-fast)' }} class="footer-link-sm">Privacy</a>
+          <a href="#" class="footer-link-sm">Terms</a>
+          <a href="#" class="footer-link-sm">Accessibility</a>
+          <a href="#" class="footer-link-sm">Disclosures</a>
+        </div>
+        <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(248,245,239,0.35)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+          <span style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold)', fontSize: '1rem', lineHeight: 1 }}>No.</span>
+          <span>XXXVII</span>
+        </div>
+      </div>
+    </Container>
+  </div>
+</footer>
+
+<style>
+  .newsletter-grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: end;
+  }
+
+  @media (min-width: 768px) {
+    .newsletter-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  .bottom-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .footer-link {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: rgba(248, 245, 239, 0.7);
+    text-decoration: none;
+    transition: color var(--duration-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--color-warm-white);
+  }
+
+  .footer-link-sm:hover {
+    color: var(--color-gold);
+  }
+
+  .newsletter-form:focus-within {
+    border-color: var(--color-gold) !important;
+  }
+
+  .newsletter-form button:hover {
+    background: var(--color-cream) !important;
+  }
+</style>
