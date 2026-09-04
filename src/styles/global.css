@@ -1,200 +1,268 @@
-@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Meddon&family=Jost:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600&family=Pinyon+Script&display=swap');
 @import "tailwindcss";
 
-/* ============================================
-   LaSALe FH UI — Design Tokens (Tailwind v4)
-   Source: DESIGN.md / Figma media-kit.svg
-   ============================================ */
-
 @theme inline {
-  /* ---- Colors ---- */
-  --color-primary-blue: #172263;
-  --color-primary-blue-light: #58679B;
+  --color-primary-blue: #1C3B87;
+  --color-primary-blue-2: #15295F;
+  --color-burgundy: #994B53;
+  --color-burgundy-deep: #7A373F;
+  --color-accent-yellow: #F6EB3D;
+  --color-pale-cream: #F7F2B7;
+  --color-bg-offwhite: #FAF6EB;
+  --color-ink: #10204A;
 
-  --color-gold: #BEA75B;
-  --color-gold-bright: #F8DA61;
-  --color-gold-soft: #FFEE8C;
-
-  --color-burgundy: #550000;
-  --color-rose: #A85050;
-
-  --color-pale-cream: #FFFFDC;
-  --color-bg-dark: #2A2A2A;
-
-  /* ---- Typography ---- */
+  --font-display: "Jost", sans-serif;
   --font-script: "Pinyon Script", cursive;
-  --font-display: "Meddon", serif;
-  --font-heading: "Jost", sans-serif;
   --font-body: "Instrument Sans", sans-serif;
-  --font-utility: "Montserrat", sans-serif;
 }
 
-/* ============================================
-   Base Reset & Global Styles
-   ============================================ */
+/* ====== BASE ====== */
 *, *::before, *::after {
   border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html, body { margin: 0; padding: 0; }
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg-dark);
-  color: var(--color-pale-cream);
+  background: var(--color-bg-offwhite);
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  color: var(--color-primary-blue);
 }
 
-/* ============================================
-   Typography Utilities
-   ============================================ */
-.font-script { font-family: var(--font-script); }
 .font-display { font-family: var(--font-display); }
-.font-heading { font-family: var(--font-heading); }
+.font-script { font-family: var(--font-script); }
 .font-body { font-family: var(--font-body); }
-.font-utility { font-family: var(--font-utility); }
 
-/* ============================================
-   Gradient Text
-   ============================================ */
-.text-gradient-gold {
-  background: linear-gradient(180deg, #FFFFDC 0%, #BEA75B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ====== DROP CAP ====== */
+.drop-cap::first-letter {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.4em;
+  line-height: 0.6;
+  color: var(--color-burgundy);
+  margin-right: 0.04em;
+  margin-top: 0.04em;
+  display: inline-block;
+  vertical-align: -0.12em;
+}
+.drop-cap-light::first-letter {
+  color: var(--color-accent-yellow);
 }
 
-/* ============================================
-   Gradient Pillars
-   ============================================ */
-.pillar-blue {
-  background: linear-gradient(180deg, #1E2A56 0%, #58679B 50%, #1E2A56 100%);
-}
-
-.pillar-burgundy {
-  background: linear-gradient(180deg, #550000 0%, #A85050 50%, #550000 100%);
-}
-
-/* ============================================
-   Decorative: Soft Stars
-   ============================================ */
-.soft-star {
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.4;
-  pointer-events: none;
-  position: absolute;
-}
-
-/* ============================================
-   Decorative: Portal Sparkles
-   ============================================ */
-.portal-sparkle {
-  pointer-events: none;
-  position: absolute;
-}
-
-/* ============================================
-   Grid Background Pattern
-   ============================================ */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(190,167,91,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(190,167,91,.04) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-/* ============================================
-   Gradient Border Utility
-   ============================================ */
+/* ====== DUAL-TONE GRADIENT BORDERS ====== */
 .border-gradient {
   position: relative;
+  background: var(--color-bg-offwhite);
 }
-
 .border-gradient::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  padding: 1px;
+  padding: 2px;
   background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-burgundy) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
 }
-
+.border-gradient-gold { position: relative; }
 .border-gradient-gold::before {
-  background: linear-gradient(180deg, var(--color-pale-cream) 0%, var(--color-gold) 100%);
-}
-
-/* ============================================
-   Wave Transition
-   ============================================ */
-.wave-transition {
+  content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--color-accent-yellow) 0%, var(--color-pale-cream) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-.wave-transition img {
-  width: 100%;
-  height: auto;
-}
-
-/* ============================================
-   Button Base Styles
-   ============================================ */
-.btn {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 1rem 1.9rem;
-  transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: none;
-  text-decoration: none;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
+/* ====== BUTTONS ====== */
 .btn-primary {
-  background-color: var(--color-primary-blue);
-  color: white;
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 1rem 1.9rem;
+  background: var(--color-primary-blue);
+  color: #fff;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.8rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  position: relative; border: none; cursor: pointer;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
 }
-
-.btn-primary:hover {
-  box-shadow: 0 4px 20px rgba(23, 34, 99, 0.4);
+.btn-primary::after {
+  content: ""; position: absolute; inset: 0; padding: 2px;
+  background: linear-gradient(135deg, var(--color-accent-yellow), var(--color-pale-cream));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .35s;
 }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -18px rgba(28,59,135,.55); }
+.btn-primary:hover::after { opacity: 1; }
 
 .btn-burgundy {
-  background-color: var(--color-burgundy);
-  color: white;
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 1rem 1.9rem;
+  background: var(--color-burgundy);
+  color: #fff;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.8rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: none; cursor: pointer;
+  transition: transform .35s, box-shadow .35s;
 }
-
-.btn-burgundy:hover {
-  box-shadow: 0 4px 20px rgba(85, 0, 0, 0.4);
-}
+.btn-burgundy:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -18px rgba(153,75,83,.6); }
 
 .btn-outline {
-  background-color: transparent;
-  color: var(--color-primary-blue);
-  border: 1px solid var(--color-primary-blue);
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 1rem 1.9rem;
+  background: transparent; color: var(--color-primary-blue);
+  border: 1.5px solid var(--color-primary-blue);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.8rem;
+  letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+  transition: all .3s;
+}
+.btn-outline:hover { background: var(--color-primary-blue); color: #fff; }
+
+/* ====== NAV LINK ====== */
+.nav-link {
+  font-family: var(--font-display); font-weight: 500; font-size: .78rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--color-ink);
+  position: relative; padding-bottom: 4px;
+  transition: color .25s;
+}
+.nav-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1.5px; background: var(--color-burgundy);
+  transform: scaleX(0); transform-origin: left; transition: transform .35s;
+}
+.nav-link:hover { color: var(--color-burgundy); }
+.nav-link:hover::after { transform: scaleX(1); }
+
+/* ====== CARD TOP EDGE ====== */
+.card-top-edge { position: relative; overflow: hidden; }
+.card-top-edge::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-blue), var(--color-burgundy));
 }
 
-.btn-outline:hover {
-  background-color: var(--color-primary-blue);
-  color: white;
+/* ====== IMAGE TREATMENTS ====== */
+.duotone-img {
+  filter: grayscale(.2) contrast(1.05) brightness(.95);
+}
+.img-tint { position: relative; overflow: hidden; }
+.img-tint::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(28,59,135,0) 35%, rgba(28,59,135,.55) 100%);
+  pointer-events: none;
+}
+.img-tint--heavy::after {
+  background: linear-gradient(180deg, rgba(28,41,95,.35) 0%, rgba(28,41,95,.65) 100%);
+}
+
+/* ====== IMAGE BADGES ====== */
+.img-badge {
+  position: absolute; top: 0; left: 0;
+  background: var(--color-burgundy); color: var(--color-bg-offwhite);
+  font-family: var(--font-display); font-weight: 600;
+  font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+  padding: .45rem .9rem; z-index: 2;
+}
+.img-badge--yellow { background: var(--color-accent-yellow); color: var(--color-primary-blue); }
+.img-badge--blue { background: var(--color-primary-blue); color: var(--color-bg-offwhite); }
+
+/* ====== STAT ROW ====== */
+.stat-row {
+  display: grid; grid-template-columns: minmax(220px, 1fr) 1px 2fr;
+  gap: 0; align-items: stretch;
+  border-top: 1px solid rgba(28,59,135,.15);
+}
+.stat-row:last-child { border-bottom: 1px solid rgba(28,59,135,.15); }
+.stat-row__num { display: flex; align-items: center; padding: 2.4rem 2.4rem 2.4rem 0; }
+.stat-row__divider { background: linear-gradient(180deg, var(--color-primary-blue), var(--color-burgundy)); width: 1px; }
+.stat-row__text { display: flex; flex-direction: column; justify-content: center; padding: 2.4rem 0 2.4rem 2.4rem; }
+
+/* ====== SOFT STARS ====== */
+.soft-star {
+  position: absolute;
+  border-radius: 50% !important;
+  filter: blur(60px);
+  opacity: .4;
+  pointer-events: none;
+  z-index: 0;
+}
+.soft-star--yellow { background: var(--color-accent-yellow); }
+.soft-star--blue { background: var(--color-primary-blue); }
+.soft-star--cream { background: var(--color-pale-cream); }
+.soft-star--burgundy { background: var(--color-burgundy); }
+
+/* ====== PORTAL SPARKLES ====== */
+.portal {
+  position: absolute; pointer-events: none; z-index: 1;
+  opacity: .85;
+}
+.portal svg { display: block; }
+
+/* ====== HERO OVERLAY ====== */
+.hero-overlay {
+  background:
+    linear-gradient(115deg, rgba(28,41,95,.96) 0%, rgba(28,59,135,.82) 45%, rgba(28,59,135,.45) 100%),
+    linear-gradient(180deg, rgba(28,41,95,.3) 0%, rgba(28,41,95,.1) 100%);
+}
+
+/* ====== GRID BG ====== */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(28,59,135,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28,59,135,.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ====== WAVE SVG ====== */
+.wave-svg { display: block; width: 100%; height: auto; line-height: 0; }
+
+/* ====== STAGGER BLOCKS ====== */
+.stagger-block {
+  transition: transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.stagger-block:hover { transform: translateY(-6px); }
+
+/* ====== MARQUEE ====== */
+.marquee {
+  display: flex; gap: 5rem;
+  animation: marq 38s linear infinite;
+  width: max-content;
+}
+@keyframes marq {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ====== NO SCROLLBAR ====== */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ====== REVEAL ON SCROLL ====== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ====== FORM ====== */
+.sharp-input {
+  background: transparent; border: none; outline: none;
+  color: #fff; font-family: var(--font-body); font-size: .95rem;
+  padding: 1.1rem 1.2rem; width: 100%;
+}
+.sharp-input::placeholder { color: rgba(247,242,183,.55); }
+
+/* ====== REDUCED MOTION ====== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001s !important; transition-duration: .001s !important; }
 }

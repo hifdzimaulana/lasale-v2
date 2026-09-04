@@ -1,74 +1,67 @@
 ---
 const articles = [
   {
-    title: 'Analisis Hukum: Regulasi Kecerdasan Buatan di Indonesia',
+    title: 'Analisis Regulasi Kecerdasan Buatan di Indonesia',
     category: 'Analysis',
-    date: '2026-08-15',
+    date: '15 Agustus 2026',
+    readTime: '8 min read',
     excerpt: 'Kajian mendalam tentang regulasi kecerdasan buatan yang sedang dikembangkan di Indonesia.',
+    badge: 'img-badge--blue',
+    badgeText: 'Analisis',
   },
   {
-    title: 'Opini: Pentingnya Literasi Hukum bagi Masyarakat',
+    title: 'Pentingnya Literasi Hukum bagi Masyarakat',
     category: 'Opinion',
-    date: '2026-08-10',
+    date: '10 Agustus 2026',
+    readTime: '12 min read',
     excerpt: 'Perspektif tentang urgensi peningkatan literasi hukum di kalangan masyarakat luas.',
+    badge: '',
+    badgeText: 'Opini',
   },
   {
-    title: 'Berita: LaSALe Gelar Simulasi Sidang Nasional',
+    title: 'LaSALe Gelar Simulasi Sidang Nasional',
     category: 'News',
-    date: '2026-08-05',
-    excerpt: 'Liputan tentang pelaksanaan simulasi sidang nasional yang diikuti oleh mahasiswa hukum dari berbagai universitas.',
+    date: '05 Agustus 2026',
+    readTime: '5 min read',
+    excerpt: 'Liputan pelaksanaan simulasi sidang nasional yang diikuti mahasiswa hukum dari berbagai universitas.',
+    badge: 'img-badge--yellow',
+    badgeText: 'Berita',
   },
 ];
-
-const categoryColors: Record<string, string> = {
-  News: 'bg-primary-blue',
-  Opinion: 'bg-burgundy',
-  Analysis: 'bg-gold text-bg-dark',
-};
 ---
 
-<section class="relative py-24 md:py-32 bg-bg-dark">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <p class="font-utility text-xs tracking-[0.3em] uppercase text-gold mb-4">Artikel Terbaru</p>
-      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-pale-cream">
-        LaSALe <span class="text-gradient-gold">Page</span>
-      </h2>
+<section class="bg-[var(--color-bg-offwhite)] py-24 lg:py-32 grid-bg">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex flex-wrap items-end justify-between mb-12 gap-6">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-8 h-[2px] bg-[var(--color-burgundy)]"></div>
+          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-burgundy)]">Section IV · LaSALe Page</span>
+        </div>
+        <h2 class="text-[2.2rem] lg:text-[2.8rem] leading-[1.04]">
+          <span class="drop-cap">A</span>rtikel Hukum
+        </h2>
+      </div>
+      <a href="/lasale" class="btn-outline">Lihat Semua Artikel</a>
     </div>
 
-    <!-- Articles Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {articles.map((article) => (
-        <article class="group border border-pale-cream/10 hover:border-gold/30 transition-colors duration-300">
-          <!-- Category Badge -->
-          <div class="p-6 pb-0">
-            <span class={`inline-block px-3 py-1 text-xs font-utility font-semibold uppercase tracking-wider ${categoryColors[article.category] || 'bg-primary-blue'} text-pale-cream`}>
-              {article.category}
-            </span>
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+      {articles.map((a) => (
+        <article class="group">
+          <div class="relative img-tint border-2 border-[var(--color-primary-blue)] mb-5 overflow-hidden">
+            <img src={`https://picsum.photos/seed/lasale-news-${a.category}/600/420.jpg`} alt="" class="w-full h-[240px] lg:h-[280px] object-cover duotone-img transition-transform duration-700 group-hover:scale-105" />
+            <div class:list={['img-badge', a.badge]}>{a.badgeText}</div>
           </div>
-
-          <!-- Content -->
-          <div class="p-6">
-            <h3 class="font-heading text-lg font-semibold text-pale-cream mb-3 group-hover:text-gold transition-colors leading-snug">
-              {article.title}
-            </h3>
-            <p class="font-body text-sm text-pale-cream/50 leading-relaxed mb-4">
-              {article.excerpt}
-            </p>
-            <time class="font-utility text-xs text-pale-cream/30">
-              {new Date(article.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-            </time>
+          <div class="flex items-center gap-3 mb-3">
+            <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--color-burgundy)]">{a.date}</div>
+            <div class="w-1 h-1 bg-[var(--color-ink)]/30"></div>
+            <div class="font-body text-[0.7rem] tracking-[0.2em] uppercase text-[var(--color-ink)]/50">{a.readTime}</div>
           </div>
+          <h3 class="text-[1.4rem] mb-3 leading-tight group-hover:text-[var(--color-burgundy)] transition-colors">{a.title}</h3>
+          <p class="font-body text-[0.92rem] text-[var(--color-ink)]/65 leading-relaxed mb-4">{a.excerpt}</p>
+          <a href="/lasale" class="font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase text-[var(--color-burgundy)] inline-flex items-center gap-2 border-b border-[var(--color-burgundy)] pb-1">Baca Artikel <span>→</span></a>
         </article>
       ))}
-    </div>
-
-    <!-- CTA -->
-    <div class="text-center mt-12">
-      <a href="/lasale" class="btn btn-outline">
-        Baca Semua Artikel
-      </a>
     </div>
   </div>
 </section>

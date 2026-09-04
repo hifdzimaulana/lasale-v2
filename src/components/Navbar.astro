@@ -1,72 +1,38 @@
 ---
 ---
 
-<nav class="fixed top-0 left-0 w-full z-50 bg-bg-dark/90 backdrop-blur-sm border-b border-gold/10">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 group">
-        <span class="font-heading text-xl font-semibold tracking-wide text-pale-cream">
-          LaSALe
-        </span>
-        <span class="hidden sm:inline text-gold/50 text-sm font-utility">
-          FH UI
-        </span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href="/" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Home</a>
-        <a href="/about" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">About</a>
-        <a href="/programs" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Programs</a>
-        <a href="/lasale" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">LaSALe</a>
-        <a href="/events" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Events</a>
-        <a href="/contact" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Contact</a>
+<header class="absolute top-0 left-0 right-0 z-40">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-6 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-[var(--color-primary-blue)] flex items-center justify-center">
+        <span class="font-display font-700 text-[var(--color-accent-yellow)] text-lg leading-none">L</span>
       </div>
+      <div class="leading-tight">
+        <div class="font-display font-600 text-[var(--color-primary-blue)] text-[1.05rem] tracking-tight">LaSALe</div>
+        <div class="font-body text-[0.62rem] tracking-[0.22em] uppercase text-[var(--color-burgundy)]">Legal Practice Association</div>
+      </div>
+    </a>
 
-      <!-- Mobile Menu Button -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden flex flex-col gap-1.5 p-2"
-        aria-label="Toggle menu"
-      >
-        <span class="block w-6 h-0.5 bg-pale-cream transition-transform" id="menu-bar-1"></span>
-        <span class="block w-6 h-0.5 bg-pale-cream transition-opacity" id="menu-bar-2"></span>
-        <span class="block w-6 h-0.5 bg-pale-cream transition-transform" id="menu-bar-3"></span>
-      </button>
+    <nav class="hidden lg:flex items-center gap-9">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/programs" class="nav-link">Programs</a>
+      <a href="/lasale" class="nav-link">LaSALe</a>
+      <a href="/events" class="nav-link">Events</a>
+      <a href="/contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="/contact" class="btn-outline hidden md:inline-flex">Contact Us</a>
     </div>
   </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-bg-dark border-t border-gold/10">
-    <div class="px-6 py-4 flex flex-col gap-4">
-      <a href="/" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Home</a>
-      <a href="/about" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">About</a>
-      <a href="/programs" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Programs</a>
-      <a href="/lasale" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">LaSALe</a>
-      <a href="/events" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Events</a>
-      <a href="/contact" class="font-heading text-sm font-medium text-pale-cream/70 hover:text-gold transition-colors">Contact</a>
-    </div>
-  </div>
-</nav>
+</header>
 
 <script>
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  const bar1 = document.getElementById('menu-bar-1');
-  const bar2 = document.getElementById('menu-bar-2');
-  const bar3 = document.getElementById('menu-bar-3');
 
   menuBtn?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.classList.toggle('hidden') === false;
-    if (isOpen) {
-      bar1?.classList.add('rotate-45', 'translate-y-2');
-      bar2?.classList.add('opacity-0');
-      bar3?.classList.add('-rotate-45', '-translate-y-2');
-    } else {
-      bar1?.classList.remove('rotate-45', 'translate-y-2');
-      bar2?.classList.remove('opacity-0');
-      bar3?.classList.remove('-rotate-45', '-translate-y-2');
-    }
+    mobileMenu?.classList.toggle('hidden');
   });
 </script>

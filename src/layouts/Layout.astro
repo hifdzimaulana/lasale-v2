@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = 'LaSALe FH UI — Law Student Association for Legal Practice',
-  description = 'LaSALe is the Law Student Association for Legal Practice at the Faculty of Law, Universitas Indonesia. Established in 1987.',
+  title = 'LaSALe — Law Student Association for Legal Practice',
+  description = 'The Law Student Association for Legal Practice at the Faculty of Law, Universitas Indonesia. Established 1987.',
 } = Astro.props;
 ---
 
@@ -16,13 +16,13 @@ const {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen">
+  <body>
     <slot />
   </body>
 </html>

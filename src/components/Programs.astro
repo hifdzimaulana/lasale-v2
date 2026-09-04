@@ -1,65 +1,62 @@
 ---
 const programs = [
   {
+    num: '01',
     title: 'Konsultasi Hukum',
-    description: 'Layanan konsultasi hukum gratis untuk masyarakat umum yang membutuhkan bantuan hukum.',
-    icon: '⚖️',
-    color: 'bg-primary-blue',
+    description: 'Layanan konsultasi hukum gratis untuk masyarakat umum yang membutuhkan bantuan hukum, dibimbing oleh dosen pembimbing.',
+    link: '/programs',
+    linkText: 'Selengkapnya',
+    icon: `<svg width="34" height="34" viewBox="0 0 40 40" fill="none"><rect x="4" y="10" width="32" height="22" stroke="#1C3B87" stroke-width="2"/><path d="M4 10 L20 22 L36 10" stroke="#994B53" stroke-width="2"/></svg>`,
   },
   {
-    title: 'LITASI',
-    description: 'Program literasi hukum untuk meningkatkan pemahaman masyarakat tentang hak dan kewajiban hukum.',
-    icon: '📚',
-    color: 'bg-burgundy',
-  },
-  {
+    num: '02',
     title: 'Simulasi Sidang',
-    description: 'Simulasi persidangan untuk melatih kemampuan litigasi dan argumentasi hukum mahasiswa.',
-    icon: '🏛️',
-    color: 'bg-primary-blue',
+    description: 'Simulasi persidangan untuk melatih kemampuan litigasi dan argumentasi hukum mahasiswa dalam suasana sidang yang nyata.',
+    link: '/programs',
+    linkText: 'Selengkapnya',
+    icon: `<svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M20 4 L34 12 L34 28 L20 36 L6 28 L6 12 Z" stroke="#F6EB3D" stroke-width="2"/><path d="M20 14 L26 18 L26 26 L20 30 L14 26 L14 18 Z" stroke="#F7F2B7" stroke-width="1.5"/></svg>`,
   },
   {
-    title: 'KTBBH',
-    description: 'Kursus Tanggap Bahasa untuk Berbagi Hukum — membangun kemampuan komunikasi hukum.',
-    icon: '💬',
-    color: 'bg-burgundy',
+    num: '03',
+    title: 'LITASI',
+    description: 'Program literasi hukum untuk meningkatkan pemahaman masyarakat tentang hak dan kewajiban hukum melalui seminar dan workshop.',
+    link: '/programs',
+    linkText: 'Selengkapnya',
+    icon: `<svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#1C3B87" stroke-width="2"/><path d="M20 8 L20 20 L28 24" stroke="#994B53" stroke-width="2"/></svg>`,
   },
 ];
 ---
 
-<section class="relative py-24 md:py-32 bg-bg-dark grid-bg">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <p class="font-utility text-xs tracking-[0.3em] uppercase text-gold mb-4">Program Unggulan</p>
-      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-pale-cream">
-        Program <span class="text-gradient-gold">LaSALe</span>
-      </h2>
-    </div>
-
-    <!-- Programs Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {programs.map((program) => (
-        <div class="group relative border border-pale-cream/10 p-8 hover:border-gold/30 transition-colors duration-300">
-          <div class={`inline-flex items-center justify-center w-12 h-12 ${program.color} text-pale-cream text-xl mb-4`}>
-            {program.icon}
+<section class="relative bg-[var(--color-bg-offwhite)] grid-bg">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 -mt-2">
+    <div class="grid md:grid-cols-3 border-2 border-[var(--color-primary-blue)]">
+      {programs.map((p, i) => (
+        <article class:list={[
+          'p-8 lg:p-10 card-top-edge',
+          i === 0 && 'bg-[var(--color-pale-cream)] border-r-2 border-[var(--color-primary-blue)]',
+          i === 1 && 'bg-[var(--color-primary-blue)] text-[var(--color-bg-offwhite)] border-r-2 border-[var(--color-primary-blue)] relative overflow-hidden',
+          i === 2 && 'bg-[var(--color-pale-cream)]',
+        ]}>
+          {i === 1 && <div class="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[var(--color-accent-yellow)] to-[var(--color-pale-cream)]"></div>}
+          {i === 1 && <div class="soft-star soft-star--yellow" style="width:160px;height:160px;top:-40px;right:-40px;opacity:.18"></div>}
+          <div class:list={[i === 1 && 'relative']}>
+            <div class="flex items-start justify-between mb-7">
+              <div class:list={['font-display font-700 text-3xl', i === 1 ? 'text-[var(--color-accent-yellow)]' : 'text-[var(--color-primary-blue)]']}>{p.num}</div>
+              <Fragment set:html={p.icon} />
+            </div>
+            <h3 class:list={['text-[1.45rem] mb-3', i === 1 && 'text-[var(--color-bg-offwhite)]']}>{p.title}</h3>
+            <p class:list={['font-body text-[0.95rem] leading-relaxed mb-6', i === 1 ? 'text-[var(--color-bg-offwhite)]/75' : 'text-[var(--color-ink)]/70']}>
+              {p.description}
+            </p>
+            <a href={p.link} class:list={[
+              'font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase inline-flex items-center gap-2 border-b-2 pb-1',
+              i === 1 ? 'text-[var(--color-accent-yellow)] border-[var(--color-accent-yellow)]' : 'text-[var(--color-burgundy)] border-[var(--color-burgundy)]',
+            ]}>
+              {p.linkText} <span>→</span>
+            </a>
           </div>
-          <h3 class="font-heading text-xl font-semibold text-pale-cream mb-3 group-hover:text-gold transition-colors">
-            {program.title}
-          </h3>
-          <p class="font-body text-sm text-pale-cream/60 leading-relaxed">
-            {program.description}
-          </p>
-          <div class="absolute top-0 right-0 w-0 h-0 border-t-[40px] border-t-gold/10 border-l-[40px] border-l-transparent group-hover:border-t-gold/30 transition-colors duration-300"></div>
-        </div>
+        </article>
       ))}
-    </div>
-
-    <!-- CTA -->
-    <div class="text-center mt-12">
-      <a href="/programs" class="btn btn-outline">
-        Lihat Semua Program
-      </a>
     </div>
   </div>
 </section>
