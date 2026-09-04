@@ -2,10 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import Programs from '../components/Programs.astro';
 import DirectorsPreface from '../components/DirectorsPreface.astro';
-import TrackRecord from '../components/TrackRecord.astro';
 import AboutSection from '../components/AboutSection.astro';
+import TrackRecord from '../components/TrackRecord.astro';
+import Programs from '../components/Programs.astro';
 import LatestArticles from '../components/LatestArticles.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -14,20 +14,20 @@ import Footer from '../components/Footer.astro';
   <Navbar />
 
   <main id="content">
-    <!-- 1 · Hero (full viewport, fixed navbar overlay) -->
+    <!-- 1 · Hero -->
     <Hero />
 
-    <!-- 2 · Programs -->
-    <Programs />
-
-    <!-- 3 · Director's Preface -->
+    <!-- 2 · Director's Preface -->
     <DirectorsPreface />
+
+    <!-- 3 · About -->
+    <AboutSection />
 
     <!-- 4 · Track Record -->
     <TrackRecord />
 
-    <!-- 5 · Tentang -->
-    <AboutSection />
+    <!-- 5 · Programs -->
+    <Programs />
 
     <!-- 6 · Articles -->
     <LatestArticles />
@@ -35,7 +35,7 @@ import Footer from '../components/Footer.astro';
 
   <Footer />
 
-  <!-- Portal sparkle parallax on mouse move -->
+  <!-- Portal sparkle parallax -->
   <script is:inline>
     (function () {
       const portals = document.querySelectorAll('.portal');

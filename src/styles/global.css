@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 1.05;
-  color: var(--color-primary-blue);
+  color: inherit;
 }
 
 .font-display { font-family: var(--font-display); }
@@ -44,24 +44,19 @@ h1, h2, h3, h4, h5 {
 .font-body { font-family: var(--font-body); }
 
 /* ====== DROP CAP ====== */
-.drop-cap {
-  font-family: var(--font-display);
-  font-weight: 600;
-}
 .drop-cap::first-letter {
-  font-family: var(--font-script);
+  font-family: "Pinyon Script", var(--font-script), cursive !important;
   font-weight: 400;
-  font-size: 2.2em;
+  font-size: 2.4em;
   line-height: 0.7;
   color: var(--color-burgundy);
+  float: left;
   margin-right: 0.06em;
-  margin-top: 0.06em;
-  display: inline-block;
-  vertical-align: -0.14em;
+  margin-top: 0.05em;
 }
 .drop-cap--gold::first-letter,
 .drop-cap-light::first-letter {
-  color: var(--color-accent-yellow);
+  color: var(--color-accent-yellow) !important;
 }
 
 /* ====== DUAL-TONE GRADIENT BORDERS ====== */
