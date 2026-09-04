@@ -1,0 +1,74 @@
+---
+const articles = [
+  {
+    title: 'Analisis Hukum: Regulasi Kecerdasan Buatan di Indonesia',
+    category: 'Analysis',
+    date: '2026-08-15',
+    excerpt: 'Kajian mendalam tentang regulasi kecerdasan buatan yang sedang dikembangkan di Indonesia.',
+  },
+  {
+    title: 'Opini: Pentingnya Literasi Hukum bagi Masyarakat',
+    category: 'Opinion',
+    date: '2026-08-10',
+    excerpt: 'Perspektif tentang urgensi peningkatan literasi hukum di kalangan masyarakat luas.',
+  },
+  {
+    title: 'Berita: LaSALe Gelar Simulasi Sidang Nasional',
+    category: 'News',
+    date: '2026-08-05',
+    excerpt: 'Liputan tentang pelaksanaan simulasi sidang nasional yang diikuti oleh mahasiswa hukum dari berbagai universitas.',
+  },
+];
+
+const categoryColors: Record<string, string> = {
+  News: 'bg-primary-blue',
+  Opinion: 'bg-burgundy',
+  Analysis: 'bg-gold text-bg-dark',
+};
+---
+
+<section class="relative py-24 md:py-32 bg-bg-dark">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <p class="font-utility text-xs tracking-[0.3em] uppercase text-gold mb-4">Artikel Terbaru</p>
+      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-pale-cream">
+        LaSALe <span class="text-gradient-gold">Page</span>
+      </h2>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {articles.map((article) => (
+        <article class="group border border-pale-cream/10 hover:border-gold/30 transition-colors duration-300">
+          <!-- Category Badge -->
+          <div class="p-6 pb-0">
+            <span class={`inline-block px-3 py-1 text-xs font-utility font-semibold uppercase tracking-wider ${categoryColors[article.category] || 'bg-primary-blue'} text-pale-cream`}>
+              {article.category}
+            </span>
+          </div>
+
+          <!-- Content -->
+          <div class="p-6">
+            <h3 class="font-heading text-lg font-semibold text-pale-cream mb-3 group-hover:text-gold transition-colors leading-snug">
+              {article.title}
+            </h3>
+            <p class="font-body text-sm text-pale-cream/50 leading-relaxed mb-4">
+              {article.excerpt}
+            </p>
+            <time class="font-utility text-xs text-pale-cream/30">
+              {new Date(article.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </time>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-12">
+      <a href="/lasale" class="btn btn-outline">
+        Baca Semua Artikel
+      </a>
+    </div>
+  </div>
+</section>

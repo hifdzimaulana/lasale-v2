@@ -1,4 +1,27 @@
-node_modules/
+# Build output
 dist/
+
+# Dependencies
+node_modules/
+
+# Astro
+.astro/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
 .DS_Store
-*.local
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+npm-debug.log*

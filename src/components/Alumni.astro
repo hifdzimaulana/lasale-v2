@@ -1,0 +1,59 @@
+---
+const alumni = [
+  {
+    name: 'Marcella Hualymuan Gualie, S.H.',
+    title: 'Notable Alumni',
+    description: 'Aktivis hukum dan advokat yang dikenal dalam advokasi hak asasi manusia.',
+    image: '/images/alumni-placeholder.jpg',
+  },
+  {
+    name: 'Ricky Setiawan, S.H., M.H.',
+    title: 'Legal Professional',
+    description: 'Pengacara senior dengan pengalaman luas dalam hukum korporasi.',
+    image: '/images/alumni-placeholder.jpg',
+  },
+  {
+    name: 'Dr. Hukum Indriyanto Seno Aji, S.H., M.H.',
+    title: 'Academic & Practitioner',
+    description: 'Akademisi dan praktisi hukum yang berkontribusi dalam pengembangan hukum nasional.',
+    image: '/images/alumni-placeholder.jpg',
+  },
+];
+---
+
+<section class="relative py-24 md:py-32 bg-primary-blue overflow-hidden">
+  <!-- Decorative -->
+  <div class="soft-star w-72 h-72 bg-gold-soft/20 -top-20 -right-20"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <p class="font-utility text-xs tracking-[0.3em] uppercase text-gold mb-4">Alumni</p>
+      <h2 class="font-heading text-4xl md:text-5xl font-semibold text-pale-cream">
+        Notable <span class="text-gradient-gold">Alumni</span>
+      </h2>
+    </div>
+
+    <!-- Alumni Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {alumni.map((person) => (
+        <div class="group text-center">
+          <div class="relative w-48 h-48 mx-auto mb-6 overflow-hidden border-2 border-gold/20 group-hover:border-gold/50 transition-colors">
+            <div class="w-full h-full bg-primary-blue-light/30 flex items-center justify-center">
+              <span class="font-display text-4xl text-gold/40">{person.name.charAt(0)}</span>
+            </div>
+          </div>
+          <h3 class="font-heading text-lg font-semibold text-pale-cream mb-1 group-hover:text-gold transition-colors">
+            {person.name}
+          </h3>
+          <p class="font-utility text-xs text-gold uppercase tracking-wider mb-3">
+            {person.title}
+          </p>
+          <p class="font-body text-sm text-pale-cream/50 leading-relaxed max-w-xs mx-auto">
+            {person.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

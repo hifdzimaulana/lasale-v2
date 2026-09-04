@@ -1,141 +1,80 @@
 ---
-import Layout from '../layouts/base.astro';
-import Navigation from '../components/interactive/Navigation.astro';
-import Container from '../components/layout/Container.astro';
-import Section from '../components/layout/Section.astro';
-import ScrollReveal from '../components/interactive/ScrollReveal.astro';
-import SoftStar from '../components/decorative/SoftStar.astro';
-import PortalSparkle from '../components/decorative/PortalSparkle.astro';
-import WaveDivider from '../components/decorative/WaveDivider.astro';
-import NewsletterFooter from '../sections/newsletter-footer.astro';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Programs — LaSALe">
-  <Navigation />
-  <main>
-    <!-- Page hero -->
-    <Section background="var(--color-primary)" tight>
-      <SoftStar color="gold" size="350px" top="8%" right="2%" opacity="0.1" />
-      <PortalSparkle top="20%" left="50%" size={20} opacity="0.8" />
-      <Container>
-        <div style={{ position: 'relative', zIndex: 'var(--z-content)', paddingTop: 'var(--space-32)', paddingBottom: 'var(--space-12)' }}>
-          <ScrollReveal>
-            <div class="section-label section-label--light" style={{ marginBottom: 'var(--space-6)' }}>
-              Our Programs
+<Layout title="Program — LaSALe FH UI">
+  <Navbar />
+  <main class="pt-20">
+    <section class="py-24 md:py-32 bg-bg-dark">
+      <div class="max-w-5xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p class="font-utility text-xs tracking-[0.3em] uppercase text-gold mb-4">Program</p>
+          <h1 class="font-heading text-5xl md:text-6xl font-semibold text-pale-cream">
+            Program <span class="text-gradient-gold">LaSALe</span>
+          </h1>
+        </div>
+
+        <div class="space-y-12">
+          <!-- Konsultasi Hukum -->
+          <div class="border border-pale-cream/10 p-8 md:p-12">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-12 h-12 bg-primary-blue flex items-center justify-center text-pale-cream text-xl shrink-0">⚖️</div>
+              <div>
+                <h2 class="font-heading text-2xl font-semibold text-pale-cream">Konsultasi Hukum</h2>
+                <p class="font-utility text-xs text-gold uppercase tracking-wider mt-1">Program Utama</p>
+              </div>
             </div>
-          </ScrollReveal>
-          <div style={{ maxWidth: '800px' }}>
-            <ScrollReveal delay={1}>
-              <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', lineHeight: '0.98', color: 'var(--color-warm-white)', marginBottom: 'var(--space-8)' }}>
-                <span class="drop-cap drop-cap-light">T</span>hree Pillars of <br />Practice Formation
-              </h1>
-            </ScrollReveal>
-            <ScrollReveal delay={2}>
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(0.95rem, 1.3vw, 1.12rem)', color: 'rgba(248,245,239,0.8)', lineHeight: 'var(--leading-normal)', maxWidth: '640px' }}>
-                Every LaSALe program falls into one of three pillars — each designed to build a specific dimension of legal practice capability.
-              </p>
-            </ScrollReveal>
+            <p class="font-body text-pale-cream/60 leading-relaxed mt-4">
+              Layanan konsultasi hukum gratis untuk masyarakat umum yang membutuhkan bantuan hukum. Mahasiswa LaSALe memberikan konsultasi di bawah supervisi dosen pembimbing.
+            </p>
+          </div>
+
+          <!-- LITASI -->
+          <div class="border border-pale-cream/10 p-8 md:p-12">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-12 h-12 bg-burgundy flex items-center justify-center text-pale-cream text-xl shrink-0">📚</div>
+              <div>
+                <h2 class="font-heading text-2xl font-semibold text-pale-cream">LITASI</h2>
+                <p class="font-utility text-xs text-gold uppercase tracking-wider mt-1">Literasi Hukum</p>
+              </div>
+            </div>
+            <p class="font-body text-pale-cream/60 leading-relaxed mt-4">
+              Program literasi hukum untuk meningkatkan pemahaman masyarakat tentang hak dan kewajiban hukum melalui seminar, workshop, dan publikasi.
+            </p>
+          </div>
+
+          <!-- Simulasi Sidang -->
+          <div class="border border-pale-cream/10 p-8 md:p-12">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-12 h-12 bg-primary-blue flex items-center justify-center text-pale-cream text-xl shrink-0">🏛️</div>
+              <div>
+                <h2 class="font-heading text-2xl font-semibold text-pale-cream">Simulasi Sidang</h2>
+                <p class="font-utility text-xs text-gold uppercase tracking-wider mt-1">Praktik Litigasi</p>
+              </div>
+            </div>
+            <p class="font-body text-pale-cream/60 leading-relaxed mt-4">
+              Simulasi persidangan untuk melatih kemampuan litigasi dan argumentasi hukum mahasiswa dalam suasana sidang yang nyata.
+            </p>
+          </div>
+
+          <!-- KTBBH -->
+          <div class="border border-pale-cream/10 p-8 md:p-12">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-12 h-12 bg-burgundy flex items-center justify-center text-pale-cream text-xl shrink-0">💬</div>
+              <div>
+                <h2 class="font-heading text-2xl font-semibold text-pale-cream">KTBBH</h2>
+                <p class="font-utility text-xs text-gold uppercase tracking-wider mt-1">Kursus Tanggap Bahasa</p>
+              </div>
+            </div>
+            <p class="font-body text-pale-cream/60 leading-relaxed mt-4">
+              Kursus Tanggap Bahasa untuk Berbagi Hukum — membangun kemampuan komunikasi hukum yang efektif bagi mahasiswa.
+            </p>
           </div>
         </div>
-      </Container>
-    </Section>
-
-    <!-- Program detail blocks -->
-    <Section background="var(--color-bg)" gridBg>
-      <Container>
-        <div style="display: grid; gap: var(--space-16);">
-          <!-- Program 1 -->
-          <ScrollReveal as="article">
-            <div class="program-block">
-              <div class="img-tint" style="border: 2px solid var(--color-primary);">
-                <img src="https://picsum.photos/seed/lasale-prog-1/900/520" alt="" style="width: 100%; height: clamp(240px, 35vw, 400px); object-fit: cover;" class="duotone-img" />
-                <div class="img-badge img-badge--blue">Pillar I</div>
-              </div>
-              <div>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-rose)', fontSize: '1.8rem', lineHeight: 1, marginBottom: 'var(--space-3)' }}>I.</div>
-                <h2 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', lineHeight: '1.04', marginBottom: 'var(--space-4)' }}>The Hartwell Institute</h2>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-lg)', color: 'rgba(24,24,24,0.75)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
-                  Advanced Appellate Advocacy — a twelve-week intensive in federal appellate practice, co-taught by sitting circuit judges and former Supreme Court clerks.
-                </p>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
-                  Members draft live briefs on cert-stage questions, participate in mock oral arguments before actual appellate panels, and receive direct feedback from the bench. The Institute convenes twelve times annually at Hartwell Hall, Washington D.C.
-                </p>
-                <a href="/contact" class="link-arrow">Apply for the Institute →</a>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <!-- Program 2 -->
-          <ScrollReveal as="article" delay={1}>
-            <div class="program-block">
-              <div class="img-tint" style="border: 2px solid var(--color-primary);">
-                <img src="https://picsum.photos/seed/lasale-prog-2/900/520" alt="" style="width: 100%; height: clamp(240px, 35vw, 400px); object-fit: cover;" class="duotone-img" />
-                <div class="img-badge img-badge--gold">Pillar II</div>
-              </div>
-              <div>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-rose)', fontSize: '1.8rem', lineHeight: 1, marginBottom: 'var(--space-3)' }}>II.</div>
-                <h2 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', lineHeight: '1.04', marginBottom: 'var(--space-4)' }}>Transactional Drafting Studio</h2>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-lg)', color: 'rgba(24,24,24,0.75)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
-                  Weekly studios in M&amp;A, securities, and commercial leasing. Members redline live deal documents under senior partner review.
-                </p>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
-                  Forty-eight studio sessions per academic year, each focusing on a different transaction type. Members graduate with a portfolio of redlined documents and a Certificate of Transactional Proficiency.
-                </p>
-                <a href="/contact" class="link-arrow">Enroll in the Studio →</a>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <!-- Program 3 -->
-          <ScrollReveal as="article" delay={2}>
-            <div class="program-block">
-              <div class="img-tint" style="border: 2px solid var(--color-primary);">
-                <img src="https://picsum.photos/seed/lasale-prog-3/900/520" alt="" style="width: 100%; height: clamp(240px, 35vw, 400px); object-fit: cover;" class="duotone-img" />
-                <div class="img-badge img-badge--blue">Pillar III</div>
-              </div>
-              <div>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-rose)', fontSize: '1.8rem', lineHeight: 1, marginBottom: 'var(--space-3)' }}>III.</div>
-                <h2 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', lineHeight: '1.04', marginBottom: 'var(--space-4)' }}>Judicial Externships</h2>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-lg)', color: 'rgba(24,24,24,0.75)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
-                  Two-week bench externships across 312 partner courts, including federal district and circuit courts, state appellate benches, and administrative tribunals.
-                </p>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: 'rgba(24,24,24,0.65)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-4)' }}>
-                  Externs shadow chambers, draft bench memoranda, observe oral arguments, and participate in post-argument conferences. Placement is competitive and merit-based.
-                </p>
-                <a href="/contact" class="link-arrow">Apply for Externship →</a>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   </main>
-  <NewsletterFooter />
-
-  <script>
-    import { initScrollReveals } from '../lib/observe';
-    import { initPortalParallax } from '../lib/parallax';
-    document.addEventListener('DOMContentLoaded', () => {
-      initScrollReveals();
-      initPortalParallax();
-    });
-  </script>
+  <Footer />
 </Layout>
-
-<style>
-  .program-block {
-    display: grid;
-    gap: var(--space-8);
-    align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .program-block {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .program-block:nth-child(even) > :first-child {
-      order: 2;
-    }
-  }
-</style>

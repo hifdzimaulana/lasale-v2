@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const events = [
+  {
+    title: 'Simulasi Sidang Nasional 2026',
+    date: '2026-09-15',
+    location: 'Fakultas Hukum UI',
+    description: 'Simulasi persidangan tingkat nasional yang diikuti oleh mahasiswa hukum dari berbagai universitas di Indonesia.',
+    status: 'upcoming',
+  },
+  {
+    title: 'Workshop Penulisan Artikel Hukum',
+    date: '2026-08-20',
+    location: 'Online via Zoom',
+    description: 'Workshop tentang teknik penulisan artikel hukum yang baik dan benar.',
+    status: 'upcoming',
+  },
+  {
+    title: 'Konsultasi Hukum Gratis',
+    date: '2026-08-10',
+    location: 'Gedung FH UI',
+    description: 'Layanan konsultasi hukum gratis untuk masyarakat umum.',
+    status: 'completed',
+  },
+];
+---
+
+<Layout title="Events — LaSALe FH UI">
+  <Navbar />
+  <main class="pt-20">
+    <section class="py-24 md:py-32 bg-bg-dark">
+      <div class="max-w-5xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p class="font-utility text-xs tracking-[0.3em] uppercase text-gold mb-4">Kegiatan</p>
+          <h1 class="font-heading text-5xl md:text-6xl font-semibold text-pale-cream">
+            <span class="text-gradient-gold">Events</span>
+          </h1>
+        </div>
+
+        <div class="space-y-6">
+          {events.map((event) => (
+            <div class={`border p-8 ${event.status === 'upcoming' ? 'border-gold/30' : 'border-pale-cream/10'}`}>
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <div class="flex items-center gap-3 mb-2">
+                    <h3 class="font-heading text-xl font-semibold text-pale-cream">{event.title}</h3>
+                    {event.status === 'upcoming' && (
+                      <span class="px-2 py-0.5 text-xs font-utility bg-gold text-bg-dark uppercase tracking-wider">Upcoming</span>
+                    )}
+                  </div>
+                  <p class="font-body text-sm text-pale-cream/50 leading-relaxed">{event.description}</p>
+                </div>
+                <div class="shrink-0 text-right">
+                  <p class="font-utility text-sm text-gold">
+                    {new Date(event.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </p>
+                  <p class="font-utility text-xs text-pale-cream/40 mt-1">{event.location}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

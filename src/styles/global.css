@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Meddon&family=Jost:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   LaSALe FH UI — Design Tokens (Tailwind v4)
+   Source: DESIGN.md / Figma media-kit.svg
+   ============================================ */
+
+@theme inline {
+  /* ---- Colors ---- */
+  --color-primary-blue: #172263;
+  --color-primary-blue-light: #58679B;
+
+  --color-gold: #BEA75B;
+  --color-gold-bright: #F8DA61;
+  --color-gold-soft: #FFEE8C;
+
+  --color-burgundy: #550000;
+  --color-rose: #A85050;
+
+  --color-pale-cream: #FFFFDC;
+  --color-bg-dark: #2A2A2A;
+
+  /* ---- Typography ---- */
+  --font-script: "Pinyon Script", cursive;
+  --font-display: "Meddon", serif;
+  --font-heading: "Jost", sans-serif;
+  --font-body: "Instrument Sans", sans-serif;
+  --font-utility: "Montserrat", sans-serif;
+}
+
+/* ============================================
+   Base Reset & Global Styles
+   ============================================ */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-dark);
+  color: var(--color-pale-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Typography Utilities
+   ============================================ */
+.font-script { font-family: var(--font-script); }
+.font-display { font-family: var(--font-display); }
+.font-heading { font-family: var(--font-heading); }
+.font-body { font-family: var(--font-body); }
+.font-utility { font-family: var(--font-utility); }
+
+/* ============================================
+   Gradient Text
+   ============================================ */
+.text-gradient-gold {
+  background: linear-gradient(180deg, #FFFFDC 0%, #BEA75B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Gradient Pillars
+   ============================================ */
+.pillar-blue {
+  background: linear-gradient(180deg, #1E2A56 0%, #58679B 50%, #1E2A56 100%);
+}
+
+.pillar-burgundy {
+  background: linear-gradient(180deg, #550000 0%, #A85050 50%, #550000 100%);
+}
+
+/* ============================================
+   Decorative: Soft Stars
+   ============================================ */
+.soft-star {
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* ============================================
+   Decorative: Portal Sparkles
+   ============================================ */
+.portal-sparkle {
+  pointer-events: none;
+  position: absolute;
+}
+
+/* ============================================
+   Grid Background Pattern
+   ============================================ */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(190,167,91,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(190,167,91,.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ============================================
+   Gradient Border Utility
+   ============================================ */
+.border-gradient {
+  position: relative;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-burgundy) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.border-gradient-gold::before {
+  background: linear-gradient(180deg, var(--color-pale-cream) 0%, var(--color-gold) 100%);
+}
+
+/* ============================================
+   Wave Transition
+   ============================================ */
+.wave-transition {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-transition img {
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   Button Base Styles
+   ============================================ */
+.btn {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 1rem 1.9rem;
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--color-primary-blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 20px rgba(23, 34, 99, 0.4);
+}
+
+.btn-burgundy {
+  background-color: var(--color-burgundy);
+  color: white;
+}
+
+.btn-burgundy:hover {
+  box-shadow: 0 4px 20px rgba(85, 0, 0, 0.4);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary-blue);
+  border: 1px solid var(--color-primary-blue);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary-blue);
+  color: white;
+}
