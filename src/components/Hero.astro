@@ -1,11 +1,19 @@
 ---
+const images = [
+  { src: 'https://picsum.photos/seed/lasale-1/600/400.jpg', alt: 'LaSALe Kegiatan 1' },
+  { src: 'https://picsum.photos/seed/lasale-2/600/400.jpg', alt: 'LaSALe Kegiatan 2' },
+  { src: 'https://picsum.photos/seed/lasale-3/600/400.jpg', alt: 'LaSALe Kegiatan 3' },
+  { src: 'https://picsum.photos/seed/lasale-4/600/400.jpg', alt: 'LaSALe Kegiatan 4' },
+  { src: 'https://picsum.photos/seed/lasale-5/600/400.jpg', alt: 'LaSALe Kegiatan 5' },
+  { src: 'https://picsum.photos/seed/lasale-6/600/400.jpg', alt: 'LaSALe Kegiatan 6' },
+];
 ---
 
-<section class="relative bg-[var(--color-bg-offwhite)] pt-28 pb-16 lg:pt-36 lg:pb-24">
+<section class="relative bg-[var(--color-bg-offwhite)] pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
   <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
     <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
       <!-- Text -->
-      <div class="lg:col-span-6">
+      <div class="lg:col-span-5">
         <div class="flex items-center gap-3 mb-7">
           <div class="w-8 h-[2px] bg-[var(--color-burgundy)]"></div>
           <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-burgundy)]">Est. 1987 · Fakultas Hukum UI</span>
@@ -15,7 +23,7 @@
           Bakat Hukum<br />
           <span class="text-[var(--color-burgundy)]">Masa Depan</span>
         </h1>
-        <p class="font-body text-[1.08rem] lg:text-[1.15rem] text-[var(--color-ink)] leading-relaxed mb-10 max-w-[560px]">
+        <p class="font-body text-[1.08rem] lg:text-[1.15rem] text-[var(--color-ink)] leading-relaxed mb-10 max-w-[480px]">
           Law Student Association for Legal Practice — wadah pengembangan kompetensi praktis hukum bagi mahasiswa Fakultas Hukum Universitas Indonesia.
         </p>
         <div class="flex flex-wrap gap-4">
@@ -30,27 +38,58 @@
         </div>
       </div>
 
-      <!-- Image block -->
-      <div class="lg:col-span-6 relative">
-        <div class="relative">
-          <!-- Decorative accents -->
-          <div class="absolute -left-4 -top-4 w-20 h-20 bg-[var(--color-accent-yellow)] z-0 hidden lg:block"></div>
-          <div class="absolute -right-3 -bottom-3 w-28 h-28 border-2 border-[var(--color-accent-yellow)] z-0 hidden lg:block"></div>
-
-          <!-- Main image -->
-          <div class="relative img-tint border-2 border-[var(--color-primary-blue)] z-10">
-            <img src="https://picsum.photos/seed/lasale-hero/1100/720.jpg" alt="LaSALe FH UI" class="w-full h-[380px] lg:h-[480px] object-cover duotone-img" />
-            <div class="img-badge img-badge--yellow">LaSALe FH UI · Est. 1987</div>
+      <!-- Auto-scrolling image carousel -->
+      <div class="lg:col-span-7 relative">
+        <div class="hero-marquee overflow-hidden border-2 border-[var(--color-primary-blue)]">
+          <div class="hero-marquee__track">
+            {images.map((img) => (
+              <div class="hero-marquee__item img-tint">
+                <img src={img.src} alt={img.alt} class="w-[340px] h-[260px] object-cover duotone-img" />
+              </div>
+            ))}
+            {/* Duplicate for seamless loop */}
+            {images.map((img) => (
+              <div class="hero-marquee__item img-tint">
+                <img src={img.src} alt={img.alt} class="w-[340px] h-[260px] object-cover duotone-img" />
+              </div>
+            ))}
           </div>
-
-          <!-- Floating stat -->
-          <div class="absolute -bottom-6 left-6 lg:left-10 bg-[var(--color-bg-offwhite)] p-5 border-2 border-[var(--color-primary-blue)] z-20">
-            <div class="font-script text-[var(--color-burgundy)] text-xl leading-none mb-1">No.</div>
-            <div class="font-display font-700 text-[var(--color-primary-blue)] text-3xl leading-none mb-2">XXXVII</div>
-            <div class="font-body text-[0.75rem] text-[var(--color-ink)]/60 leading-snug">Edisi ke-37</div>
-          </div>
+        </div>
+        <!-- Floating stat -->
+        <div class="absolute -bottom-6 left-6 lg:left-10 bg-[var(--color-bg-offwhite)] p-5 border-2 border-[var(--color-primary-blue)] z-20">
+          <div class="font-script text-[var(--color-burgundy)] text-xl leading-none mb-1">No.</div>
+          <div class="font-display font-700 text-[var(--color-primary-blue)] text-3xl leading-none mb-2">XXXVII</div>
+          <div class="font-body text-[0.75rem] text-[var(--color-ink)]/60 leading-snug">Edisi ke-37</div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .hero-marquee { position: relative; }
+  .hero-marquee::before,
+  .hero-marquee::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .hero-marquee::before { left: 0; background: linear-gradient(90deg, var(--color-bg-offwhite) 0%, transparent 100%); }
+  .hero-marquee::after { right: 0; background: linear-gradient(-90deg, var(--color-bg-offwhite) 0%, transparent 100%); }
+
+  .hero-marquee__track {
+    display: flex; gap: 1rem;
+    animation: heroScroll 30s linear infinite;
+    width: max-content;
+  }
+  .hero-marquee__item {
+    flex-shrink: 0;
+    border: 2px solid var(--color-primary-blue);
+    position: relative; overflow: hidden;
+  }
+  @keyframes heroScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-marquee__track { animation: none; }
+  }
+</style>

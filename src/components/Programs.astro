@@ -4,63 +4,86 @@ const programs = [
     num: '01',
     title: 'Konsultasi Hukum',
     description: 'Layanan konsultasi hukum gratis untuk masyarakat umum yang membutuhkan bantuan hukum, dibimbing oleh dosen pembimbing.',
-    link: '/programs',
-    linkText: 'Selengkapnya',
-    icon: `<svg width="34" height="34" viewBox="0 0 40 40" fill="none"><rect x="4" y="10" width="32" height="22" stroke="#1C3B87" stroke-width="2"/><path d="M4 10 L20 22 L36 10" stroke="#994B53" stroke-width="2"/></svg>`,
+    img: 'https://picsum.photos/seed/prog-konsul/500/600.jpg',
   },
   {
     num: '02',
     title: 'Simulasi Sidang',
     description: 'Simulasi persidangan untuk melatih kemampuan litigasi dan argumentasi hukum mahasiswa dalam suasana sidang yang nyata.',
-    link: '/programs',
-    linkText: 'Selengkapnya',
-    icon: `<svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M20 4 L34 12 L34 28 L20 36 L6 28 L6 12 Z" stroke="#F6EB3D" stroke-width="2"/><path d="M20 14 L26 18 L26 26 L20 30 L14 26 L14 18 Z" stroke="#F7F2B7" stroke-width="1.5"/></svg>`,
+    img: 'https://picsum.photos/seed/prog-simulasi/500/600.jpg',
   },
   {
     num: '03',
     title: 'LITASI',
     description: 'Program literasi hukum untuk meningkatkan pemahaman masyarakat tentang hak dan kewajiban hukum melalui seminar dan workshop.',
-    link: '/programs',
-    linkText: 'Selengkapnya',
-    icon: `<svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#1C3B87" stroke-width="2"/><path d="M20 8 L20 20 L28 24" stroke="#994B53" stroke-width="2"/></svg>`,
+    img: 'https://picsum.photos/seed/prog-litasi/500/600.jpg',
+  },
+  {
+    num: '04',
+    title: 'KTBBH',
+    description: 'Kuliah Terselia Bhakti Bakti Hukum — program pengabdian kepada masyarakat dalam bentuk penyuluhan dan bantuan hukum.',
+    img: 'https://picsum.photos/seed/prog-ktbbh/500/600.jpg',
+  },
+  {
+    num: '05',
+    title: 'Seminar Hukum',
+    description: 'Seminar dan diskusi panel dengan pakar hukum ternama membahas isu-isu terkini di dunia praktik hukum Indonesia.',
+    img: 'https://picsum.photos/seed/prog-seminar/500/600.jpg',
+  },
+  {
+    num: '06',
+    title: 'Workshop Legal Writing',
+    description: 'Pelatihan menulis artikel hukum dan legal research untuk mahasiswa yang ingin mengembangkan kemampuan akademis.',
+    img: 'https://picsum.photos/seed/prog-workshop/500/600.jpg',
   },
 ];
 ---
 
-<section class="relative bg-[var(--color-bg-offwhite)] grid-bg py-20 lg:py-28">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="flex items-center gap-3 mb-10">
+<section class="relative bg-[var(--color-bg-offwhite)] py-20 lg:py-28">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 mb-10">
+    <div class="flex items-center gap-3">
       <div class="w-8 h-[2px] bg-[var(--color-primary-blue)]"></div>
-      <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-primary-blue)]">Section I · Program</span>
+      <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-primary-blue)]">Section III · Program</span>
     </div>
-    <div class="grid md:grid-cols-3 border-2 border-[var(--color-primary-blue)]">
-      {programs.map((p, i) => (
-        <article class:list={[
-          'p-8 lg:p-10 card-top-edge',
-          i === 0 && 'bg-[var(--color-pale-cream)] border-r-2 border-[var(--color-primary-blue)]',
-          i === 1 && 'bg-[var(--color-primary-blue)] text-[var(--color-bg-offwhite)] border-r-2 border-[var(--color-primary-blue)] relative overflow-hidden',
-          i === 2 && 'bg-[var(--color-pale-cream)]',
-        ]}>
-          {i === 1 && <div class="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[var(--color-accent-yellow)] to-[var(--color-pale-cream)]"></div>}
-          {i === 1 && <div class="soft-star soft-star--yellow" style="width:160px;height:160px;top:-40px;right:-40px;opacity:.18"></div>}
-          <div class:list={[i === 1 && 'relative']}>
-            <div class="flex items-start justify-between mb-7">
-              <div class:list={['font-display font-700 text-3xl', i === 1 ? 'text-[var(--color-accent-yellow)]' : 'text-[var(--color-primary-blue)]']}>{p.num}</div>
-              <Fragment set:html={p.icon} />
-            </div>
-            <h3 class:list={['text-[1.45rem] mb-3', i === 1 && 'text-[var(--color-bg-offwhite)]']}>{p.title}</h3>
-            <p class:list={['font-body text-[0.95rem] leading-relaxed mb-6', i === 1 ? 'text-[var(--color-bg-offwhite)]/75' : 'text-[var(--color-ink)]/70']}>
-              {p.description}
-            </p>
-            <a href={p.link} class:list={[
-              'font-display font-600 text-[0.75rem] tracking-[0.16em] uppercase inline-flex items-center gap-2 border-b-2 pb-1',
-              i === 1 ? 'text-[var(--color-accent-yellow)] border-[var(--color-accent-yellow)]' : 'text-[var(--color-burgundy)] border-[var(--color-burgundy)]',
-            ]}>
-              {p.linkText} <span>→</span>
-            </a>
+    <h2 class="text-[2.2rem] lg:text-[2.8rem] leading-[1.04] mt-5">
+      <span class="drop-cap">P</span>rogram Kami
+    </h2>
+  </div>
+
+  <!-- Scrollable cards -->
+  <div class="program-scroll overflow-x-auto no-scrollbar pb-4">
+    <div class="program-scroll__track flex gap-5 px-6 lg:px-10 w-max">
+      {programs.map((p) => (
+        <article class="program-card relative w-[300px] lg:w-[360px] flex-shrink-0 border-2 border-[var(--color-primary-blue)] overflow-hidden group cursor-pointer">
+          <!-- Image background -->
+          <div class="absolute inset-0">
+            <img src={p.img} alt={p.title} class="w-full h-full object-cover duotone-img transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-primary-blue)] via-[var(--color-primary-blue)]/70 to-[var(--color-primary-blue)]/20"></div>
           </div>
+          <!-- Content -->
+          <div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
+            <div class="font-display font-700 text-[var(--color-accent-yellow)] text-5xl leading-none mb-4 opacity-60">{p.num}</div>
+            <h3 class="font-display font-600 text-[1.4rem] text-[var(--color-bg-offwhite)] leading-tight mb-3">{p.title}</h3>
+            <p class="font-body text-[0.9rem] text-[var(--color-bg-offwhite)]/70 leading-relaxed mb-5">{p.description}</p>
+            <span class="font-display font-600 text-[0.72rem] tracking-[0.16em] uppercase text-[var(--color-accent-yellow)] inline-flex items-center gap-2">
+              Selengkapnya <span>→</span>
+            </span>
+          </div>
+          <!-- Top edge accent -->
+          <div class="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[var(--color-accent-yellow)] to-[var(--color-burgundy)] z-20"></div>
         </article>
       ))}
     </div>
   </div>
+
+  <!-- Scroll hint -->
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 mt-6 flex items-center gap-3">
+    <div class="w-10 h-[1px] bg-[var(--color-primary-blue)]/20"></div>
+    <span class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-[var(--color-ink)]/40">Geser untuk melihat semua →</span>
+  </div>
 </section>
+
+<style>
+  .program-scroll { -webkit-overflow-scrolling: touch; }
+  .program-scroll::-webkit-scrollbar { height: 0; }
+</style>

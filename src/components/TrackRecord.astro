@@ -5,13 +5,33 @@ const stats = [
   { num: '4', label: 'Program Utama', desc: 'Konsultasi, Simulasi, LITASI, KTBBH.' },
   { num: '100+', label: 'Kegiatan/Tahun', desc: 'Workshop, seminar, dan pelatihan.' },
 ];
+
+const achievements = [
+  { year: '2025', title: 'Juara 1 Lomba Moot Court Nasional', event: 'Kompetisi Peradilan Semu Nasional' },
+  { year: '2025', title: 'Best Legal Opinion', event: 'National Moot Court Competition' },
+  { year: '2024', title: 'Juara 2 Paper Competition', event: 'Simposium Hukum Nasional' },
+  { year: '2024', title: 'Best Advocate', event: 'Peradilan Semu Universitas Indonesia' },
+  { year: '2024', title: 'Juara 1 Contract Drafting', event: 'Business Law Competition FH UI' },
+];
+
+const awardImages = [
+  { src: 'https://picsum.photos/seed/award-1/500/350.jpg', alt: 'Penghargaan 1' },
+  { src: 'https://picsum.photos/seed/award-2/500/350.jpg', alt: 'Penghargaan 2' },
+  { src: 'https://picsum.photos/seed/award-3/500/350.jpg', alt: 'Penghargaan 3' },
+  { src: 'https://picsum.photos/seed/award-4/500/350.jpg', alt: 'Penghargaan 4' },
+  { src: 'https://picsum.photos/seed/award-5/500/350.jpg', alt: 'Penghargaan 5' },
+  { src: 'https://picsum.photos/seed/award-6/500/350.jpg', alt: 'Penghargaan 6' },
+  { src: 'https://picsum.photos/seed/award-7/500/350.jpg', alt: 'Penghargaan 7' },
+  { src: 'https://picsum.photos/seed/award-8/500/350.jpg', alt: 'Penghargaan 8' },
+];
 ---
 
-<section class="relative bg-[var(--color-primary-blue)] text-[var(--color-bg-offwhite)] py-20 lg:py-28 overflow-hidden">
+<section class="relative bg-[var(--color-primary-blue)] text-[var(--color-bg-offwhite)] overflow-hidden">
   <!-- Soft stars -->
-  <div class="soft-star soft-star--yellow" style="width:300px;height:300px;top:20%;right:5%;opacity:.12"></div>
+  <div class="soft-star soft-star--yellow" style="width:300px;height:300px;top:10%;right:5%;opacity:.12"></div>
 
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
+  <!-- Stats -->
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28 relative z-10">
     <div class="grid lg:grid-cols-12 gap-8 mb-16">
       <div class="lg:col-span-6">
         <div class="flex items-center gap-3 mb-5">
@@ -30,7 +50,7 @@ const stats = [
     </div>
 
     <!-- Stat grid -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 border-2 border-[var(--color-accent-yellow)]/30">
+    <div class="grid grid-cols-2 lg:grid-cols-4 border-2 border-[var(--color-accent-yellow)]/30 mb-20">
       {stats.map((s) => (
         <div class="p-8 lg:p-10 border-r border-b lg:border-b-0 border-[var(--color-accent-yellow)]/20 last:border-r-0">
           <div class="font-display font-700 text-[2.8rem] lg:text-[3.5rem] leading-none text-[var(--color-accent-yellow)] mb-3">{s.num}</div>
@@ -39,5 +59,59 @@ const stats = [
         </div>
       ))}
     </div>
+
+    <!-- Recent Achievements -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-[2px] bg-[var(--color-accent-yellow)]"></div>
+        <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-accent-yellow)]">Pencapaian Terbaru</span>
+      </div>
+      <div class="space-y-0">
+        {achievements.map((a, i) => (
+          <div class:list={[
+            'flex items-center gap-6 py-5 border-b border-[var(--color-accent-yellow)]/15',
+            i === 0 && 'border-t',
+          ]}>
+            <div class="font-display font-700 text-[var(--color-accent-yellow)] text-lg w-16 shrink-0">{a.year}</div>
+            <div class="flex-1">
+              <div class="font-display font-600 text-[1.05rem] text-[var(--color-bg-offwhite)] leading-tight">{a.title}</div>
+              <div class="font-body text-[0.85rem] text-[var(--color-bg-offwhite)]/50 mt-1">{a.event}</div>
+            </div>
+            <div class="w-2 h-2 bg-[var(--color-accent-yellow)] shrink-0"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-width scrolling award images -->
+  <div class="award-marquee overflow-hidden border-t-2 border-b-2 border-[var(--color-accent-yellow)]/20">
+    <div class="award-marquee__track py-4">
+      {awardImages.map((img) => (
+        <div class="award-marquee__item flex-shrink-0 border-2 border-[var(--color-accent-yellow)]/30 overflow-hidden">
+          <img src={img.src} alt={img.alt} class="w-[380px] h-[240px] object-cover duotone-img hover:scale-105 transition-transform duration-500" />
+        </div>
+      ))}
+      {awardImages.map((img) => (
+        <div class="award-marquee__item flex-shrink-0 border-2 border-[var(--color-accent-yellow)]/30 overflow-hidden">
+          <img src={img.src} alt={img.alt} class="w-[380px] h-[240px] object-cover duotone-img hover:scale-105 transition-transform duration-500" />
+        </div>
+      ))}
+    </div>
   </div>
 </section>
+
+<style>
+  .award-marquee__track {
+    display: flex; gap: 1rem;
+    animation: awardScroll 40s linear infinite;
+    width: max-content;
+  }
+  @keyframes awardScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .award-marquee__track { animation: none; }
+  }
+</style>
