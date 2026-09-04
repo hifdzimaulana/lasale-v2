@@ -1,0 +1,168 @@
+---
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-cards';
+
+const moments = [
+  { src: 'https://picsum.photos/seed/moment-1/800/600.jpg', title: 'Konsultasi Hukum Masyarakat', desc: 'Melayani masyarakat dalam kebutuhan bantuan hukum gratis.' },
+  { src: 'https://picsum.photos/seed/moment-2/800/600.jpg', title: 'Simulasi Persidangan', desc: 'Melatih kemampuan litigasi mahasiswa dalam suasana sidang yang nyata.' },
+  { src: 'https://picsum.photos/seed/moment-3/800/600.jpg', title: 'Workshop Legal Writing', desc: 'Pelatihan menulis artikel hukum dan legal research.' },
+  { src: 'https://picsum.photos/seed/moment-4/800/600.jpg', title: 'Seminar Hukum Nasional', desc: 'Diskusi panel dengan pakar hukum ternama.' },
+  { src: 'https://picsum.photos/seed/moment-5/800/600.jpg', title: 'LITASI — Literasi Hukum', desc: 'Program literasi hukum untuk masyarakat umum.' },
+  { src: 'https://picsum.photos/seed/moment-6/800/600.jpg', title: 'KTBBH Pengabdian', desc: 'Kuliah Terselia Bhakti Bakti Hukum untuk masyarakat.' },
+  { src: 'https://picsum.photos/seed/moment-7/800/600.jpg', title: 'Internal Meeting', desc: 'Koordinasi dan perencanaan program organisasi.' },
+  { src: 'https://picsum.photos/seed/moment-8/800/600.jpg', title: 'Grand Meeting', desc: 'Pertemuan besar anggota LaSALe se-Indonesia.' },
+];
+---
+
+<section class="moments-section relative bg-[var(--color-bg-offwhite)] py-20 lg:py-28 overflow-hidden">
+  <!-- Header -->
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 mb-12">
+    <div class="flex items-center gap-3 mb-5">
+      <div class="w-8 h-[2px] bg-[var(--color-burgundy)]"></div>
+      <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-burgundy)]">Momen Kami</span>
+    </div>
+    <div class="grid lg:grid-cols-12 gap-8 items-end">
+      <div class="lg:col-span-6">
+        <h2 class="text-[2.2rem] lg:text-[2.8rem] leading-[1.04]">
+          <span class="drop-cap">S</span>ekilas Kegiatan LaSALe
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8">
+        <p class="font-body text-[1rem] text-[var(--color-ink)]/70 leading-relaxed">
+          Setiap momen mencatat dedikasi kami dalam mengembangkan kompetensi praktis hukum.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scrapbook-style Swiper -->
+  <div class="swiper moments-swiper">
+    <div class="swiper-wrapper">
+      {moments.map((m, i) => (
+        <div class="swiper-slide">
+          <div class="moment-card">
+            <div class="moment-card__img-wrap">
+              <img src={m.src} alt={m.title} class="moment-card__img" />
+              <div class="moment-card__num">{String(i + 1).padStart(2, '0')}</div>
+            </div>
+            <div class="moment-card__info">
+              <h3 class="moment-card__title">{m.title}</h3>
+              <p class="moment-card__desc">{m.desc}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <div class="moments-nav">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-between mt-8">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-[1px] bg-[var(--color-primary-blue)]/20"></div>
+        <span class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-[var(--color-ink)]/40">Geser untuk melihat →</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="moments-nav__btn moments-prev" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="moments-nav__btn moments-next" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/navigation';
+
+  function initMomentsSwiper() {
+    const el = document.querySelector('.moments-swiper');
+    if (!el || el.dataset.swiperInit === '1') return;
+    el.dataset.swiperInit = '1';
+
+    new Swiper('.moments-swiper', {
+      modules: [Navigation],
+      slidesPerView: 1.15,
+      spaceBetween: 20,
+      centeredSlides: true,
+      grabCursor: true,
+      speed: 600,
+      navigation: {
+        nextEl: '.moments-next',
+        prevEl: '.moments-prev',
+      },
+      breakpoints: {
+        640: { slidesPerView: 1.8, spaceBetween: 24 },
+        1024: { slidesPerView: 2.6, spaceBetween: 28 },
+        1280: { slidesPerView: 3.2, spaceBetween: 32 },
+      },
+    });
+  }
+
+  initMomentsSwiper();
+  document.addEventListener('astro:page-load', initMomentsSwiper);
+</script>
+
+<style>
+  .moments-swiper { padding: 0 1.5rem; }
+  .moment-card {
+    background: var(--color-bg-offwhite);
+    border: 2px solid var(--color-primary-blue);
+    overflow: hidden;
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+    cursor: pointer;
+    position: relative;
+  }
+  .moment-card:hover { transform: translateY(-6px) rotate(-0.5deg); }
+  .moment-card:nth-child(even):hover { transform: translateY(-6px) rotate(0.5deg); }
+
+  .moment-card__img-wrap {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .moment-card__img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(0.1) contrast(1.05);
+    transition: transform .6s;
+  }
+  .moment-card:hover .moment-card__img { transform: scale(1.06); }
+
+  .moment-card__num {
+    position: absolute; top: 0; right: 0;
+    background: var(--color-primary-blue);
+    color: var(--color-accent-yellow);
+    font-family: var(--font-script); font-size: 1.6rem;
+    padding: 0.4rem 0.8rem; line-height: 1;
+  }
+
+  .moment-card__info { padding: 1.2rem 1.4rem 1.4rem; }
+  .moment-card__title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 1.05rem; color: var(--color-primary-blue);
+    margin-bottom: 0.4rem; line-height: 1.2;
+  }
+  .moment-card__desc {
+    font-family: var(--font-body); font-size: 0.88rem;
+    color: var(--color-ink); opacity: 0.65; line-height: 1.5;
+  }
+
+  .moments-nav__btn {
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--color-primary-blue);
+    background: transparent; color: var(--color-primary-blue);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all .3s;
+  }
+  .moments-nav__btn:hover { background: var(--color-primary-blue); color: var(--color-bg-offwhite); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .moment-card { transition: none; }
+    .moment-card__img { transition: none; }
+  }
+</style>

@@ -1,95 +1,160 @@
 ---
-const images = [
-  { src: 'https://picsum.photos/seed/lasale-1/600/400.jpg', alt: 'LaSALe Kegiatan 1' },
-  { src: 'https://picsum.photos/seed/lasale-2/600/400.jpg', alt: 'LaSALe Kegiatan 2' },
-  { src: 'https://picsum.photos/seed/lasale-3/600/400.jpg', alt: 'LaSALe Kegiatan 3' },
-  { src: 'https://picsum.photos/seed/lasale-4/600/400.jpg', alt: 'LaSALe Kegiatan 4' },
-  { src: 'https://picsum.photos/seed/lasale-5/600/400.jpg', alt: 'LaSALe Kegiatan 5' },
-  { src: 'https://picsum.photos/seed/lasale-6/600/400.jpg', alt: 'LaSALe Kegiatan 6' },
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+const slides = [
+  { src: 'https://picsum.photos/seed/lasale-hero1/1600/900.jpg', alt: 'LaSALe Kegiatan 1' },
+  { src: 'https://picsum.photos/seed/lasale-hero2/1600/900.jpg', alt: 'LaSALe Kegiatan 2' },
+  { src: 'https://picsum.photos/seed/lasale-hero3/1600/900.jpg', alt: 'LaSALe Kegiatan 3' },
+  { src: 'https://picsum.photos/seed/lasale-hero4/1600/900.jpg', alt: 'LaSALe Kegiatan 4' },
+  { src: 'https://picsum.photos/seed/lasale-hero5/1600/900.jpg', alt: 'LaSALe Kegiatan 5' },
 ];
 ---
 
-<section class="relative bg-[var(--color-bg-offwhite)] pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-      <!-- Text -->
-      <div class="lg:col-span-5">
-        <div class="flex items-center gap-3 mb-7">
-          <div class="w-8 h-[2px] bg-[var(--color-burgundy)]"></div>
-          <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-burgundy)]">Est. 1987 · Fakultas Hukum UI</span>
-        </div>
-        <h1 class="text-[2.8rem] sm:text-[3.6rem] lg:text-[4.8rem] leading-[0.96] mb-7 text-[var(--color-primary-blue)]">
-          <span class="drop-cap">M</span>embangun<br />
-          Bakat Hukum<br />
-          <span class="text-[var(--color-burgundy)]">Masa Depan</span>
-        </h1>
-        <p class="font-body text-[1.08rem] lg:text-[1.15rem] text-[var(--color-ink)] leading-relaxed mb-10 max-w-[480px]">
-          Law Student Association for Legal Practice — wadah pengembangan kompetensi praktis hukum bagi mahasiswa Fakultas Hukum Universitas Indonesia.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/programs" class="btn-primary">Jelajahi Program <span>→</span></a>
-          <a href="/about" class="btn-outline">Tentang LaSALe</a>
-        </div>
-
-        <!-- Corner mark -->
-        <div class="mt-12 flex items-center gap-3">
-          <div class="w-10 h-[1px] bg-[var(--color-primary-blue)]/20"></div>
-          <span class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-[var(--color-ink)]/40">Scroll to Explore</span>
-        </div>
-      </div>
-
-      <!-- Auto-scrolling image carousel -->
-      <div class="lg:col-span-7 relative">
-        <div class="hero-marquee overflow-hidden border-2 border-[var(--color-primary-blue)]">
-          <div class="hero-marquee__track">
-            {images.map((img) => (
-              <div class="hero-marquee__item img-tint">
-                <img src={img.src} alt={img.alt} class="w-[340px] h-[260px] object-cover duotone-img" />
-              </div>
-            ))}
-            {/* Duplicate for seamless loop */}
-            {images.map((img) => (
-              <div class="hero-marquee__item img-tint">
-                <img src={img.src} alt={img.alt} class="w-[340px] h-[260px] object-cover duotone-img" />
-              </div>
-            ))}
+<section class="hero-swiper-section relative bg-[var(--color-primary-blue)]">
+  <div class="swiper hero-swiper">
+    <div class="swiper-wrapper">
+      {slides.map((s, i) => (
+        <div class="swiper-slide">
+          <div class="hero-slide">
+            <img src={s.src} alt={s.alt} class="hero-slide__img" />
+            <div class="hero-slide__overlay"></div>
           </div>
         </div>
-        <!-- Floating stat -->
-        <div class="absolute -bottom-6 left-6 lg:left-10 bg-[var(--color-bg-offwhite)] p-5 border-2 border-[var(--color-primary-blue)] z-20">
-          <div class="font-script text-[var(--color-burgundy)] text-xl leading-none mb-1">No.</div>
-          <div class="font-display font-700 text-[var(--color-primary-blue)] text-3xl leading-none mb-2">XXXVII</div>
-          <div class="font-body text-[0.75rem] text-[var(--color-ink)]/60 leading-snug">Edisi ke-37</div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Content overlay -->
+  <div class="hero-content">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-full flex items-center">
+      <div class="grid lg:grid-cols-12 gap-12 items-center w-full">
+        <div class="lg:col-span-6">
+          <div class="flex items-center gap-3 mb-7">
+            <div class="w-8 h-[2px] bg-[var(--color-accent-yellow)]"></div>
+            <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-accent-yellow)]">Est. 1987 · Fakultas Hukum UI</span>
+          </div>
+          <h1 class="text-[3rem] sm:text-[4rem] lg:text-[5.5rem] leading-[0.94] mb-7 text-[var(--color-bg-offwhite)]">
+            <span class="drop-cap drop-cap--gold">M</span>embangun<br />
+            Bakat Hukum<br />
+            <span class="text-[var(--color-accent-yellow)]">Masa Depan</span>
+          </h1>
+          <p class="font-body text-[1.1rem] lg:text-[1.2rem] text-[var(--color-bg-offwhite)]/80 leading-relaxed mb-10 max-w-[520px]">
+            Law Student Association for Legal Practice — wadah pengembangan kompetensi praktis hukum bagi mahasiswa Fakultas Hukum Universitas Indonesia.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/programs" class="btn-primary">Jelajahi Program <span>→</span></a>
+            <a href="/about" class="btn-outline border-[var(--color-bg-offwhite)] text-[var(--color-bg-offwhite)] hover:bg-[var(--color-bg-offwhite)] hover:text-[var(--color-primary-blue)]">Tentang LaSALe</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Corner mark -->
+  <div class="hero-corner">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-[1px] bg-[var(--color-bg-offwhite)]/30"></div>
+        <span class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-[var(--color-bg-offwhite)]/40">No. XXXVII</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav arrows -->
+  <div class="hero-nav">
+    <button class="hero-nav__btn hero-nav__prev" aria-label="Previous">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="hero-nav__counter">
+      <span class="hero-nav__current">01</span>
+      <span class="hero-nav__sep">/</span>
+      <span class="hero-nav__total">0{slides.length}</span>
+    </div>
+    <button class="hero-nav__btn hero-nav__next" aria-label="Next">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
 </section>
 
-<style>
-  .hero-marquee { position: relative; }
-  .hero-marquee::before,
-  .hero-marquee::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
-  }
-  .hero-marquee::before { left: 0; background: linear-gradient(90deg, var(--color-bg-offwhite) 0%, transparent 100%); }
-  .hero-marquee::after { right: 0; background: linear-gradient(-90deg, var(--color-bg-offwhite) 0%, transparent 100%); }
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Autoplay, EffectFade } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/navigation';
+  import 'swiper/css/effect-fade';
 
-  .hero-marquee__track {
-    display: flex; gap: 1rem;
-    animation: heroScroll 30s linear infinite;
-    width: max-content;
+  function initHeroSwiper() {
+    const el = document.querySelector('.hero-swiper');
+    if (!el || el.dataset.swiperInit === '1') return;
+    el.dataset.swiperInit = '1';
+
+    const counter = document.querySelector('.hero-nav__current');
+    const total = document.querySelector('.hero-nav__total');
+    if (total) total.textContent = '0' + el.querySelectorAll('.swiper-slide').length;
+
+    new Swiper('.hero-swiper', {
+      modules: [Navigation, Autoplay, EffectFade],
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      loop: true,
+      speed: 800,
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      navigation: {
+        nextEl: '.hero-nav__next',
+        prevEl: '.hero-nav__prev',
+      },
+      on: {
+        slideChange(swiper) {
+          if (counter) counter.textContent = '0' + ((swiper.realIndex % el.querySelectorAll('.swiper-slide').length) + 1);
+        },
+      },
+    });
   }
-  .hero-marquee__item {
-    flex-shrink: 0;
-    border: 2px solid var(--color-primary-blue);
-    position: relative; overflow: hidden;
+
+  initHeroSwiper();
+  document.addEventListener('astro:page-load', initHeroSwiper);
+</script>
+
+<style>
+  .hero-swiper-section { position: relative; height: 100vh; width: 100%; overflow: hidden; }
+  .hero-swiper { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-swiper :global(.swiper-wrapper) { transition-timing-function: ease-in-out; }
+  .hero-slide { position: relative; width: 100%; height: 100vh; }
+  .hero-slide__img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.15) contrast(1.05); }
+  .hero-slide__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(28,41,95,.85) 0%, rgba(28,59,135,.55) 50%, rgba(28,59,135,.3) 100%);
   }
-  @keyframes heroScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  .hero-content {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; align-items: center;
   }
+  .hero-corner {
+    position: absolute; bottom: 2rem; left: 0; right: 0; z-index: 10;
+  }
+  .hero-nav {
+    position: absolute; bottom: 2rem; right: 2rem; z-index: 10;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-nav__btn {
+    width: 48px; height: 48px;
+    border: 1.5px solid rgba(250,246,235,.4);
+    background: transparent; color: var(--color-bg-offwhite);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all .3s;
+  }
+  .hero-nav__btn:hover { background: var(--color-bg-offwhite); color: var(--color-primary-blue); }
+  .hero-nav__counter {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 0.85rem; letter-spacing: 0.1em;
+    color: var(--color-bg-offwhite); display: flex; align-items: baseline; gap: 0.25rem;
+  }
+  .hero-nav__current { font-size: 1.4rem; color: var(--color-accent-yellow); }
+  .hero-nav__sep { opacity: 0.4; }
+  .hero-nav__total { opacity: 0.5; }
   @media (prefers-reduced-motion: reduce) {
-    .hero-marquee__track { animation: none; }
+    .hero-swiper :global(.swiper-wrapper) { transition-duration: 0.001s !important; }
   }
 </style>

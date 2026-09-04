@@ -2,10 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import TrackRecord from '../components/TrackRecord.astro';
 import DirectorsPreface from '../components/DirectorsPreface.astro';
 import Programs from '../components/Programs.astro';
+import TrackRecord from '../components/TrackRecord.astro';
 import AboutSection from '../components/AboutSection.astro';
+import Moments from '../components/Moments.astro';
 import LatestArticles from '../components/LatestArticles.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -14,22 +15,25 @@ import Footer from '../components/Footer.astro';
   <Navbar />
 
   <main id="content">
-    <!-- 1 · Hero -->
+    <!-- 1 · Hero (full viewport, fixed navbar overlay) -->
     <Hero />
 
-    <!-- 2 · Tentang -->
-    <AboutSection />
+    <!-- 2 · Director's Preface -->
+    <DirectorsPreface />
 
     <!-- 3 · Programs -->
     <Programs />
 
-    <!-- 4 · Director's Preface -->
-    <DirectorsPreface />
-
-    <!-- 5 · Track Record -->
+    <!-- 4 · Track Record -->
     <TrackRecord />
 
-    <!-- 6 · Articles -->
+    <!-- 5 · Tentang -->
+    <AboutSection />
+
+    <!-- 6 · Moments -->
+    <Moments />
+
+    <!-- 7 · Articles -->
     <LatestArticles />
   </main>
 

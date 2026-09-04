@@ -1,38 +1,117 @@
 ---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/programs', label: 'Programs' },
+  { href: '/lasale', label: 'LaSALe Page' },
+  { href: '/events', label: 'Events' },
+];
 ---
 
-<header class="absolute top-0 left-0 right-0 z-40">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-6 flex items-center justify-between">
+<header id="navbar" class="navbar">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-between h-[72px]">
+    <!-- Logo -->
     <a href="/" class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-[var(--color-primary-blue)] flex items-center justify-center">
+      <div class="w-9 h-9 bg-[var(--color-primary-blue)] flex items-center justify-center border-2 border-[var(--color-primary-blue)]">
         <span class="font-display font-700 text-[var(--color-accent-yellow)] text-lg leading-none">L</span>
       </div>
       <div class="leading-tight">
-        <div class="font-display font-600 text-[var(--color-primary-blue)] text-[1.05rem] tracking-tight">LaSALe</div>
-        <div class="font-body text-[0.62rem] tracking-[0.22em] uppercase text-[var(--color-burgundy)]">Legal Practice Association</div>
+        <div class="font-display font-600 text-[var(--color-primary-blue)] text-[1rem] navbar-logo-text">LaSALe</div>
+        <div class="font-body text-[0.55rem] tracking-[0.2em] uppercase text-[var(--color-primary-blue)]/50 navbar-logo-sub">FH UI · Est. 1987</div>
       </div>
     </a>
 
-    <nav class="hidden lg:flex items-center gap-9">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/about" class="nav-link">About</a>
-      <a href="/programs" class="nav-link">Programs</a>
-      <a href="/lasale" class="nav-link">LaSALe</a>
-      <a href="/events" class="nav-link">Events</a>
-      <a href="/contact" class="nav-link">Contact</a>
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-8">
+      {links.map((l) => (
+        <a href={l.href} class="nav-link">{l.label}</a>
+      ))}
     </nav>
 
-    <div class="flex items-center gap-3">
-      <a href="/contact" class="btn-outline hidden md:inline-flex">Contact Us</a>
+    <!-- CTA -->
+    <div class="hidden lg:block">
+      <a href="/contact" class="btn-outline text-[0.7rem] py-2 px-5">Contact Us</a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button id="nav-toggle" class="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+      <span class="w-6 h-[2px] bg-[var(--color-primary-blue)] transition-all" id="bar1"></span>
+      <span class="w-6 h-[2px] bg-[var(--color-primary-blue)] transition-all" id="bar2"></span>
+      <span class="w-4 h-[2px] bg-[var(--color-primary-blue)] transition-all" id="bar3"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu hidden lg:hidden">
+    <div class="max-w-[1400px] mx-auto px-6 py-8 space-y-6">
+      {links.map((l) => (
+        <a href={l.href} class="nav-link block text-lg">{l.label}</a>
+      ))}
+      <a href="/contact" class="btn-primary mt-4">Contact Us <span>→</span></a>
     </div>
   </div>
 </header>
 
 <script>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  function initNavbar() {
+    const navbar = document.getElementById('navbar');
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (!navbar) return;
 
-  menuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
+    let lastScroll = 0;
+
+    function onScroll() {
+      const y = window.scrollY;
+      if (y > 80) {
+        navbar.classList.add('navbar--scrolled');
+      } else {
+        navbar.classList.remove('navbar--scrolled');
+      }
+      lastScroll = y;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
+        if (menu.classList.contains('hidden')) {
+          bars[0]?.classList.remove('rotate-45', 'translate-y-1.5');
+          bars[1]?.classList.remove('opacity-0');
+          bars[2]?.classList.remove('-rotate-45', '-translate-y-1.5', 'w-6');
+          bars[2]?.classList.add('w-4');
+        } else {
+          bars[0]?.classList.add('rotate-45', 'translate-y-1.5');
+          bars[1]?.classList.add('opacity-0');
+          bars[2]?.classList.add('-rotate-45', '-translate-y-1.5', 'w-6');
+          bars[2]?.classList.remove('w-4');
+        }
+      });
+    }
+  }
+
+  initNavbar();
+  document.addEventListener('astro:page-load', initNavbar);
 </script>
+
+<style>
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: transparent;
+    transition: all .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .navbar--scrolled {
+    background: var(--color-bg-offwhite);
+    box-shadow: 0 2px 20px rgba(16,32,74,.08);
+    border-bottom: 1px solid rgba(28,59,135,.08);
+  }
+  .navbar--scrolled .navbar-logo-text,
+  .navbar--scrolled .navbar-logo-sub { color: var(--color-primary-blue); }
+  .mobile-menu {
+    background: var(--color-bg-offwhite);
+    border-top: 1px solid rgba(28,59,135,.1);
+  }
+</style>
