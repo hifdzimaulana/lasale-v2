@@ -265,7 +265,7 @@ h1, h2, h3, h4, h5 {
   color: #fff; font-family: var(--font-body); font-size: .95rem;
   padding: 1.1rem 1.2rem; width: 100%;
 }
-.sharp-input::placeholder { color: rgba(247,242,183,.55); }
+.sharp-input::placeholder { color: rgba(250,246,235,.6); }
 
 /* ====== REDUCED MOTION ====== */
 @media (prefers-reduced-motion: reduce) {
