@@ -27,8 +27,12 @@ const programs = [
 ];
 ---
 
-<section class="relative bg-[var(--color-bg-offwhite)] grid-bg">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 -mt-2">
+<section class="relative bg-[var(--color-bg-offwhite)] grid-bg py-20 lg:py-28">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex items-center gap-3 mb-10">
+      <div class="w-8 h-[2px] bg-[var(--color-primary-blue)]"></div>
+      <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-primary-blue)]">Section I · Program</span>
+    </div>
     <div class="grid md:grid-cols-3 border-2 border-[var(--color-primary-blue)]">
       {programs.map((p, i) => (
         <article class:list={[

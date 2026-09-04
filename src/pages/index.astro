@@ -2,52 +2,84 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
+import TrackRecord from '../components/TrackRecord.astro';
+import DirectorsPreface from '../components/DirectorsPreface.astro';
 import Programs from '../components/Programs.astro';
 import AboutSection from '../components/AboutSection.astro';
-import Membership from '../components/Membership.astro';
 import LatestArticles from '../components/LatestArticles.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
+<Layout title="LaSALe FH UI — Law Student Association for Legal Practice">
   <Navbar />
-  <main>
+
+  <main id="content">
+    <!-- 1 · Hero -->
     <Hero />
+
+    <!-- 2 · Track Record -->
+    <TrackRecord />
+
+    <!-- 3 · Director's Preface -->
+    <DirectorsPreface />
+
+    <!-- 4 · Programs -->
     <Programs />
+
+    <!-- 5 · About -->
     <AboutSection />
-    <Membership />
+
+    <!-- 6 · Articles -->
     <LatestArticles />
   </main>
+
   <Footer />
-</Layout>
 
-<script>
-  // Reveal-on-scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
+  <!-- Portal sparkle parallax on mouse move -->
+  <script is:inline>
+    (function () {
+      const portals = document.querySelectorAll('.portal');
+      if (!portals.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      let px = 0, py = 0, cx = 0, cy = 0;
+      document.addEventListener('mousemove', (e) => {
+        const w = window.innerWidth, h = window.innerHeight;
+        px = (e.clientX / w - 0.5) * 2;
+        py = (e.clientY / h - 0.5) * 2;
+      });
+      function tick() {
+        cx += (px - cx) * 0.06;
+        cy += (py - cy) * 0.06;
+        portals.forEach((p, i) => {
+          const s = ((i % 4) + 1) * 2.8;
+          p.style.transform = 'translate(' + (cx * s).toFixed(2) + 'px,' + (cy * s).toFixed(2) + 'px)';
+        });
+        requestAnimationFrame(tick);
       }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+      tick();
+    })();
+  </script>
 
-  // Subtle parallax for portal sparkles
-  const portals = document.querySelectorAll('.portal');
-  let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
-  window.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
-  function raf() {
-    curX += (mouseX - curX) * 0.05;
-    curY += (mouseY - curY) * 0.05;
-    portals.forEach((p, i) => {
-      const depth = (i % 3 + 1) * 6;
-      p.style.transform = `translate(${curX * depth}px, ${curY * depth}px)`;
-    });
-    requestAnimationFrame(raf);
-  }
-  raf();
-</script>
+  <!-- Reveal on scroll -->
+  <script is:inline>
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach((el) => el.classList.add('in'));
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
+      );
+      els.forEach((el) => io.observe(el));
+    })();
+  </script>
+</Layout>

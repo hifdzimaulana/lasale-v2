@@ -1,74 +1,56 @@
 ---
 ---
 
-<section class="relative min-h-[100vh] overflow-hidden">
-  <!-- Background image -->
-  <div class="absolute inset-0">
-    <img src="https://picsum.photos/seed/lasale-hero-library/1920/1200.jpg" alt="" class="w-full h-full object-cover duotone-img" />
-    <div class="absolute inset-0 hero-overlay"></div>
-  </div>
-
-  <!-- Soft star glow accents -->
-  <div class="soft-star soft-star--yellow" style="width:380px;height:380px;top:18%;right:8%;opacity:.18"></div>
-  <div class="soft-star soft-star--burgundy" style="width:300px;height:300px;bottom:12%;left:5%;opacity:.25"></div>
-
-  <!-- Portal sparkles -->
-  <div class="portal" style="top:22%;left:48%">
-    <svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D"/></svg>
-  </div>
-  <div class="portal" style="bottom:30%;right:18%">
-    <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.8"/></svg>
-  </div>
-  <div class="portal" style="top:35%;right:32%">
-    <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.6"/></svg>
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 min-h-[100vh] flex items-end pb-20 pt-32">
-    <div class="grid lg:grid-cols-12 gap-8 w-full items-end">
-      <!-- Hero card -->
-      <div class="lg:col-span-8 bg-[var(--color-bg-offwhite)] border-gradient p-8 lg:p-14 relative">
+<section class="relative bg-[var(--color-bg-offwhite)] pt-28 pb-16 lg:pt-36 lg:pb-24">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Text -->
+      <div class="lg:col-span-6">
         <div class="flex items-center gap-3 mb-7">
           <div class="w-8 h-[2px] bg-[var(--color-burgundy)]"></div>
           <span class="font-display font-500 text-[0.7rem] tracking-[0.28em] uppercase text-[var(--color-burgundy)]">Est. 1987 · Fakultas Hukum UI</span>
         </div>
-        <h1 class="text-[2.6rem] sm:text-[3.4rem] lg:text-[4.6rem] leading-[0.98] mb-7">
-          <span class="drop-cap">M</span>embangun Bakat Hukum<br />
+        <h1 class="text-[2.8rem] sm:text-[3.6rem] lg:text-[4.8rem] leading-[0.96] mb-7 text-[var(--color-primary-blue)]">
+          <span class="drop-cap">M</span>embangun<br />
+          Bakat Hukum<br />
           <span class="text-[var(--color-burgundy)]">Masa Depan</span>
         </h1>
-        <p class="font-body text-[1.05rem] lg:text-[1.12rem] text-[var(--color-ink)]/75 max-w-[640px] mb-10 leading-relaxed">
-          Law Student Association for Legal Practice — wadah pengembangan kompetensi praktis hukum bagi mahasiswa Fakultas Hukum Universitas Indonesia melalui program-program unggulan dan jejaring profesional.
+        <p class="font-body text-[1.08rem] lg:text-[1.15rem] text-[var(--color-ink)] leading-relaxed mb-10 max-w-[560px]">
+          Law Student Association for Legal Practice — wadah pengembangan kompetensi praktis hukum bagi mahasiswa Fakultas Hukum Universitas Indonesia.
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="/programs" class="btn-primary">Jelajahi Program <span>→</span></a>
           <a href="/about" class="btn-outline">Tentang LaSALe</a>
         </div>
 
-        <!-- Decorative corner mark -->
-        <div class="absolute top-6 right-6 hidden lg:flex flex-col items-end gap-1">
-          <div class="font-script text-[var(--color-accent-yellow)] text-2xl leading-none" style="filter:drop-shadow(0 0 8px rgba(0,0,0,.0)">No.</div>
-          <div class="font-display font-700 text-[var(--color-primary-blue)] text-3xl leading-none">01</div>
-          <div class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-[var(--color-ink)]/50">Hero / Edisi</div>
+        <!-- Corner mark -->
+        <div class="mt-12 flex items-center gap-3">
+          <div class="w-10 h-[1px] bg-[var(--color-primary-blue)]/20"></div>
+          <span class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-[var(--color-ink)]/40">Scroll to Explore</span>
         </div>
       </div>
 
-      <!-- Side stat strip -->
-      <div class="lg:col-span-4 lg:pl-6">
-        <div class="border-l-2 border-[var(--color-accent-yellow)] pl-6 py-2">
-          <div class="font-display font-700 text-[var(--color-bg-offwhite)] text-[3.2rem] leading-none">37<span class="text-[var(--color-accent-yellow)]">+</span></div>
-          <div class="font-body text-[var(--color-bg-offwhite)]/80 text-sm mt-3 leading-snug">Tahun LaSALe membentuk generasi praktisi hukum Indonesia.</div>
-        </div>
-        <div class="mt-8 pt-6 border-t border-[var(--color-bg-offwhite)]/20">
-          <div class="font-display font-600 text-[var(--color-bg-offwhite)] text-sm tracking-[0.18em] uppercase mb-3">Program Berikutnya</div>
-          <div class="font-body text-[var(--color-bg-offwhite)]/70 text-sm">Konsultasi Hukum Gratis<br />Fakultas Hukum UI, Depok</div>
+      <!-- Image block -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative">
+          <!-- Decorative accents -->
+          <div class="absolute -left-4 -top-4 w-20 h-20 bg-[var(--color-accent-yellow)] z-0 hidden lg:block"></div>
+          <div class="absolute -right-3 -bottom-3 w-28 h-28 border-2 border-[var(--color-accent-yellow)] z-0 hidden lg:block"></div>
+
+          <!-- Main image -->
+          <div class="relative img-tint border-2 border-[var(--color-primary-blue)] z-10">
+            <img src="https://picsum.photos/seed/lasale-hero/1100/720.jpg" alt="LaSALe FH UI" class="w-full h-[380px] lg:h-[480px] object-cover duotone-img" />
+            <div class="img-badge img-badge--yellow">LaSALe FH UI · Est. 1987</div>
+          </div>
+
+          <!-- Floating stat -->
+          <div class="absolute -bottom-6 left-6 lg:left-10 bg-[var(--color-bg-offwhite)] p-5 border-2 border-[var(--color-primary-blue)] z-20">
+            <div class="font-script text-[var(--color-burgundy)] text-xl leading-none mb-1">No.</div>
+            <div class="font-display font-700 text-[var(--color-primary-blue)] text-3xl leading-none mb-2">XXXVII</div>
+            <div class="font-body text-[0.75rem] text-[var(--color-ink)]/60 leading-snug">Edisi ke-37</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Bottom edge tag -->
-  <div class="absolute bottom-6 left-6 lg:left-10 z-10 flex items-center gap-3">
-    <div class="w-10 h-[1px] bg-[var(--color-bg-offwhite)]/50"></div>
-    <span class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-[var(--color-bg-offwhite)]/60">Scroll to Explore</span>
   </div>
 </section>
