@@ -25,3 +25,9 @@ Thumbs.db
 
 # Logs
 npm-debug.log*
+
+# Large source assets (uploaded to Supabase)
+references/LaSALe_s Web Materials/
+
+# Generated
+public/asset-map.json
