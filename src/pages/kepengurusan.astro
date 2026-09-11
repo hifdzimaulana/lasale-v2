@@ -30,7 +30,7 @@ staff.forEach((m: any) => { staffByDiv[m.division]?.push(m); });
 const FULL_TEAM_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/fungsionaris/foto-fullteam.jpg';
 
 const divisions = [
-  { key: 'kompetisi', label: 'Kompetisi', accent: '#F6EB3D', supervisor: 'Michael Eka Surya Sibarani', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Kompetisi' },
+  { key: 'kompetisi', label: 'Kompetisi', accent: '#C0392B', supervisor: 'Michael Eka Surya Sibarani', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Kompetisi' },
   { key: 'internal', label: 'Internal', accent: '#994B53', supervisor: 'Yovita Nathalia Hutabarat', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Internal' },
   { key: 'eksternal', label: 'Eksternal', accent: '#5B8BD4', supervisor: 'Muhammad Naufal Darmadi', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Eksternal' },
 ];
@@ -42,16 +42,30 @@ const divisions = [
   <!-- Hero -->
   <section class="relative bg-bg-dark pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
     <div class="absolute inset-0 grid-bg opacity-30"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 80%, rgba(28,59,135,0.25) 0%, transparent 60%)"></div>
     <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 text-center">
-      <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-gold/70 mb-3 reveal">BEM FH UI 2026</p>
+      <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-gold/70 mb-3 reveal">LaSALe FH UI 2026</p>
       <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-700 text-gradient-gold leading-[1.1] reveal">
         Kepengurusan<br/>2026
       </h1>
       <p class="font-body text-sm lg:text-base text-pale-cream/60 mt-4 max-w-xl mx-auto reveal">
         Susunan lengkap pengurus LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.
       </p>
+      <!-- Decorative corner marks -->
+      <div class="absolute top-8 left-6 lg:left-10 w-8 h-8 border-t-2 border-l-2 border-gold/20 reveal"></div>
+      <div class="absolute top-8 right-6 lg:right-10 w-8 h-8 border-t-2 border-r-2 border-gold/20 reveal"></div>
+      <div class="absolute bottom-8 left-6 lg:left-10 w-8 h-8 border-b-2 border-l-2 border-gold/20 reveal"></div>
+      <div class="absolute bottom-8 right-6 lg:right-10 w-8 h-8 border-b-2 border-r-2 border-gold/20 reveal"></div>
     </div>
   </section>
+
+  <!-- Wave: Hero → Full Team -->
+  <div class="relative -mt-1 bg-bg-dark" style="line-height: 0;">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[80px] lg:h-[100px]">
+      <path d="M0,0 L1440,0 L1440,40 Q1080,110 720,80 Q360,50 0,90 Z" fill="#1C3B87" opacity="0.6"/>
+      <path d="M0,0 L1440,0 L1440,30 Q1100,95 720,65 Q340,35 0,75 Z" fill="#1C3B87"/>
+    </svg>
+  </div>
 
   <!-- Full Team Photo -->
   <section class="relative bg-primary-blue">
@@ -66,25 +80,38 @@ const divisions = [
         />
         <div class="absolute inset-0 bg-gradient-to-t from-primary-blue/60 via-transparent to-transparent"></div>
         <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 px-3 py-1.5 bg-gold text-primary-blue font-display font-600 text-[0.6rem] tracking-[0.15em] uppercase">
-          BEM FH UI · 2026
+          LaSALe FH UI · 2026
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Wave: Full Team → Pengurus Inti -->
+  <div class="relative -mt-1 bg-primary-blue" style="line-height: 0;">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[80px] lg:h-[100px]">
+      <path d="M0,0 L1440,0 L1440,50 Q1100,120 720,70 Q340,20 0,85 Z" fill="#10204A" opacity="0.5"/>
+      <path d="M0,0 L1440,0 L1440,40 Q1080,110 720,60 Q360,10 0,75 Z" fill="#10204A"/>
+    </svg>
+  </div>
+
   <!-- Pengurus Inti -->
   <section class="relative bg-bg-dark">
     <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
       <div class="reveal">
-        <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase text-gold/60 mb-2">01 — Struktur</p>
-        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700 text-gradient-gold mb-4">Pengurus Inti</h2>
-        <p class="font-body text-sm text-pale-cream/60 mb-10 max-w-xl">Pimpinan organisasi yang menjalankan visi dan misi LaSALe FH UI periode 2026.</p>
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-3 h-3 border-t-2 border-l-2 border-gold/40"></div>
+          <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase text-gold/60">01 — Struktur</p>
+          <div class="w-3 h-3 border-t-2 border-r-2 border-gold/40"></div>
+        </div>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700 text-gradient-gold mb-1">Pengurus Inti</h2>
+        <div class="w-16 h-[2px] bg-gold/30 mt-2"></div>
       </div>
 
       <!-- Direktur Eksekutif (centered, alone on top) -->
       <div class="flex justify-center mb-8">
         <div class="reveal reveal-card w-full max-w-[280px]" style="--d:0s">
           <div class="group relative border border-pale-cream/10 bg-primary-blue/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
+            <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-40 group-hover:opacity-80 transition-opacity"></div>
             <div class="aspect-[3/4] overflow-hidden">
               <img
                 src={pengurusInti[0].image_path}
@@ -108,6 +135,7 @@ const divisions = [
         {pengurusInti.slice(1).map((m: any, i: number) => (
           <div class="reveal reveal-card w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] max-w-[280px]" style={`--d:${(i + 1) * 0.08}s`}>
             <div class="group relative border border-pale-cream/10 bg-primary-blue/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
+              <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-40 group-hover:opacity-80 transition-opacity"></div>
               <div class="aspect-[3/4] overflow-hidden">
                 <img
                   src={m.image_path}
@@ -129,18 +157,36 @@ const divisions = [
     </div>
   </section>
 
+  <!-- Wave: Pengurus Inti → Divisions -->
+  <div class="relative -mt-1 bg-bg-dark" style="line-height: 0;">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[80px] lg:h-[100px]">
+      <path d="M0,0 L1440,0 L1440,45 Q1080,115 720,75 Q360,35 0,80 Z" fill="#1C3B87" opacity="0.4"/>
+      <path d="M0,0 L1440,0 L1440,35 Q1100,100 720,65 Q340,30 0,70 Z" fill="#1C3B87"/>
+    </svg>
+  </div>
+
   <!-- BPH + Staff per Division -->
   {divisions.map((div, di) => {
     const divBph = bphByDiv[div.key] || [];
     const divStaff = staffByDiv[div.key] || [];
     const sectionNum = String(di + 2).padStart(2, '0');
+    const bgClass = div.key === 'kompetisi' ? 'bg-[#1a1a2e]' : di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark';
+    const nextBg = div.key === 'kompetisi' ? 'bg-primary-blue' : di < divisions.length - 1 ? (di % 2 === 0 ? 'bg-bg-dark' : 'bg-primary-blue') : 'bg-bg-dark';
     return (
-      <section class={`relative ${di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark'}`}>
-        {di % 2 !== 0 && <div class="absolute inset-0 grid-bg opacity-30"></div>}
-        <div class="relative max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+      <Fragment>
+        <section class={`relative ${bgClass}`}>
+          {div.key === 'kompetisi' && <div class="absolute inset-0 grid-bg opacity-20"></div>}
+          {di % 2 !== 0 && <div class="absolute inset-0 grid-bg opacity-30"></div>}
+          {div.key === 'kompetisi' && <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, transparent 50%, rgba(192,57,43,0.08) 100%)"></div>}
+          <div class="relative max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
           <div class="reveal mb-10">
-            <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase mb-2" style={`color: ${div.accent}99`}>0{di + 2} — Divisi</p>
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-3 h-3 border-t-2 border-l-2" style={`border-color: ${div.accent}`}></div>
+              <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase" style={`color: ${div.accent}99`}>0{di + 2} — Divisi</p>
+              <div class="w-3 h-3 border-t-2 border-r-2" style={`border-color: ${div.accent}`}></div>
+            </div>
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700" style={`color: ${div.accent}`}>{div.label}</h2>
+            <div class="w-16 h-[2px] mt-3" style={`background: ${div.accent}44`}></div>
           </div>
 
           <!-- BPH Leaders -->
@@ -148,6 +194,7 @@ const divisions = [
             {divBph.map((m: any, i: number) => (
               <div class={`reveal reveal-card w-[calc(50%-10px)] sm:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] max-w-[280px]`} style={`--d:${i * 0.08}s`}>
                 <div class="group relative border border-pale-cream/10 bg-bg-dark/50 overflow-hidden transition-all duration-300 hover:border-gold/30">
+                  <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}66, transparent);`}></div>
                   <div class="aspect-[3/4] overflow-hidden">
                     <img
                       src={m.image_path}
@@ -181,6 +228,7 @@ const divisions = [
                 {divStaff.map((m: any, i: number) => (
                   <div class="reveal reveal-card w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)] max-w-[220px]" style={`--d:${i * 0.04}s`}>
                     <div class="group relative border border-pale-cream/10 bg-bg-dark/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
+                      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}44, transparent);`}></div>
                       <div class="aspect-[3/4] overflow-hidden">
                         <img
                           src={m.image_path}
@@ -202,28 +250,17 @@ const divisions = [
           )}
         </div>
       </section>
+      {di < divisions.length - 1 && (
+        <div class="relative -mt-1" style={`line-height: 0; background: ${nextBg};`}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-[40px] sm:h-[50px] lg:h-[60px]">
+            <path d="M0,0 L1440,0 L1440,25 Q1080,75 720,50 Q360,25 0,60 Z" fill={div.key === 'kompetisi' ? '#1C3B87' : di % 2 === 0 ? '#10204A' : '#1C3B87'} opacity="0.5"/>
+            <path d="M0,0 L1440,0 L1440,20 Q1100,65 720,40 Q340,15 0,50 Z" fill={div.key === 'kompetisi' ? '#1C3B87' : di % 2 === 0 ? '#10204A' : '#1C3B87'}/>
+          </svg>
+        </div>
+      )}
+      </Fragment>
     );
   })}
-
-  <!-- CTA -->
-  <section class="relative bg-bg-dark grid-bg">
-    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20 text-center">
-      <div class="reveal">
-        <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-700 text-gradient-gold mb-4">Tertarik Bergabung?</h2>
-        <p class="font-body text-sm text-pale-cream/60 mb-8 max-w-lg mx-auto">
-          LaSALe FH UI selalu membuka kesempatan bagi mahasiswa Fakultas Hukum UI yang ingin berkembang bersama.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="/about" class="btn-primary text-sm">
-            Tentang LaSALe <span>→</span>
-          </a>
-          <a href="/contact" class="btn-outline text-sm border-gold/40 text-gold hover:bg-gold hover:text-primary-blue">
-            Hubungi Kami <span>→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <Footer />
 </Layout>
