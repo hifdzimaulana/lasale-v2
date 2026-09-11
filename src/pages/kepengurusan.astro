@@ -81,9 +81,9 @@ const divisions = [
         <p class="font-body text-sm text-pale-cream/60 mb-10 max-w-xl">Pimpinan organisasi yang menjalankan visi dan misi LaSALe FH UI periode 2026.</p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
+      <div class="flex flex-wrap justify-center gap-6 lg:gap-8">
         {pengurusInti.map((m: any, i: number) => (
-          <div class={`reveal reveal-card w-full max-w-[320px] ${i === 0 ? 'md:col-span-3 md:max-w-md md:mx-auto' : ''}`} style={`--d:${i * 0.08}s`}>
+          <div class={`reveal reveal-card w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] max-w-[320px] ${i === 0 ? 'sm:w-full sm:max-w-sm' : ''}`} style={`--d:${i * 0.08}s`}>
             <div class="group relative border border-pale-cream/10 bg-primary-blue/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
               <div class="aspect-[3/4] overflow-hidden">
                 <img
@@ -93,7 +93,7 @@ const divisions = [
                   loading="lazy"
                 />
               </div>
-              <div class="absolute inset-0 bg-gradient-to-t from-primary-blue via-primary-blue/60 to-transparent"></div>
+              <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,0.95) 0%, rgba(16,32,74,0.4) 30%, transparent 50%)"></div>
               <div class="absolute bottom-0 left-0 right-0 p-4">
                 <div class="w-8 h-[2px] bg-gold mb-2"></div>
                 <h3 class="font-heading text-sm lg:text-base font-700 text-pale-cream leading-tight">{m.name}</h3>
@@ -129,9 +129,9 @@ const divisions = [
           </div>
 
           <!-- BPH Leaders -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 mb-10 justify-items-center">
+          <div class="flex flex-wrap justify-center gap-5 mb-10">
             {divBph.map((m: any, i: number) => (
-              <div class={`reveal reveal-card w-full max-w-[280px]`} style={`--d:${i * 0.08}s`}>
+              <div class={`reveal reveal-card w-[calc(50%-10px)] sm:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] max-w-[280px]`} style={`--d:${i * 0.08}s`}>
                 <div class="group relative border border-pale-cream/10 bg-bg-dark/50 overflow-hidden transition-all duration-300 hover:border-gold/30">
                   <div class="aspect-[3/4] overflow-hidden">
                     <img
@@ -141,7 +141,7 @@ const divisions = [
                       loading="lazy"
                     />
                   </div>
-                  <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-bg-dark/60 to-transparent"></div>
+                  <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,0.95) 0%, rgba(16,32,74,0.4) 30%, transparent 50%)"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-3">
                     <div class="w-6 h-[2px] bg-gold mb-1.5"></div>
                     <h3 class="font-heading text-xs lg:text-sm font-700 text-pale-cream leading-tight">{m.name}</h3>
@@ -162,9 +162,9 @@ const divisions = [
                 <span class="font-body text-[0.6rem] text-pale-cream/30">{divStaff.length} orang</span>
               </div>
 
-              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 justify-items-center">
+              <div class="flex flex-wrap justify-center gap-4">
                 {divStaff.map((m: any, i: number) => (
-                  <div class="reveal reveal-card w-full max-w-[220px]" style={`--d:${i * 0.04}s`}>
+                  <div class="reveal reveal-card w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)] max-w-[220px]" style={`--d:${i * 0.04}s`}>
                     <div class="group relative border border-pale-cream/10 bg-bg-dark/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
                       <div class="aspect-[3/4] overflow-hidden">
                         <img
@@ -174,7 +174,7 @@ const divisions = [
                           loading="lazy"
                         />
                       </div>
-                      <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-bg-dark/60 to-transparent"></div>
+                      <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,0.95) 0%, rgba(16,32,74,0.4) 30%, transparent 50%)"></div>
                       <div class="absolute bottom-0 left-0 right-0 p-3">
                         <h3 class="font-heading text-xs font-600 text-pale-cream leading-tight">{m.name}</h3>
                         <p class="font-body text-[0.55rem] text-pale-cream/40 mt-0.5">Staff</p>
