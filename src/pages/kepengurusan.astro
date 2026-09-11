@@ -260,29 +260,29 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
         <div class="relative max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
           <div class="reveal mb-10">
             <div class="flex items-center gap-3 mb-2">
-              <div class="w-8 h-[2px]" style={`background: ${div.accent}`}></div>
-              <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase" style={`color: ${div.accent}cc`}>0{di + 2} · Divisi</p>
-              <div class="flex-1 h-[1px]" style={`background: ${div.accent}22`}></div>
+              <div class="w-8 h-[2px] bg-white/40"></div>
+              <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-white/60">0{di + 2} · Divisi</p>
+              <div class="flex-1 h-[1px] bg-white/10"></div>
             </div>
-            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700" style={`color: ${div.accent}`}>
-              <span class="drop-cap" style={`color: ${div.accent}; font-size: 1.8em;`}>{splitName(div.label).first}</span>{splitName(div.label).rest}
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700 text-white">
+              <span class="drop-cap" style="color: var(--color-accent-yellow); font-size: 1.8em;">{splitName(div.label).first}</span><span class="text-white">{splitName(div.label).rest}</span>
             </h2>
-            <div class="w-16 h-[2px] mt-3" style={`background: ${div.accent}44`}></div>
+            <div class="w-16 h-[2px] mt-3 bg-white/20"></div>
           </div>
 
           <div class="flex flex-wrap justify-center gap-5 mb-10">
             {divBph.map((m: any, i: number) => (
               <div class={`reveal reveal-card w-[calc(50%-10px)] sm:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] max-w-[280px]`} style={`--d:${i * 0.08}s`}>
                 <div class="group relative border border-pale-cream/10 bg-bg-dark/50 overflow-hidden transition-all duration-300 hover:border-gold/30">
-                  <div class="absolute top-0 left-0 right-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}66, transparent);`}></div>
+                  <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div class="aspect-[3/4] overflow-hidden">
                     <img src={m.image_path} alt={m.name} class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0" loading="lazy" />
                   </div>
                   <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.6) 20%, transparent 40%)"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-3">
                     <div class="w-6 h-[2px] bg-gold mb-1.5"></div>
-                    <h3 class="font-heading text-xs lg:text-sm font-700 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
-                    <p class="font-body text-[0.6rem] text-pale-cream mt-0.5">{m.role}</p>
+                    <h3 class="font-heading text-xs lg:text-sm font-700 leading-tight text-pale-cream">{m.name}</h3>
+                    <p class="font-body text-[0.6rem] text-pale-cream/70 mt-0.5">{m.role}</p>
                   </div>
                 </div>
               </div>
@@ -292,23 +292,23 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
           {divStaff.length > 0 && (
             <div class="reveal">
               <div class="flex items-center gap-3 mb-6">
-                <div class="w-8 h-[1px]" style={`background: ${div.accent}44`}></div>
-                <p class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-pale-cream/40">Staff Divisi {div.label}</p>
-                <div class="flex-1 h-[1px]" style={`background: ${div.accent}22`}></div>
-                <span class="font-body text-[0.6rem] text-pale-cream/30">{divStaff.length} orang</span>
+                <div class="w-8 h-[1px] bg-white/20"></div>
+                <p class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-white/50">Staff Divisi {div.label}</p>
+                <div class="flex-1 h-[1px] bg-white/10"></div>
+                <span class="font-body text-[0.6rem] text-white/30">{divStaff.length} orang</span>
               </div>
               <div class="flex flex-wrap justify-center gap-4">
                 {divStaff.map((m: any, i: number) => (
                   <div class="reveal reveal-card w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)] max-w-[220px]" style={`--d:${i * 0.04}s`}>
                     <div class="group relative border border-pale-cream/10 bg-bg-dark/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
-                      <div class="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}44, transparent);`}></div>
+                      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                       <div class="aspect-[3/4] overflow-hidden">
                         <img src={m.image_path} alt={m.name} class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0" loading="lazy" />
                       </div>
                       <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.6) 20%, transparent 40%)"></div>
                       <div class="absolute bottom-0 left-0 right-0 p-3">
-                        <h3 class="font-heading text-xs font-600 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
-                        <p class="font-body text-[0.55rem] text-pale-cream/70 mt-0.5">Staff</p>
+                        <h3 class="font-heading text-xs font-600 leading-tight text-pale-cream">{m.name}</h3>
+                        <p class="font-body text-[0.55rem] text-pale-cream/60 mt-0.5">Staff</p>
                       </div>
                     </div>
                   </div>
