@@ -42,23 +42,23 @@ function splitName(name: string) {
   return { first, rest };
 }
 
-function guilloche(startY: number, amplitude: number, waves: number, lineCount: number, width: number, height: number) {
-  const paths: string[] = [];
+function guilloche(startY: number, amplitude: number, waves: number, lineCount: number, width: number) {
+  const paths: { d: string; opacity: number }[] = [];
   for (let l = 0; l < lineCount; l++) {
-    const offset = l * 3;
-    const amp = amplitude + l * 4;
+    const offset = l * 6;
+    const amp = amplitude + l * 5;
     let d = '';
-    for (let x = 0; x <= width; x += 4) {
+    for (let x = 0; x <= width; x += 6) {
       const y = startY + offset + Math.sin((x / width) * Math.PI * waves) * amp;
       d += (x === 0 ? 'M' : 'L') + `${x},${y.toFixed(1)}`;
     }
-    paths.push(d);
+    paths.push({ d, opacity: 1 - (l / lineCount) * 0.7 });
   }
   return paths;
 }
 
-const meshPaths1 = guilloche(30, 25, 2.5, 18, 1440, 120);
-const meshPaths2 = guilloche(25, 30, 2, 15, 1440, 100);
+const meshPaths1 = guilloche(20, 35, 2.5, 16, 1440);
+const meshPaths2 = guilloche(15, 40, 2, 14, 1440);
 ---
 
 <Layout title="Kepengurusan 2026" description="Struktur kepengurusan LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.">
@@ -93,12 +93,22 @@ const meshPaths2 = guilloche(25, 30, 2, 15, 1440, 100);
   </section>
 
   <!-- Guilloche Mesh: Hero → Full Team -->
-  <div class="relative bg-bg-dark overflow-hidden" style="line-height: 0; margin-top: -1px;">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" class="w-full h-[50px] sm:h-[60px] lg:h-[80px]">
-      {meshPaths1.map((d) => (
-        <path d={d} fill="none" stroke="rgba(28,59,135,0.18)" stroke-width="0.8"/>
-      ))}
-      <rect x="0" y="55" width="1440" height="50" fill="var(--color-primary-blue)"/>
+  <div class="relative overflow-hidden" style="line-height: 0; background: var(--color-bg-dark);">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" class="w-full h-[80px] sm:h-[100px] lg:h-[120px]">
+      <defs>
+        <linearGradient id="fade-hero" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="white" stop-opacity="0"/>
+          <stop offset="30%" stop-color="white" stop-opacity="1"/>
+          <stop offset="80%" stop-color="white" stop-opacity="1"/>
+          <stop offset="100%" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="mask-hero"><rect width="1440" height="160" fill="url(#fade-hero)"/></mask>
+      </defs>
+      <g mask="url(#mask-hero)">
+        {meshPaths1.map((p) => (
+          <path d={p.d} fill="none" stroke="rgba(28,59,135,0.25)" stroke-width="0.8" opacity={p.opacity}/>
+        ))}
+      </g>
     </svg>
   </div>
 
@@ -128,12 +138,22 @@ const meshPaths2 = guilloche(25, 30, 2, 15, 1440, 100);
   </section>
 
   <!-- Guilloche Mesh: Full Team → Pengurus Inti -->
-  <div class="relative bg-primary-blue overflow-hidden" style="line-height: 0; margin-top: -1px;">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" class="w-full h-[50px] sm:h-[60px] lg:h-[80px]">
-      {meshPaths2.map((d) => (
-        <path d={d} fill="none" stroke="rgba(250,246,235,0.08)" stroke-width="0.7"/>
-      ))}
-      <rect x="0" y="50" width="1440" height="55" fill="var(--color-bg-dark)"/>
+  <div class="relative overflow-hidden" style="line-height: 0; background: var(--color-primary-blue);">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" class="w-full h-[80px] sm:h-[100px] lg:h-[120px]">
+      <defs>
+        <linearGradient id="fade-team" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="white" stop-opacity="0"/>
+          <stop offset="30%" stop-color="white" stop-opacity="1"/>
+          <stop offset="80%" stop-color="white" stop-opacity="1"/>
+          <stop offset="100%" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="mask-team"><rect width="1440" height="160" fill="url(#fade-team)"/></mask>
+      </defs>
+      <g mask="url(#mask-team)">
+        {meshPaths2.map((p) => (
+          <path d={p.d} fill="none" stroke="rgba(250,246,235,0.10)" stroke-width="0.7" opacity={p.opacity}/>
+        ))}
+      </g>
     </svg>
   </div>
 
@@ -211,12 +231,22 @@ const meshPaths2 = guilloche(25, 30, 2, 15, 1440, 100);
   </section>
 
   <!-- Guilloche Mesh: Pengurus Inti → Divisions -->
-  <div class="relative bg-bg-dark overflow-hidden" style="line-height: 0; margin-top: -1px;">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" class="w-full h-[50px] sm:h-[60px] lg:h-[80px]">
-      {meshPaths1.map((d) => (
-        <path d={d} fill="none" stroke="rgba(28,59,135,0.15)" stroke-width="0.7"/>
-      ))}
-      <rect x="0" y="50" width="1440" height="55" fill="var(--color-primary-blue)"/>
+  <div class="relative overflow-hidden" style="line-height: 0; background: var(--color-bg-dark);">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" class="w-full h-[80px] sm:h-[100px] lg:h-[120px]">
+      <defs>
+        <linearGradient id="fade-pi" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="white" stop-opacity="0"/>
+          <stop offset="30%" stop-color="white" stop-opacity="1"/>
+          <stop offset="80%" stop-color="white" stop-opacity="1"/>
+          <stop offset="100%" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="mask-pi"><rect width="1440" height="160" fill="url(#fade-pi)"/></mask>
+      </defs>
+      <g mask="url(#mask-pi)">
+        {meshPaths1.map((p) => (
+          <path d={p.d} fill="none" stroke="rgba(28,59,135,0.20)" stroke-width="0.7" opacity={p.opacity}/>
+        ))}
+      </g>
     </svg>
   </div>
 
@@ -320,12 +350,22 @@ const meshPaths2 = guilloche(25, 30, 2, 15, 1440, 100);
         </section>
 
         {di < divisions.length - 1 && (
-          <div class="relative overflow-hidden" style={`line-height: 0; margin-top: -1px; background: ${div.key === 'kompetisi' ? 'var(--color-primary-blue)' : di % 2 === 0 ? 'var(--color-bg-dark)' : 'var(--color-primary-blue)'};`}>
-            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-[40px] sm:h-[50px] lg:h-[60px]">
-              {meshPaths2.slice(0, 12).map((d) => (
-                <path d={d} fill="none" stroke={`rgba(${div.accentRgba},0.12)`} stroke-width="0.6"/>
-              ))}
-              <rect x="0" y="40" width="1440" height="45" fill={div.key === 'kompetisi' ? 'var(--color-primary-blue)' : di % 2 === 0 ? 'var(--color-bg-dark)' : 'var(--color-primary-blue)'}/>
+          <div class="relative overflow-hidden" style={`line-height: 0; background: ${div.key === 'kompetisi' ? 'var(--color-primary-blue)' : di % 2 === 0 ? 'var(--color-bg-dark)' : 'var(--color-primary-blue)'};`}>
+            <svg viewBox="0 0 1440 140" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[70px] lg:h-[80px]">
+              <defs>
+                <linearGradient id={`fade-div-${di}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="white" stop-opacity="0"/>
+                  <stop offset="30%" stop-color="white" stop-opacity="1"/>
+                  <stop offset="70%" stop-color="white" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="white" stop-opacity="0"/>
+                </linearGradient>
+                <mask id={`mask-div-${di}`}><rect width="1440" height="140" fill={`url(#fade-div-${di})`}/></mask>
+              </defs>
+              <g mask={`url(#mask-div-${di})`}>
+                {meshPaths2.slice(0, 12).map((p) => (
+                  <path d={p.d} fill="none" stroke={`rgba(${div.accentRgba},0.15)`} stroke-width="0.7" opacity={p.opacity}/>
+                ))}
+              </g>
             </svg>
           </div>
         )}
