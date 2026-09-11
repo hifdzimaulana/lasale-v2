@@ -1,4 +1,5 @@
 ---
+const DIRECTOR_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/pengurus-inti/ghania-latifa-putri-rizni.jpg';
 ---
 
 <section class="relative bg-[var(--color-bg-offwhite)] h-[50vh] flex flex-col justify-center">
@@ -9,7 +10,7 @@
         <div class="relative">
           <div class="absolute -right-3 -top-3 w-16 h-16 border-2 border-[var(--color-burgundy)] z-0 hidden lg:block"></div>
           <div class="relative img-tint border-2 border-[var(--color-primary-blue)] z-10">
-            <img src="https://picsum.photos/seed/lasale-director/500/500.jpg" alt="Executive Director" class="w-full h-[280px] lg:h-[340px] object-cover duotone-img" />
+            <img src={DIRECTOR_IMG} alt="Executive Director" class="w-full h-[280px] lg:h-[340px] object-cover duotone-img" loading="lazy" />
             <div class="img-badge">Executive Director</div>
           </div>
         </div>

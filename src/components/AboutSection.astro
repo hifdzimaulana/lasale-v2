@@ -1,4 +1,5 @@
 ---
+const ABOUT_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/fungsionaris/foto-bersama-pi-bph.jpg';
 ---
 
 <section class="relative bg-[var(--color-primary-blue)] text-[var(--color-bg-offwhite)] overflow-hidden min-h-screen flex flex-col justify-center">
@@ -46,7 +47,7 @@
 
           <!-- Main image -->
           <div class="relative img-tint img-tint--heavy border-2 border-[var(--color-accent-yellow)]/40 z-10">
-            <img src="https://risepeople.com/wp-content/uploads/blog-image-The-rise-of-the-team-based-organizational-structure-RisePeople.jpg" alt="" class="w-full h-[460px] lg:h-[580px] object-cover duotone-img" />
+            <img src={ABOUT_IMG} alt="" class="w-full h-[460px] lg:h-[580px] object-cover duotone-img" loading="lazy" />
             <div class="img-badge img-badge--yellow">LaSALe FH UI · Est. 1987</div>
           </div>
 
