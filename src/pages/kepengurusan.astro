@@ -193,6 +193,8 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
     const divBph = bphByDiv[div.key] || [];
     const divStaff = staffByDiv[div.key] || [];
     const bgClass = div.key === 'kompetisi' ? 'bg-burgundy' : di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark';
+    const headingColor = div.key === 'kompetisi' ? '#fff' : '#F7F2B7';
+    const dropCapColor = div.key === 'internal' ? '#994B53' : '#F6EB3D';
     return (
       <section class={`relative ${bgClass} overflow-hidden`}>
         <div class="absolute inset-0 grid-bg opacity-20"></div>
@@ -241,7 +243,7 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
               <div class="flex-1 h-[1px] bg-white/10"></div>
             </div>
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700">
-              <span class="drop-cap" style="color: var(--color-accent-yellow) !important; font-size: 1.8em;">{splitName(div.label).first}</span><span style="color: #fff !important;">{splitName(div.label).rest}</span>
+              <span class="drop-cap" style={`color: ${dropCapColor} !important; font-size: 1.8em;`}>{splitName(div.label).first}</span><span style={`color: ${headingColor} !important;`}>{splitName(div.label).rest}</span>
             </h2>
             <div class="w-16 h-[2px] mt-3 bg-white/20"></div>
           </div>
