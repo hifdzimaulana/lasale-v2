@@ -28,7 +28,7 @@ staff.forEach((m: any) => { staffByDiv[m.division]?.push(m); });
 const FULL_TEAM_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/fungsionaris/foto-fullteam.jpg';
 
 const divisions = [
-  { key: 'kompetisi', label: 'Kompetisi', accent: '#C0392B', accentRgba: '192,57,43' },
+  { key: 'kompetisi', label: 'Kompetisi', accent: '#994B53', accentRgba: '153,75,83' },
   { key: 'internal', label: 'Internal', accent: '#994B53', accentRgba: '153,75,83' },
   { key: 'eksternal', label: 'Eksternal', accent: '#5B8BD4', accentRgba: '91,139,212' },
 ];
@@ -216,7 +216,7 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
   {divisions.map((div, di) => {
     const divBph = bphByDiv[div.key] || [];
     const divStaff = staffByDiv[div.key] || [];
-    const bgClass = div.key === 'kompetisi' ? 'bg-[#C0392B]' : di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark';
+    const bgClass = div.key === 'kompetisi' ? 'bg-burgundy' : di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark';
     return (
       <section class={`relative ${bgClass} overflow-hidden`}>
         <div class="absolute inset-0 grid-bg opacity-20"></div>
