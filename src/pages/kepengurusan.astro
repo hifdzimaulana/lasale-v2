@@ -1,0 +1,227 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const SUPABASE_URL = 'https://sqejhkhqqofigcnnmrjq.supabase.co';
+const SUPABASE_KEY = import.meta.env.SUPABASE_SECRET_KEY;
+
+const res = await fetch(`${SUPABASE_URL}/rest/v1/members?select=*&order=sort_order.asc`, {
+  headers: {
+    apikey: SUPABASE_KEY,
+    Authorization: `Bearer ${SUPABASE_KEY}`,
+  },
+});
+const allMembers = await res.json();
+
+const pengurusInti = allMembers.filter((m: any) => m.category === 'pengurus_inti');
+const bph = allMembers.filter((m: any) => m.category === 'bph');
+const staff = allMembers.filter((m: any) => m.category === 'staff');
+
+const bphByDiv: Record<string, any[]> = { kompetisi: [], internal: [], eksternal: [] };
+bph.forEach((m: any) => { bphByDiv[m.division]?.push(m); });
+
+const staffByDiv: Record<string, any[]> = { kompetisi: [], internal: [], eksternal: [] };
+staff.forEach((m: any) => { staffByDiv[m.division]?.push(m); });
+
+const FULL_TEAM_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/landing-page/foto-fullteam.jpg';
+
+const divisions = [
+  { key: 'kompetisi', label: 'Kompetisi', accent: '#F6EB3D', supervisor: 'Michael Eka Surya Sibarani', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Kompetisi' },
+  { key: 'internal', label: 'Internal', accent: '#994B53', supervisor: 'Yovita Nathalia Hutabarat', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Internal' },
+  { key: 'eksternal', label: 'Eksternal', accent: '#5B8BD4', supervisor: 'Muhammad Naufal Darmadi', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Eksternal' },
+];
+---
+
+<Layout title="Kepengurusan 2026" description="Struktur kepengurusan LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.">
+
+  <!-- Hero -->
+  <section class="relative bg-bg-dark pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-30"></div>
+    <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 text-center">
+      <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-gold/70 mb-3 reveal">BEM FH UI 2026</p>
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-700 text-gradient-gold leading-[1.1] reveal">
+        Kepengurusan<br/>2026
+      </h1>
+      <p class="font-body text-sm lg:text-base text-pale-cream/60 mt-4 max-w-xl mx-auto reveal">
+        Susunan lengkap pengurus LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Full Team Photo -->
+  <section class="relative bg-primary-blue">
+    <div class="max-w-[1100px] mx-auto px-6 lg:px-10 py-12 lg:py-16">
+      <div class="relative reveal">
+        <div class="absolute -inset-[2px] bg-gradient-to-r from-gold/30 via-burgundy/20 to-gold/30 z-0"></div>
+        <img
+          src={FULL_TEAM_IMG}
+          alt="LaSALe FH UI 2026 Full Team"
+          class="relative w-full h-[320px] sm:h-[400px] lg:h-[480px] object-cover border border-pale-cream/10"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-primary-blue/60 via-transparent to-transparent"></div>
+        <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 px-3 py-1.5 bg-gold text-primary-blue font-display font-600 text-[0.6rem] tracking-[0.15em] uppercase">
+          BEM FH UI · 2026
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pengurus Inti -->
+  <section class="relative bg-bg-dark">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+      <div class="reveal">
+        <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase text-gold/60 mb-2">01 — Struktur</p>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700 text-gradient-gold mb-4">Pengurus Inti</h2>
+        <p class="font-body text-sm text-pale-cream/60 mb-10 max-w-xl">Pimpinan organisasi yang menjalankan visi dan misi LaSALe FH UI periode 2026.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
+        {pengurusInti.map((m: any, i: number) => (
+          <div class={`reveal reveal-card ${i === 0 ? 'md:col-span-3 md:max-w-md md:mx-auto' : ''}`} style={`--d:${i * 0.08}s`}>
+            <div class="group relative border border-pale-cream/10 bg-primary-blue/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
+              <div class="aspect-[3/4] overflow-hidden">
+                <img
+                  src={m.image_path}
+                  alt={m.name}
+                  class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                  loading="lazy"
+                />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-primary-blue via-primary-blue/20 to-transparent opacity-80"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-4">
+                <div class="w-8 h-[2px] bg-gold mb-2"></div>
+                <h3 class="font-heading text-sm lg:text-base font-700 text-pale-cream leading-tight">{m.name}</h3>
+                <p class="font-body text-[0.65rem] text-gold/80 mt-1 leading-relaxed">{m.role}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BPH + Staff per Division -->
+  {divisions.map((div, di) => {
+    const divBph = bphByDiv[div.key] || [];
+    const divStaff = staffByDiv[div.key] || [];
+    const sectionNum = String(di + 2).padStart(2, '0');
+    return (
+      <section class={`relative ${di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark'}`}>
+        {di % 2 !== 0 && <div class="absolute inset-0 grid-bg opacity-30"></div>}
+        <div class="relative max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+          <div class="reveal">
+            <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase mb-2" style={`color: ${div.accent}99`}>0{di + 2} — Divisi</p>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700 mb-3" style={`color: ${div.accent}`}>{div.label}</h2>
+            <p class="font-body text-sm text-pale-cream/60 mb-10 max-w-xl">Badan Pengurus Harian Divisi {div.label} di bawah supervisi {div.supervisorTitle}.</p>
+          </div>
+
+          <!-- Supervisor badge -->
+          <div class="reveal mb-8 border-l-4 pl-5 py-3" style={`border-color: ${div.accent}`}>
+            <p class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-pale-cream/40 mb-1">Supervisor</p>
+            <p class="font-heading text-lg font-700 text-pale-cream">{div.supervisor}</p>
+            <p class="font-body text-xs text-pale-cream/50">{div.supervisorTitle}</p>
+          </div>
+
+          <!-- BPH Leaders -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 mb-10">
+            {divBph.map((m: any, i: number) => (
+              <div class={`reveal reveal-card ${i === 0 ? '' : ''}`} style={`--d:${i * 0.08}s`}>
+                <div class="group relative border border-pale-cream/10 bg-bg-dark/50 overflow-hidden transition-all duration-300 hover:border-gold/30">
+                  <div class="aspect-[3/4] overflow-hidden">
+                    <img
+                      src={m.image_path}
+                      alt={m.name}
+                      class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-bg-dark/20 to-transparent opacity-80"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-3">
+                    <div class="w-6 h-[2px] bg-gold mb-1.5"></div>
+                    <h3 class="font-heading text-xs lg:text-sm font-700 text-pale-cream leading-tight">{m.name}</h3>
+                    <p class="font-body text-[0.6rem] text-gold/80 mt-0.5">{m.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Staff -->
+          {divStaff.length > 0 && (
+            <div class="reveal">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-[1px]" style={`background: ${div.accent}44`}></div>
+                <p class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-pale-cream/40">Staff Divisi {div.label}</p>
+                <div class="flex-1 h-[1px]" style={`background: ${div.accent}22`}></div>
+                <span class="font-body text-[0.6rem] text-pale-cream/30">{divStaff.length} orang</span>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                {divStaff.map((m: any, i: number) => (
+                  <div class="reveal reveal-card" style={`--d:${i * 0.04}s`}>
+                    <div class="group relative border border-pale-cream/10 bg-bg-dark/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
+                      <div class="aspect-[3/4] overflow-hidden">
+                        <img
+                          src={m.image_path}
+                          alt={m.name}
+                          class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-bg-dark/30 to-transparent opacity-80"></div>
+                      <div class="absolute bottom-0 left-0 right-0 p-3">
+                        <h3 class="font-heading text-xs font-600 text-pale-cream leading-tight">{m.name}</h3>
+                        <p class="font-body text-[0.55rem] text-pale-cream/40 mt-0.5">Staff</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  })}
+
+  <!-- CTA -->
+  <section class="relative bg-bg-dark grid-bg">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20 text-center">
+      <div class="reveal">
+        <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-700 text-gradient-gold mb-4">Tertarik Bergabung?</h2>
+        <p class="font-body text-sm text-pale-cream/60 mb-8 max-w-lg mx-auto">
+          LaSALe FH UI selalu membuka kesempatan bagi mahasiswa Fakultas Hukum UI yang ingin berkembang bersama.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/about" class="btn-primary text-sm">
+            Tentang LaSALe <span>→</span>
+          </a>
+          <a href="/contact" class="btn-outline text-sm border-gold/40 text-gold hover:bg-gold hover:text-primary-blue">
+            Hubungi Kami <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-card { transition-delay: var(--d, 0s); }
+</style>
+
+<script>
+  function initReveal() {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach((el) => io.observe(el));
+  }
+  initReveal();
+  document.addEventListener('astro:page-load', initReveal);
+</script>

@@ -1,7 +1,12 @@
 ---
-const links = [
+const aboutChildren = [
+  { href: '/about', label: 'Organisasi' },
+  { href: '/kepengurusan', label: 'Kepengurusan' },
+  { href: '/alumni', label: 'Alumni' },
+];
+
+const topLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
   { href: '/achievements', label: 'Achievements' },
   { href: '/lasale', label: 'LaSALe Page' },
   { href: '/projects-events', label: 'Projects & Events' },
@@ -23,9 +28,22 @@ const links = [
 
     <!-- Desktop nav -->
     <nav class="hidden lg:flex items-center gap-8">
-      {links.map((l) => (
+      {topLinks.map((l) => (
         <a href={l.href} class="nav-link">{l.label}</a>
       ))}
+
+      <!-- About dropdown -->
+      <div class="nav-dropdown" id="about-dropdown">
+        <button class="nav-link nav-dropdown-trigger">
+          About
+          <svg class="w-3 h-3 ml-1 transition-transform duration-200" id="about-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="about-menu">
+          {aboutChildren.map((c) => (
+            <a href={c.href} class="nav-dropdown-item">{c.label}</a>
+          ))}
+        </div>
+      </div>
     </nav>
 
     <!-- CTA -->
@@ -44,9 +62,23 @@ const links = [
   <!-- Mobile menu -->
   <div id="mobile-menu" class="mobile-menu hidden lg:hidden">
     <div class="max-w-[1400px] mx-auto px-6 py-8 space-y-6">
-      {links.map((l) => (
+      {topLinks.map((l) => (
         <a href={l.href} class="nav-link block text-lg">{l.label}</a>
       ))}
+
+      <!-- Mobile About submenu -->
+      <div class="space-y-2">
+        <button class="nav-link block text-lg w-full text-left mobile-about-trigger" id="mobile-about-trigger">
+          About
+          <svg class="w-3 h-3 ml-1 inline transition-transform duration-200" id="mobile-about-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5"/></svg>
+        </button>
+        <div class="hidden pl-4 space-y-3 mobile-about-sub" id="mobile-about-sub">
+          {aboutChildren.map((c) => (
+            <a href={c.href} class="nav-link block text-base">{c.label}</a>
+          ))}
+        </div>
+      </div>
+
       <a href="/contact" class="btn-primary mt-4">Contact Us <span>→</span></a>
     </div>
   </div>
@@ -57,6 +89,12 @@ const links = [
     const navbar = document.getElementById('navbar');
     const toggle = document.getElementById('nav-toggle');
     const menu = document.getElementById('mobile-menu');
+    const aboutDropdown = document.getElementById('about-dropdown');
+    const aboutMenu = document.getElementById('about-menu');
+    const aboutArrow = document.getElementById('about-arrow');
+    const mobileAboutTrigger = document.getElementById('mobile-about-trigger');
+    const mobileAboutSub = document.getElementById('mobile-about-sub');
+    const mobileAboutArrow = document.getElementById('mobile-about-arrow');
     if (!navbar) return;
 
     let lastScroll = 0;
@@ -74,6 +112,23 @@ const links = [
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    // Desktop About dropdown
+    if (aboutDropdown && aboutMenu) {
+      let hideTimeout;
+      aboutDropdown.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+        aboutMenu.classList.add('show');
+        aboutArrow?.classList.add('rotate-180');
+      });
+      aboutDropdown.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+          aboutMenu.classList.remove('show');
+          aboutArrow?.classList.remove('rotate-180');
+        }, 150);
+      });
+    }
+
+    // Mobile menu toggle
     if (toggle && menu) {
       toggle.addEventListener('click', () => {
         menu.classList.toggle('hidden');
@@ -89,6 +144,14 @@ const links = [
           bars[2]?.classList.add('-rotate-45', '-translate-y-1.5', 'w-6');
           bars[2]?.classList.remove('w-4');
         }
+      });
+    }
+
+    // Mobile About submenu
+    if (mobileAboutTrigger && mobileAboutSub) {
+      mobileAboutTrigger.addEventListener('click', () => {
+        mobileAboutSub.classList.toggle('hidden');
+        mobileAboutArrow?.classList.toggle('rotate-180');
       });
     }
   }
@@ -113,5 +176,31 @@ const links = [
   .mobile-menu {
     background: var(--color-bg-offwhite);
     border-top: 1px solid rgba(28,59,135,.1);
+  }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-menu {
+    position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    min-width: 180px;
+    background: var(--color-bg-offwhite);
+    border: 1px solid rgba(28,59,135,.1);
+    box-shadow: 0 8px 30px rgba(16,32,74,.1);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .2s, visibility .2s, transform .2s;
+    transform: translateX(-50%) translateY(4px);
+    padding: 6px 0;
+  }
+  .nav-dropdown-menu.show {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dropdown-item {
+    display: block; padding: 8px 20px;
+    font-family: var(--font-body); font-size: 0.85rem; color: var(--color-primary-blue);
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+  }
+  .nav-dropdown-item:hover {
+    background: rgba(28,59,135,.05);
+    color: var(--color-burgundy);
   }
 </style>
