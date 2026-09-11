@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 const SUPABASE_URL = 'https://sqejhkhqqofigcnnmrjq.supabase.co';
 const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY;
@@ -24,7 +25,7 @@ bph.forEach((m: any) => { bphByDiv[m.division]?.push(m); });
 const staffByDiv: Record<string, any[]> = { kompetisi: [], internal: [], eksternal: [] };
 staff.forEach((m: any) => { staffByDiv[m.division]?.push(m); });
 
-const FULL_TEAM_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/landing-page/foto-fullteam.jpg';
+const FULL_TEAM_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/fungsionaris/foto-fullteam.jpg';
 
 const divisions = [
   { key: 'kompetisi', label: 'Kompetisi', accent: '#F6EB3D', supervisor: 'Michael Eka Surya Sibarani', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Kompetisi' },
@@ -34,6 +35,7 @@ const divisions = [
 ---
 
 <Layout title="Kepengurusan 2026" description="Struktur kepengurusan LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.">
+  <Navbar />
 
   <!-- Hero -->
   <section class="relative bg-bg-dark pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
@@ -206,6 +208,7 @@ const divisions = [
     </div>
   </section>
 
+  <Footer />
 </Layout>
 
 <style>

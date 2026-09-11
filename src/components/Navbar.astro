@@ -28,15 +28,14 @@ const topLinks = [
 
     <!-- Desktop nav -->
     <nav class="hidden lg:flex items-center gap-8">
-      {topLinks.map((l) => (
-        <a href={l.href} class="nav-link">{l.label}</a>
-      ))}
+      <!-- Home first -->
+      <a href="/" class="nav-link">Home</a>
 
-      <!-- About dropdown -->
+      <!-- About dropdown right after Home -->
       <div class="nav-dropdown" id="about-dropdown">
-        <button class="nav-link nav-dropdown-trigger">
+        <button class="nav-link nav-dropdown-trigger inline-flex items-center gap-1">
           About
-          <svg class="w-3 h-3 ml-1 transition-transform duration-200" id="about-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5"/></svg>
+          <svg class="w-3 h-3 transition-transform duration-200" id="about-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5"/></svg>
         </button>
         <div class="nav-dropdown-menu" id="about-menu">
           {aboutChildren.map((c) => (
@@ -44,6 +43,11 @@ const topLinks = [
           ))}
         </div>
       </div>
+
+      <!-- Remaining links -->
+      {topLinks.filter(l => l.href !== '/').map((l) => (
+        <a href={l.href} class="nav-link">{l.label}</a>
+      ))}
     </nav>
 
     <!-- CTA -->
@@ -62,15 +66,13 @@ const topLinks = [
   <!-- Mobile menu -->
   <div id="mobile-menu" class="mobile-menu hidden lg:hidden">
     <div class="max-w-[1400px] mx-auto px-6 py-8 space-y-6">
-      {topLinks.map((l) => (
-        <a href={l.href} class="nav-link block text-lg">{l.label}</a>
-      ))}
+      <a href="/" class="nav-link block text-lg">Home</a>
 
       <!-- Mobile About submenu -->
       <div class="space-y-2">
-        <button class="nav-link block text-lg w-full text-left mobile-about-trigger" id="mobile-about-trigger">
+        <button class="nav-link inline-flex items-center gap-1 text-lg w-full text-left mobile-about-trigger" id="mobile-about-trigger">
           About
-          <svg class="w-3 h-3 ml-1 inline transition-transform duration-200" id="mobile-about-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5"/></svg>
+          <svg class="w-3 h-3 transition-transform duration-200" id="mobile-about-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5"/></svg>
         </button>
         <div class="hidden pl-4 space-y-3 mobile-about-sub" id="mobile-about-sub">
           {aboutChildren.map((c) => (
@@ -79,6 +81,9 @@ const topLinks = [
         </div>
       </div>
 
+      {topLinks.filter(l => l.href !== '/').map((l) => (
+        <a href={l.href} class="nav-link block text-lg">{l.label}</a>
+      ))}
       <a href="/contact" class="btn-primary mt-4">Contact Us <span>→</span></a>
     </div>
   </div>
