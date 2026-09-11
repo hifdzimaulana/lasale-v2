@@ -40,21 +40,21 @@ function splitName(name: string) {
 function guilloche(startY: number, amplitude: number, waves: number, lineCount: number, width: number) {
   const paths: { d: string; opacity: number }[] = [];
   for (let l = 0; l < lineCount; l++) {
-    const offset = l * 6;
-    const amp = amplitude + l * 5;
+    const offset = l * 3;
+    const amp = amplitude + l * 2;
     let d = '';
     for (let x = 0; x <= width; x += 6) {
       const y = startY + offset + Math.sin((x / width) * Math.PI * waves) * amp;
       d += (x === 0 ? 'M' : 'L') + `${x},${y.toFixed(1)}`;
     }
-    paths.push({ d, opacity: 1 - (l / lineCount) * 0.6 });
+    paths.push({ d, opacity: 1 - (l / lineCount) * 0.5 });
   }
   return paths;
 }
 
-const meshTeam = guilloche(20, 35, 2, 18, 1440);
-const meshPi = guilloche(10, 30, 2.5, 22, 1440);
-const meshDivs = guilloche(15, 25, 2.2, 16, 1440);
+const meshTeam = guilloche(15, 40, 2, 24, 1440);
+const meshPi = guilloche(5, 35, 2.5, 32, 1440);
+const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
 ---
 
 <Layout title="Kepengurusan 2026" description="Struktur kepengurusan LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.">
