@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 
 const SUPABASE_URL = 'https://sqejhkhqqofigcnnmrjq.supabase.co';
-const SUPABASE_KEY = import.meta.env.SUPABASE_SECRET_KEY;
+const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY;
 
 const res = await fetch(`${SUPABASE_URL}/rest/v1/members?select=*&order=sort_order.asc`, {
   headers: {
@@ -11,7 +11,8 @@ const res = await fetch(`${SUPABASE_URL}/rest/v1/members?select=*&order=sort_ord
     Authorization: `Bearer ${SUPABASE_KEY}`,
   },
 });
-const allMembers = await res.json();
+const raw = await res.json();
+const allMembers: any[] = Array.isArray(raw) ? raw : [];
 
 const pengurusInti = allMembers.filter((m: any) => m.category === 'pengurus_inti');
 const bph = allMembers.filter((m: any) => m.category === 'bph');
