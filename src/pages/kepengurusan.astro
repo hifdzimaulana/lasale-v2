@@ -28,11 +28,12 @@ const staffByDiv: Record<string, any[]> = { kompetisi: [], internal: [], ekstern
 staff.forEach((m: any) => { staffByDiv[m.division]?.push(m); });
 
 const FULL_TEAM_IMG = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets/fungsionaris/foto-fullteam.jpg';
+const BASE = 'https://sqejhkhqqofigcnnmrjq.supabase.co/storage/v1/object/public/lasale-assets';
 
 const divisions = [
-  { key: 'kompetisi', label: 'Kompetisi', accent: '#C0392B', supervisor: 'Michael Eka Surya Sibarani', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Kompetisi' },
-  { key: 'internal', label: 'Internal', accent: '#994B53', supervisor: 'Yovita Nathalia Hutabarat', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Internal' },
-  { key: 'eksternal', label: 'Eksternal', accent: '#5B8BD4', supervisor: 'Muhammad Naufal Darmadi', supervisorTitle: 'Wakil Direktur Eksekutif Bidang Eksternal' },
+  { key: 'kompetisi', label: 'Kompetisi', accent: '#C0392B', accentRgba: '192,57,43', accentName: 'red' },
+  { key: 'internal', label: 'Internal', accent: '#994B53', accentRgba: '153,75,83', accentName: 'burgundy' },
+  { key: 'eksternal', label: 'Eksternal', accent: '#5B8BD4', accentRgba: '91,139,212', accentName: 'blue' },
 ];
 
 function splitName(name: string) {
@@ -40,6 +41,24 @@ function splitName(name: string) {
   const rest = name.slice(1);
   return { first, rest };
 }
+
+function guilloche(startY: number, amplitude: number, waves: number, lineCount: number, width: number, height: number) {
+  const paths: string[] = [];
+  for (let l = 0; l < lineCount; l++) {
+    const offset = l * 3;
+    const amp = amplitude + l * 4;
+    let d = '';
+    for (let x = 0; x <= width; x += 4) {
+      const y = startY + offset + Math.sin((x / width) * Math.PI * waves) * amp;
+      d += (x === 0 ? 'M' : 'L') + `${x},${y.toFixed(1)}`;
+    }
+    paths.push(d);
+  }
+  return paths;
+}
+
+const meshPaths1 = guilloche(30, 25, 2.5, 18, 1440, 120);
+const meshPaths2 = guilloche(25, 30, 2, 15, 1440, 100);
 ---
 
 <Layout title="Kepengurusan 2026" description="Struktur kepengurusan LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.">
@@ -49,6 +68,19 @@ function splitName(name: string) {
   <section class="relative bg-bg-dark pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
     <div class="absolute inset-0 grid-bg opacity-30"></div>
     <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 80%, rgba(28,59,135,0.25) 0%, transparent 60%)"></div>
+    <!-- Soft stars -->
+    <div class="soft-star soft-star--yellow" style="width:320px;height:320px;top:5%;right:-8%;opacity:.10"></div>
+    <div class="soft-star soft-star--burgundy" style="width:200px;height:200px;bottom:10%;left:5%;opacity:.12"></div>
+    <!-- Portal sparkles -->
+    <div class="portal" style="top:20%;left:12%">
+      <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D" opacity="0.8"/></svg>
+    </div>
+    <div class="portal" style="top:35%;right:15%">
+      <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.6"/></svg>
+    </div>
+    <div class="portal" style="bottom:25%;left:30%">
+      <svg width="8" height="8" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D" opacity="0.5"/></svg>
+    </div>
     <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 text-center">
       <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-gold/70 mb-3 reveal">LaSALe FH UI 2026</p>
       <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-700 text-gradient-gold leading-[1.1] reveal">
@@ -57,25 +89,28 @@ function splitName(name: string) {
       <p class="font-body text-sm lg:text-base text-pale-cream/60 mt-4 max-w-xl mx-auto reveal">
         Susunan lengkap pengurus LaSALe FH UI periode 2026 — Organisasi Mahasiswa Fakultas Hukum Universitas Indonesia.
       </p>
-      <!-- Decorative corner marks -->
-      <div class="absolute top-8 left-6 lg:left-10 w-8 h-8 border-t-2 border-l-2 border-gold/20 reveal"></div>
-      <div class="absolute top-8 right-6 lg:right-10 w-8 h-8 border-t-2 border-r-2 border-gold/20 reveal"></div>
-      <div class="absolute bottom-8 left-6 lg:left-10 w-8 h-8 border-b-2 border-l-2 border-gold/20 reveal"></div>
-      <div class="absolute bottom-8 right-6 lg:right-10 w-8 h-8 border-b-2 border-r-2 border-gold/20 reveal"></div>
     </div>
   </section>
 
-  <!-- Wave: Hero → Full Team -->
-  <div class="relative -mt-1 bg-bg-dark" style="line-height: 0;">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[80px] lg:h-[100px]">
-      <path d="M0,0 L1440,0 L1440,40 Q1080,110 720,80 Q360,50 0,90 Z" fill="#1C3B87" opacity="0.6"/>
-      <path d="M0,0 L1440,0 L1440,30 Q1100,95 720,65 Q340,35 0,75 Z" fill="#1C3B87"/>
+  <!-- Guilloche Mesh: Hero → Full Team -->
+  <div class="relative bg-bg-dark overflow-hidden" style="line-height: 0; margin-top: -1px;">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" class="w-full h-[50px] sm:h-[60px] lg:h-[80px]">
+      {meshPaths1.map((d) => (
+        <path d={d} fill="none" stroke="rgba(28,59,135,0.18)" stroke-width="0.8"/>
+      ))}
+      <rect x="0" y="55" width="1440" height="50" fill="var(--color-primary-blue)"/>
     </svg>
   </div>
 
   <!-- Full Team Photo -->
-  <section class="relative bg-primary-blue">
-    <div class="max-w-[1100px] mx-auto px-6 lg:px-10 py-12 lg:py-16">
+  <section class="relative bg-primary-blue overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-20"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 50%, rgba(153,75,83,0.12) 0%, transparent 50%)"></div>
+    <div class="soft-star soft-star--burgundy" style="width:250px;height:250px;top:20%;right:10%;opacity:.10"></div>
+    <div class="portal" style="top:15%;left:8%">
+      <svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D" opacity="0.7"/></svg>
+    </div>
+    <div class="relative max-w-[1100px] mx-auto px-6 lg:px-10 py-12 lg:py-16">
       <div class="relative reveal">
         <div class="absolute -inset-[2px] bg-gradient-to-r from-gold/30 via-burgundy/20 to-gold/30 z-0"></div>
         <img
@@ -92,27 +127,37 @@ function splitName(name: string) {
     </div>
   </section>
 
-  <!-- Wave: Full Team → Pengurus Inti -->
-  <div class="relative -mt-1 bg-primary-blue" style="line-height: 0;">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[80px] lg:h-[100px]">
-      <path d="M0,0 L1440,0 L1440,50 Q1100,120 720,70 Q340,20 0,85 Z" fill="#10204A" opacity="0.5"/>
-      <path d="M0,0 L1440,0 L1440,40 Q1080,110 720,60 Q360,10 0,75 Z" fill="#10204A"/>
+  <!-- Guilloche Mesh: Full Team → Pengurus Inti -->
+  <div class="relative bg-primary-blue overflow-hidden" style="line-height: 0; margin-top: -1px;">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" class="w-full h-[50px] sm:h-[60px] lg:h-[80px]">
+      {meshPaths2.map((d) => (
+        <path d={d} fill="none" stroke="rgba(250,246,235,0.08)" stroke-width="0.7"/>
+      ))}
+      <rect x="0" y="50" width="1440" height="55" fill="var(--color-bg-dark)"/>
     </svg>
   </div>
 
   <!-- Pengurus Inti -->
-  <section class="relative bg-bg-dark">
-    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
-      <div class="reveal">
+  <section class="relative bg-bg-dark overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-25"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 60% 30%, rgba(246,235,61,0.06) 0%, transparent 50%)"></div>
+    <div class="soft-star soft-star--yellow" style="width:300px;height:300px;top:15%;left:-5%;opacity:.08"></div>
+    <div class="portal" style="top:10%;right:20%">
+      <svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D" opacity="0.7"/></svg>
+    </div>
+    <div class="portal" style="bottom:15%;left:25%">
+      <svg width="8" height="8" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.5"/></svg>
+    </div>
+    <div class="relative max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+      <div class="reveal mb-12">
         <div class="flex items-center gap-3 mb-2">
-          <div class="w-3 h-3 border-t-2 border-l-2 border-gold/40"></div>
-          <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase text-gold/60">01 — Struktur</p>
-          <div class="w-3 h-3 border-t-2 border-r-2 border-gold/40"></div>
+          <div class="w-8 h-[2px] bg-gold"></div>
+          <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase text-gold/70">01 · Struktur</p>
+          <div class="flex-1 h-[1px] bg-gold/15"></div>
         </div>
         <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700 text-gradient-gold mb-1">
           <span class="drop-cap drop-cap--gold" style="font-size: 1.8em;">P</span>engurus Inti
         </h2>
-        <div class="w-16 h-[2px] bg-gold/30 mt-2"></div>
       </div>
 
       <!-- Direktur Eksekutif (centered, alone on top) -->
@@ -129,11 +174,11 @@ function splitName(name: string) {
               />
             </div>
             <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.6) 20%, transparent 40%)"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-4">
-                <div class="w-8 h-[2px] bg-gold mb-2"></div>
-                <h3 class="font-heading text-sm lg:text-base font-700 leading-tight" style="color: var(--color-accent-yellow)">{pengurusInti[0].name}</h3>
-                <p class="font-body text-[0.65rem] text-pale-cream mt-1 leading-relaxed">{pengurusInti[0].role}</p>
-              </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <div class="w-8 h-[2px] bg-gold mb-2"></div>
+              <h3 class="font-heading text-sm lg:text-base font-700 leading-tight" style="color: var(--color-accent-yellow)">{pengurusInti[0].name}</h3>
+              <p class="font-body text-[0.65rem] text-pale-cream mt-1 leading-relaxed">{pengurusInti[0].role}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -165,11 +210,13 @@ function splitName(name: string) {
     </div>
   </section>
 
-  <!-- Wave: Pengurus Inti → Divisions -->
-  <div class="relative -mt-1 bg-bg-dark" style="line-height: 0;">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="w-full h-[60px] sm:h-[80px] lg:h-[100px]">
-      <path d="M0,0 L1440,0 L1440,45 Q1080,115 720,75 Q360,35 0,80 Z" fill="#1C3B87" opacity="0.4"/>
-      <path d="M0,0 L1440,0 L1440,35 Q1100,100 720,65 Q340,30 0,70 Z" fill="#1C3B87"/>
+  <!-- Guilloche Mesh: Pengurus Inti → Divisions -->
+  <div class="relative bg-bg-dark overflow-hidden" style="line-height: 0; margin-top: -1px;">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" class="w-full h-[50px] sm:h-[60px] lg:h-[80px]">
+      {meshPaths1.map((d) => (
+        <path d={d} fill="none" stroke="rgba(28,59,135,0.15)" stroke-width="0.7"/>
+      ))}
+      <rect x="0" y="50" width="1440" height="55" fill="var(--color-primary-blue)"/>
     </svg>
   </div>
 
@@ -179,95 +226,109 @@ function splitName(name: string) {
     const divStaff = staffByDiv[div.key] || [];
     const sectionNum = String(di + 2).padStart(2, '0');
     const bgClass = div.key === 'kompetisi' ? 'bg-[#1a1a2e]' : di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark';
-    const nextBg = div.key === 'kompetisi' ? 'bg-primary-blue' : di < divisions.length - 1 ? (di % 2 === 0 ? 'bg-bg-dark' : 'bg-primary-blue') : 'bg-bg-dark';
     return (
       <Fragment>
-        <section class={`relative ${bgClass}`}>
-          {div.key === 'kompetisi' && <div class="absolute inset-0 grid-bg opacity-20"></div>}
-          {di % 2 !== 0 && <div class="absolute inset-0 grid-bg opacity-30"></div>}
-          {div.key === 'kompetisi' && <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, transparent 50%, rgba(192,57,43,0.08) 100%)"></div>}
+        <section class={`relative ${bgClass} overflow-hidden`}>
+          <div class="absolute inset-0 grid-bg opacity-20"></div>
+          {div.key === 'kompetisi' && (
+            <div class="absolute inset-0" style={`background: radial-gradient(ellipse at 40% 20%, rgba(${div.accentRgba},0.12) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(${div.accentRgba},0.08) 0%, transparent 50%)`}></div>
+          )}
+          {div.key === 'internal' && (
+            <div class="absolute inset-0" style={`background: radial-gradient(ellipse at 60% 40%, rgba(${div.accentRgba},0.10) 0%, transparent 50%)`}></div>
+          )}
+          {div.key === 'eksternal' && (
+            <div class="absolute inset-0" style={`background: radial-gradient(ellipse at 30% 60%, rgba(${div.accentRgba},0.10) 0%, transparent 50%)`}></div>
+          )}
+          <div class={`soft-star soft-star--${div.accentName}`} style={`width:200px;height:200px;top:10%;${di % 2 === 0 ? 'right:-5%' : 'left:-5%'};opacity:.08`}></div>
+          <div class="portal" style={`top:12%;${di % 2 === 0 ? 'left:10%' : 'right:10%'}`}>
+            <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F6EB3D" opacity="0.6"/></svg>
+          </div>
+
           <div class="relative max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
-          <div class="reveal mb-10">
-            <div class="flex items-center gap-3 mb-2">
-              <div class="w-3 h-3 border-t-2 border-l-2" style={`border-color: ${div.accent}`}></div>
-              <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase" style={`color: ${div.accent}99`}>0{di + 2} — Divisi</p>
-              <div class="w-3 h-3 border-t-2 border-r-2" style={`border-color: ${div.accent}`}></div>
-            </div>
-            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700" style={`color: ${div.accent}`}>
-              <span class="drop-cap" style={`color: ${div.accent}; font-size: 1.8em;`}>{splitName(div.label).first}</span>{splitName(div.label).rest}
-            </h2>
-            <div class="w-16 h-[2px] mt-3" style={`background: ${div.accent}44`}></div>
-          </div>
-
-          <!-- BPH Leaders -->
-          <div class="flex flex-wrap justify-center gap-5 mb-10">
-            {divBph.map((m: any, i: number) => (
-              <div class={`reveal reveal-card w-[calc(50%-10px)] sm:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] max-w-[280px]`} style={`--d:${i * 0.08}s`}>
-                <div class="group relative border border-pale-cream/10 bg-bg-dark/50 overflow-hidden transition-all duration-300 hover:border-gold/30">
-                  <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}66, transparent);`}></div>
-                  <div class="aspect-[3/4] overflow-hidden">
-                    <img
-                      src={m.image_path}
-                      alt={m.name}
-                      class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.6) 20%, transparent 40%)"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-3">
-                    <div class="w-6 h-[2px] bg-gold mb-1.5"></div>
-                    <h3 class="font-heading text-xs lg:text-sm font-700 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
-                    <p class="font-body text-[0.6rem] text-pale-cream mt-0.5">{m.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <!-- Staff -->
-          {divStaff.length > 0 && (
-            <div class="reveal">
-              <div class="flex items-center gap-3 mb-6">
-                <div class="w-8 h-[1px]" style={`background: ${div.accent}44`}></div>
-                <p class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-pale-cream/40">Staff Divisi {div.label}</p>
+            <div class="reveal mb-10">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-[2px]" style={`background: ${div.accent}`}></div>
+                <p class="font-body text-[0.65rem] tracking-[0.3em] uppercase" style={`color: ${div.accent}cc`}>0{di + 2} · Divisi</p>
                 <div class="flex-1 h-[1px]" style={`background: ${div.accent}22`}></div>
-                <span class="font-body text-[0.6rem] text-pale-cream/30">{divStaff.length} orang</span>
               </div>
+              <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700" style={`color: ${div.accent}`}>
+                <span class="drop-cap" style={`color: ${div.accent}; font-size: 1.8em;`}>{splitName(div.label).first}</span>{splitName(div.label).rest}
+              </h2>
+              <div class="w-16 h-[2px] mt-3" style={`background: ${div.accent}44`}></div>
+            </div>
 
-              <div class="flex flex-wrap justify-center gap-4">
-                {divStaff.map((m: any, i: number) => (
-                  <div class="reveal reveal-card w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)] max-w-[220px]" style={`--d:${i * 0.04}s`}>
-                    <div class="group relative border border-pale-cream/10 bg-bg-dark/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
-                      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}44, transparent);`}></div>
-                      <div class="aspect-[3/4] overflow-hidden">
-                        <img
-                          src={m.image_path}
-                          alt={m.name}
-                          class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.6) 20%, transparent 40%)"></div>
-                      <div class="absolute bottom-0 left-0 right-0 p-3">
-                        <h3 class="font-heading text-xs font-600 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
-                        <p class="font-body text-[0.55rem] text-pale-cream/70 mt-0.5">Staff</p>
-                      </div>
+            <!-- BPH Leaders -->
+            <div class="flex flex-wrap justify-center gap-5 mb-10">
+              {divBph.map((m: any, i: number) => (
+                <div class={`reveal reveal-card w-[calc(50%-10px)] sm:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] max-w-[280px]`} style={`--d:${i * 0.08}s`}>
+                  <div class="group relative border border-pale-cream/10 bg-bg-dark/50 overflow-hidden transition-all duration-300 hover:border-gold/30">
+                    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}66, transparent);`}></div>
+                    <div class="aspect-[3/4] overflow-hidden">
+                      <img
+                        src={m.image_path}
+                        alt={m.name}
+                        class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.6) 20%, transparent 40%)"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-3">
+                      <div class="w-6 h-[2px] bg-gold mb-1.5"></div>
+                      <h3 class="font-heading text-xs lg:text-sm font-700 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
+                      <p class="font-body text-[0.6rem] text-pale-cream mt-0.5">{m.role}</p>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          )}
-        </div>
-      </section>
-      {di < divisions.length - 1 && (
-        <div class="relative -mt-1" style={`line-height: 0; background: ${nextBg};`}>
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-[40px] sm:h-[50px] lg:h-[60px]">
-            <path d="M0,0 L1440,0 L1440,25 Q1080,75 720,50 Q360,25 0,60 Z" fill={div.key === 'kompetisi' ? '#1C3B87' : di % 2 === 0 ? '#10204A' : '#1C3B87'} opacity="0.5"/>
-            <path d="M0,0 L1440,0 L1440,20 Q1100,65 720,40 Q340,15 0,50 Z" fill={div.key === 'kompetisi' ? '#1C3B87' : di % 2 === 0 ? '#10204A' : '#1C3B87'}/>
-          </svg>
-        </div>
-      )}
+
+            <!-- Staff -->
+            {divStaff.length > 0 && (
+              <div class="reveal">
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-8 h-[1px]" style={`background: ${div.accent}44`}></div>
+                  <p class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-pale-cream/40">Staff Divisi {div.label}</p>
+                  <div class="flex-1 h-[1px]" style={`background: ${div.accent}22`}></div>
+                  <span class="font-body text-[0.6rem] text-pale-cream/30">{divStaff.length} orang</span>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                  {divStaff.map((m: any, i: number) => (
+                    <div class="reveal reveal-card w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)] max-w-[220px]" style={`--d:${i * 0.04}s`}>
+                      <div class="group relative border border-pale-cream/10 bg-bg-dark/30 overflow-hidden transition-all duration-300 hover:border-gold/30">
+                        <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" style={`background: linear-gradient(to right, transparent, ${div.accent}44, transparent);`}></div>
+                        <div class="aspect-[3/4] overflow-hidden">
+                          <img
+                            src={m.image_path}
+                            alt={m.name}
+                            class="w-full h-full object-cover grayscale-[30%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.6) 20%, transparent 40%)"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3">
+                          <h3 class="font-heading text-xs font-600 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
+                          <p class="font-body text-[0.55rem] text-pale-cream/70 mt-0.5">Staff</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {di < divisions.length - 1 && (
+          <div class="relative overflow-hidden" style={`line-height: 0; margin-top: -1px; background: ${div.key === 'kompetisi' ? 'var(--color-primary-blue)' : di % 2 === 0 ? 'var(--color-bg-dark)' : 'var(--color-primary-blue)'};`}>
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-[40px] sm:h-[50px] lg:h-[60px]">
+              {meshPaths2.slice(0, 12).map((d) => (
+                <path d={d} fill="none" stroke={`rgba(${div.accentRgba},0.12)`} stroke-width="0.6"/>
+              ))}
+              <rect x="0" y="40" width="1440" height="45" fill={div.key === 'kompetisi' ? 'var(--color-primary-blue)' : di % 2 === 0 ? 'var(--color-bg-dark)' : 'var(--color-primary-blue)'}/>
+            </svg>
+          </div>
+        )}
       </Fragment>
     );
   })}
