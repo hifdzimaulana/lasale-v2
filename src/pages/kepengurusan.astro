@@ -53,7 +53,7 @@ function guilloche(startY: number, amplitude: number, waves: number, lineCount: 
 }
 
 const meshTeam = guilloche(15, 40, 2, 24, 1440);
-const meshPi = guilloche(5, 35, 2.5, 32, 1440);
+const meshPi = guilloche(5, 35, 2.5, 18, 1440);
 const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
 ---
 
@@ -138,7 +138,7 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
       <svg width="8" height="8" viewBox="0 0 24 24"><path d="M12 0 L13 11 L24 12 L13 13 L12 24 L11 13 L0 12 L11 11 Z" fill="#F7F2B7" opacity="0.5"/></svg>
     </div>
     <!-- Mesh: full section background, top-heavy fade -->
-    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1440 300" preserveAspectRatio="none" style="opacity: 0.45;">
+    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1440 300" preserveAspectRatio="none" style="opacity: 0.6;">
       <defs>
         <linearGradient id="pi-fade" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="white" stop-opacity="0"/>
@@ -158,7 +158,7 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
       </defs>
       <g mask="url(#pi-mask)">
         {meshPi.map((p) => (
-          <path d={p.d} fill="none" stroke="rgba(28,59,135,0.14)" stroke-width="0.7" opacity={p.opacity}/>
+          <path d={p.d} fill="none" stroke="rgba(28,59,135,0.20)" stroke-width="0.8" opacity={p.opacity}/>
         ))}
       </g>
     </svg>
@@ -216,7 +216,7 @@ const meshDivs = guilloche(10, 30, 2.2, 20, 1440);
   {divisions.map((div, di) => {
     const divBph = bphByDiv[div.key] || [];
     const divStaff = staffByDiv[div.key] || [];
-    const bgClass = div.key === 'kompetisi' ? 'bg-[#1a1a2e]' : di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark';
+    const bgClass = div.key === 'kompetisi' ? 'bg-[#C0392B]' : di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark';
     return (
       <section class={`relative ${bgClass} overflow-hidden`}>
         <div class="absolute inset-0 grid-bg opacity-20"></div>
