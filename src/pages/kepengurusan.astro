@@ -93,10 +93,10 @@ const divisions = [
                 loading="lazy"
               />
             </div>
-            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,0.95) 0%, rgba(16,32,74,0.4) 30%, transparent 50%)"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.7) 35%, transparent 55%)"></div>
             <div class="absolute bottom-0 left-0 right-0 p-4">
               <div class="w-8 h-[2px] bg-gold mb-2"></div>
-              <h3 class="font-heading text-sm lg:text-base font-700 leading-tight" style="color: var(--color-burgundy)">{pengurusInti[0].name}</h3>
+              <h3 class="font-heading text-sm lg:text-base font-700 leading-tight" style="color: var(--color-accent-yellow)">{pengurusInti[0].name}</h3>
               <p class="font-body text-[0.65rem] text-pale-cream mt-1 leading-relaxed">{pengurusInti[0].role}</p>
             </div>
           </div>
@@ -116,10 +116,10 @@ const divisions = [
                   loading="lazy"
                 />
               </div>
-              <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,0.95) 0%, rgba(16,32,74,0.4) 30%, transparent 50%)"></div>
+              <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.7) 35%, transparent 55%)"></div>
               <div class="absolute bottom-0 left-0 right-0 p-4">
                 <div class="w-8 h-[2px] bg-gold mb-2"></div>
-                <h3 class="font-heading text-sm lg:text-base font-700 leading-tight" style="color: var(--color-burgundy)">{m.name}</h3>
+                <h3 class="font-heading text-sm lg:text-base font-700 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
                 <p class="font-body text-[0.65rem] text-pale-cream mt-1 leading-relaxed">{m.role}</p>
               </div>
             </div>
@@ -138,17 +138,9 @@ const divisions = [
       <section class={`relative ${di % 2 === 0 ? 'bg-primary-blue' : 'bg-bg-dark'}`}>
         {di % 2 !== 0 && <div class="absolute inset-0 grid-bg opacity-30"></div>}
         <div class="relative max-w-[1200px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
-          <div class="reveal">
+          <div class="reveal mb-10">
             <p class="font-body text-[0.6rem] tracking-[0.3em] uppercase mb-2" style={`color: ${div.accent}99`}>0{di + 2} — Divisi</p>
-            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700 mb-3" style={`color: ${div.accent}`}>{div.label}</h2>
-            <p class="font-body text-sm text-pale-cream/60 mb-10 max-w-xl">Badan Pengurus Harian Divisi {div.label} di bawah supervisi {div.supervisorTitle}.</p>
-          </div>
-
-          <!-- Supervisor badge -->
-          <div class="reveal mb-8 border-l-4 pl-5 py-3" style={`border-color: ${div.accent}`}>
-            <p class="font-body text-[0.6rem] tracking-[0.2em] uppercase text-pale-cream/40 mb-1">Supervisor</p>
-            <p class="font-heading text-lg font-700 text-pale-cream">{div.supervisor}</p>
-            <p class="font-body text-xs text-pale-cream/50">{div.supervisorTitle}</p>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-700" style={`color: ${div.accent}`}>{div.label}</h2>
           </div>
 
           <!-- BPH Leaders -->
@@ -164,10 +156,10 @@ const divisions = [
                       loading="lazy"
                     />
                   </div>
-                  <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,0.95) 0%, rgba(16,32,74,0.4) 30%, transparent 50%)"></div>
+                  <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.7) 35%, transparent 55%)"></div>
                   <div class="absolute bottom-0 left-0 right-0 p-3">
                     <div class="w-6 h-[2px] bg-gold mb-1.5"></div>
-                    <h3 class="font-heading text-xs lg:text-sm font-700 leading-tight" style="color: var(--color-burgundy)">{m.name}</h3>
+                    <h3 class="font-heading text-xs lg:text-sm font-700 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
                     <p class="font-body text-[0.6rem] text-pale-cream mt-0.5">{m.role}</p>
                   </div>
                 </div>
@@ -197,9 +189,9 @@ const divisions = [
                           loading="lazy"
                         />
                       </div>
-                      <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,0.95) 0%, rgba(16,32,74,0.4) 30%, transparent 50%)"></div>
+                      <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(16,32,74,1) 0%, rgba(16,32,74,0.7) 35%, transparent 55%)"></div>
                       <div class="absolute bottom-0 left-0 right-0 p-3">
-                        <h3 class="font-heading text-xs font-600 leading-tight" style="color: var(--color-burgundy)">{m.name}</h3>
+                        <h3 class="font-heading text-xs font-600 leading-tight" style="color: var(--color-accent-yellow)">{m.name}</h3>
                         <p class="font-body text-[0.55rem] text-pale-cream/70 mt-0.5">Staff</p>
                       </div>
                     </div>
