@@ -2,9 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { loadEnv } from 'vite';
 
-const SUPABASE_URL = 'https://sqejhkhqqofigcnnmrjq.supabase.co';
-const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY;
+const env = loadEnv(import.meta.env.MODE, process.cwd(), '');
+const SUPABASE_URL = env.SUPABASE_URL;
+const SUPABASE_KEY = env.SUPABASE_SECRET_KEY;
 
 const res = await fetch(`${SUPABASE_URL}/rest/v1/members?select=*&order=sort_order.asc`, {
   headers: {
